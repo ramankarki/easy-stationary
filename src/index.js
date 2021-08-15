@@ -10,5 +10,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-if (process.env.NODE_ENV === 'production') serviceWorkerRegistration.register();
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
