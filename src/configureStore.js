@@ -11,10 +11,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default function configureStore(preloadedState) {
-  const middlewares = [actionLoggerMiddleware, thunk];
+  const middlewares = [thunk];
+  if (process.env.NODE_ENV !== 'production')
+    middlewares.push(actionLoggerMiddleware);
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
-  const enhancers = [middlewareEnhancer, monitorReducersEnhancer];
+  const enhancers = [middlewareEnhancer];
+  if (process.env.NODE_ENV !== 'production')
+    enhancers.push(monitorReducersEnhancer);
   const composedEnhancers = composeEnhanchers(...enhancers);
 
   const store = createStore(rootReducer, preloadedState, composedEnhancers);
