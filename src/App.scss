@@ -1,0 +1,16 @@
+@import '_variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+
+  *:focus {
+    outline: 1px dotted $primary-color;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
