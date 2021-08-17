@@ -1,10 +1,19 @@
+import { lazy, Suspense } from 'react';
+
+import ErrorBoundary from './components/ErrorBoundary';
+import PageLoadingSpinner from './components/PageLoadingSpinner';
 import './App.scss';
-import RoutesGenerator from './Routes';
+
+const RoutesGenerator = lazy(() => import('./Routes'));
 
 function App() {
   return (
     <div className="App">
-      <RoutesGenerator />
+      <ErrorBoundary>
+        <Suspense fallback={PageLoadingSpinner()}>
+          <RoutesGenerator />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
