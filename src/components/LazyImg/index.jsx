@@ -21,9 +21,18 @@ const LazyImg = (props) => {
   // image onLoad, unmount loading component
   return (
     <ErrorBoundary>
-      <div ref={imgRef} style={{ height: '100%', width: '100%' }}>
+      <div
+        ref={imgRef}
+        style={{ height: '100%', width: '100%', position: 'relative' }}
+      >
         {isInView && (
-          <img src={src} alt={alt} loading="lazy" onLoad={handleOnLoad} />
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            onLoad={handleOnLoad}
+            style={{ position: 'absolute' }}
+          />
         )}
         {
           // when image loads, unmount shimmer loading
