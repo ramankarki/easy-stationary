@@ -8,7 +8,6 @@ function handleIntersections(entries, observer) {
   entries.forEach((entry) => {
     // if element is near viewport, set to true
     if (entry.isIntersecting) {
-      console.log('inserted');
       setIsInView(true);
       observer.unobserve(entry.target);
     }
