@@ -1,0 +1,16 @@
+.shimmerLoading {
+  background-color: rgb(190, 190, 190);
+  animation-name: shimmer;
+  animation-duration: 1200ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
