@@ -8,13 +8,13 @@ const RoutesGenerator = lazy(() => import('./Routes'));
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <ErrorBoundary>
         <Suspense fallback={PageLoadingSpinner()}>
           <RoutesGenerator />
         </Suspense>
       </ErrorBoundary>
-    </div>
+    </main>
   );
 }
 
