@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import monitorReducersEnhancer from './utils/monitorReducers';
 import actionLoggerMiddleware from './utils/actionLogger';
 import rootReducer from './reducers';
+import dynamicReducers from './utils/dynamicReducers';
 
 let composeEnhanchers = compose;
 if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +17,7 @@ export default function configureStore(preloadedState) {
     middlewares.push(actionLoggerMiddleware);
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
-  const enhancers = [middlewareEnhancer];
+  const enhancers = [middlewareEnhancer, dynamicReducers];
   if (process.env.NODE_ENV !== 'production')
     enhancers.push(monitorReducersEnhancer);
   const composedEnhancers = composeEnhanchers(...enhancers);
