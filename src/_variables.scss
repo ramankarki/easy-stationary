@@ -11,13 +11,20 @@ $max-content-width: 600px;
 // font sizes
 $small-text: 0.75rem;
 $normal-text: 1rem;
-$medium-text: 1.4rem;
-$large-text: 3rem;
+$medium-text: 1.2rem;
+$large-text: 1.5rem;
+$extra-large-text: 3rem;
 
 // font weight
 $light: 400;
 $medium: 500;
 $heavy: 900;
+
+// media breakpoints
+$small-screen: 480px;
+$medium-screen: 768px;
+$large-screen: 1024px;
+$extra-large-screen: 1200px;
 
 // misc
 $box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
