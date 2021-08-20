@@ -1,0 +1,29 @@
+@import '../../_variables';
+
+.label {
+  &__name {
+    font-weight: $heavy;
+    font-size: $small-text;
+    color: $primary-color;
+  }
+
+  &__field {
+    margin-top: 0.5rem;
+    width: 100%;
+    font-size: $normal-text;
+    color: $text-color;
+    background-color: $secondary-color;
+    border: none;
+    padding: 0.7rem;
+
+    &-error {
+      background-color: $light-error-color;
+    }
+  }
+
+  &__validationMsg {
+    font-size: $small-text;
+    margin-top: 0.5rem;
+    color: $medium-error-color;
+  }
+}
