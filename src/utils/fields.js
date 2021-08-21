@@ -8,41 +8,41 @@ import {
 
 const fieldsObject = {
   'First name': {
-    isName,
+    validate: isName,
     validationMsg: 'Please enter your name!',
     dbProp: 'firstName',
   },
   'Last name': {
-    isName,
+    validate: isName,
     validationMsg: 'Please enter your name!',
     dbProp: 'lastName',
   },
   'Phone number': {
-    isPhoneNumber,
+    validate: isPhoneNumber,
     validationMsg: 'Please enter valid phone number!',
     dbProp: 'phoneNumber',
   },
   'Full address': {
-    isTextBox,
+    validate: isTextBox,
     min: 2,
     max: 999999,
     validationMsg: 'Please enter your address!',
     dbProp: 'fullAddress',
   },
   Email: {
-    _isEmail,
+    validate: _isEmail,
     validationMsg: 'Please enter valid email!',
     dbProp: 'email',
   },
   Password: {
-    isTextBox,
+    validate: isTextBox,
     min: 12,
     max: 999999,
     validationMsg: 'Length should be more than 12!',
     dbProp: 'password',
   },
   'Re-type password': {
-    isReTypePassword,
+    validate: isReTypePassword,
     validationMsg: "Passwords doesn't match!",
     dbProp: 'reTypePassword',
   },
