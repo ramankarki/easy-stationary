@@ -16,22 +16,12 @@ const InputField = (props) => {
     validationMsg,
   } = props;
 
-  const validateFuncName = Object.keys(props).filter(
-    (key) => key.startsWith('is') || key.startsWith('_is')
-  )[0];
-
   // event handlers
   const onChangeHandler = (event) =>
-    onChangeAndBlur(TYPE, labelName, event.target.value, validateFuncName);
+    onChangeAndBlur(TYPE, labelName, event.target.value);
 
   const onBlurHandler = (event) =>
-    onChangeAndBlur(
-      TYPE,
-      labelName,
-      event.target.value,
-      validateFuncName,
-      'onBlur'
-    );
+    onChangeAndBlur(TYPE, labelName, event.target.value, 'onBlur');
 
   // dynamic class names
   const labelClass = classes('label', { [dbProp]: true });
