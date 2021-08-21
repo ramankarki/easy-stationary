@@ -1,0 +1,54 @@
+@import '../../_variables';
+
+.signup {
+  &__logo {
+    max-width: 250px;
+    width: 90%;
+    margin: 3rem auto 0;
+    height: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__section {
+    max-width: $max-content-width;
+    width: 90%;
+    box-shadow: $box-shadow;
+    margin: 2rem auto 5rem;
+    padding: 1.5rem 1.5rem 2.2rem;
+  }
+
+  &__heading {
+    text-align: center;
+    font-size: $large-text;
+    font-weight: $medium;
+    color: $primary-color;
+  }
+
+  &__form {
+    margin-top: 2rem;
+    display: grid;
+    grid-gap: 1.2rem;
+
+    label {
+      grid-column: span 2;
+    }
+
+    @media (min-width: $gt-small-screen) {
+      grid-template-columns: 1fr 1fr;
+
+      label {
+        grid-column: span 1;
+      }
+
+      .email,
+      .password,
+      .reTypePassword {
+        grid-column: span 2;
+      }
+    }
+  }
+}
