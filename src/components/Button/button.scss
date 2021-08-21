@@ -1,0 +1,21 @@
+@import '../../_variables';
+
+.button {
+  cursor: pointer;
+  border: 0;
+  font-size: $medium-text;
+  font-weight: $medium;
+  background-color: $primary-color;
+  color: white;
+  padding: 0.7rem 0.9rem;
+  grid-column: span 2;
+  box-shadow: $box-shadow;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
