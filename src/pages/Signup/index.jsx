@@ -36,7 +36,7 @@ function Signup(props) {
       ejectReducer(UI_SIGNUP_STATE);
       ejectReducer(APP_SIGNUP_STATE);
     };
-  }, []);
+  }, [signupFields]);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
