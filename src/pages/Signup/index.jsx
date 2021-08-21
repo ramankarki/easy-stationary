@@ -26,16 +26,17 @@ function Signup(props) {
     'Re-type password'
   );
 
-  injectReducer(UI_SIGNUP_STATE, HOFreducer(UI_SIGNUP_STATE, signupFields));
-  injectReducer(
-    APP_SIGNUP_STATE,
-    HOFreducer(APP_SIGNUP_STATE, appState(APP_SIGNUP_STATE))
-  );
-
-  useEffect(() => () => {
-    ejectReducer(UI_SIGNUP_STATE);
-    ejectReducer(APP_SIGNUP_STATE);
-  });
+  useEffect(() => {
+    injectReducer(UI_SIGNUP_STATE, HOFreducer(UI_SIGNUP_STATE, signupFields));
+    injectReducer(
+      APP_SIGNUP_STATE,
+      HOFreducer(APP_SIGNUP_STATE, appState(APP_SIGNUP_STATE))
+    );
+    return () => {
+      ejectReducer(UI_SIGNUP_STATE);
+      ejectReducer(APP_SIGNUP_STATE);
+    };
+  }, []);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
