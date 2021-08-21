@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classes from '../../utils/classes';
 
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
-import './index.scss';
+import './inputField.scss';
 
 const InputField = (props) => {
   const {
