@@ -31,7 +31,14 @@ const InputField = (props) => {
 
   return (
     <label className={labelClass}>
-      <p className="label__name">{labelName}</p>
+      <p className="label__name">
+        {labelName}
+        {validationFailed ? (
+          <span className="label__validationMsg">&nbsp; *{validationMsg}</span>
+        ) : (
+          ''
+        )}
+      </p>
       <input
         className={inputClass}
         type="text"
@@ -39,9 +46,6 @@ const InputField = (props) => {
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
       />
-      <p className="label__validationMsg">
-        {validationFailed ? validationMsg : ''}
-      </p>
     </label>
   );
 };
