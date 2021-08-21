@@ -48,7 +48,7 @@ const InputField = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { TYPE, labelName } = ownProps;
-  return state[TYPE][labelName];
+  return state[TYPE] ? state[TYPE][labelName] : {};
 };
 
 export default connect(mapStateToProps, { onChangeAndBlur })(InputField);
