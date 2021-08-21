@@ -1,5 +1,5 @@
 const onChangeAndBlur =
-  (TYPE, field, value, validateFuncName, eventType = 'onChange') =>
+  (TYPE, field, value, eventType = 'onChange') =>
   (dispatch, getState) => {
     const state = getState()[TYPE];
     const password = state['Password'].value;
@@ -9,7 +9,7 @@ const onChangeAndBlur =
 
     let validationFailed = false;
     if (fieldState.validationFailed || eventType === 'onBlur') {
-      validationFailed = !fieldState[validateFuncName](value, password);
+      validationFailed = !fieldState.validate(value, password);
     }
 
     dispatch({
