@@ -14,7 +14,7 @@
     color: $text-color;
     background-color: $secondary-color;
     border: none;
-    padding: 0.7rem;
+    padding: 0.5rem;
 
     &-error {
       background-color: $light-error-color;
@@ -23,7 +23,7 @@
 
   &__validationMsg {
     font-size: $small-text;
-    margin-top: 0.5rem;
     color: $medium-error-color;
+    font-weight: $light;
   }
 }
