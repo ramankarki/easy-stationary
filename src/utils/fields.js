@@ -19,7 +19,7 @@ const fieldsObject = {
   },
   'Phone number': {
     validate: isPhoneNumber,
-    validationMsg: 'Please enter valid phone number!',
+    validationMsg: 'Please enter valid number!',
     dbProp: 'phoneNumber',
   },
   'Full address': {
