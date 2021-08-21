@@ -2,9 +2,9 @@
 
 .signup {
   &__logo {
-    max-width: 250px;
+    max-width: 200px;
     width: 90%;
-    margin: 3rem auto 0;
+    margin: 2rem auto 0;
     height: 50px;
 
     img {
@@ -17,8 +17,8 @@
     max-width: $max-content-width;
     width: 90%;
     box-shadow: $box-shadow;
-    margin: 2rem auto 5rem;
-    padding: 1.5rem 1.5rem 2.2rem;
+    margin: 1rem auto 5rem;
+    padding: 1rem 1.5rem 2.2rem;
   }
 
   &__heading {
@@ -29,7 +29,7 @@
   }
 
   &__form {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: grid;
     grid-gap: 1.2rem;
 
