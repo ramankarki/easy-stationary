@@ -4,7 +4,14 @@ import PageLoadingSpinner from '../components/PageLoadingSpinner';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 // Add pages here
-const PAGES = ['Landing', 'AllProducts', 'Signup', 'PageNotFound', 'Login'];
+const PAGES = [
+  'Landing',
+  'AllProducts',
+  'Signup',
+  'Login',
+  'ActivateAccount',
+  'PageNotFound',
+];
 
 function LazyLoadPages(page) {
   const Component = lazy(() => import(`../pages/${page}`));

@@ -1,4 +1,11 @@
-import { ROOT, SIGNUP, ALL_PRODUCTS, PAGE_NOT_FOUND, LOGIN } from './contants';
+import {
+  ROOT,
+  SIGNUP,
+  ALL_PRODUCTS,
+  PAGE_NOT_FOUND,
+  LOGIN,
+  ACTIVATE_ACCOUNT,
+} from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
 // Add Routes here
@@ -16,6 +23,11 @@ const routes = {
   [LOGIN]: {
     private: false,
     component: LazyLoadPages.Login,
+  },
+
+  [ACTIVATE_ACCOUNT]: {
+    private: false,
+    component: LazyLoadPages.ActivateAccount,
   },
 
   [ALL_PRODUCTS]: {
