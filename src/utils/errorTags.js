@@ -4,14 +4,26 @@ import { ACTIVATE_ACCOUNT, LOGIN } from '../Routes/contants';
 
 import LazyImg from '../components/LazyImg';
 
+const picture = (image) => (
+  <picture>
+    <LazyImg src={`/assets/${image} icon.svg`} alt={image + ' icon'} />
+  </picture>
+);
+
 const errorTags = {
   accountAlreadyActive: 'accountAlreadyActive',
-  accountNotActive: 'accountNotActive',
+  accountNotActive: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>
+        User account with this email is not active.{' '}
+        <Link to={ACTIVATE_ACCOUNT}>Activate now</Link>
+      </p>
+    </div>
+  ),
   alreadyExistsNotActive: (
     <div className="Form__modalMsg">
-      <picture>
-        <LazyImg src="/assets/user icon.svg" alt="user icon" />
-      </picture>
+      {picture('user')}
       <p>
         User account with this email already exists but is not active.{' '}
         <Link to={ACTIVATE_ACCOUNT}>Activate now</Link>
@@ -20,9 +32,7 @@ const errorTags = {
   ),
   alreadyExists: (
     <div className="Form__modalMsg">
-      <picture>
-        <LazyImg src="/assets/error icon.svg" alt="user icon" />
-      </picture>
+      {picture('error')}
       <p>
         User account with this email already exists.{' '}
         <Link to={LOGIN}>Login</Link>
@@ -32,7 +42,12 @@ const errorTags = {
   activationTokenExpired: 'activationTokenExpired',
   resetPasswordTokenExpired: 'resetPasswordTokenExpired',
   noUserWithEmail: 'noUserWithEmail',
-  wrongEmailOrPassword: 'wrongEmailOrPassword',
+  wrongEmailOrPassword: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>Email or Password is wrong!</p>
+    </div>
+  ),
   userDoesntExistAnymore: 'userDoesntExistAnymore',
   productQuantityOutOfStock: 'productQuantityOutOfStock',
   buyProductToGiveReview: 'buyProductToGiveReview',
