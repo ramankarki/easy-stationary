@@ -11,7 +11,7 @@ const appState = {
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return (
-        <div className="signup__modalMsg">
+        <div className="Form__modalMsg">
           <picture>
             <LazyImg src="/assets/check.svg" alt="success icon" />
           </picture>

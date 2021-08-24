@@ -8,7 +8,7 @@ const errorTags = {
   accountAlreadyActive: 'accountAlreadyActive',
   accountNotActive: 'accountNotActive',
   alreadyExistsNotActive: (
-    <div className="signup__modalMsg">
+    <div className="Form__modalMsg">
       <picture>
         <LazyImg src="/assets/user icon.svg" alt="user icon" />
       </picture>
@@ -19,7 +19,7 @@ const errorTags = {
     </div>
   ),
   alreadyExists: (
-    <div className="signup__modalMsg">
+    <div className="Form__modalMsg">
       <picture>
         <LazyImg src="/assets/error icon.svg" alt="user icon" />
       </picture>
