@@ -7,3 +7,4 @@ export const APP_SIGNUP_STATE = 'APP_SIGNUP_STATE';
 export const APP_LOGIN_STATE = 'APP_LOGIN_STATE';
 
 // domain data
+export const USER = 'USER';
