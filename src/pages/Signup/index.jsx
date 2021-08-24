@@ -6,6 +6,7 @@ import { LOGIN } from '../../Routes/contants';
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import { UI_SIGNUP_STATE, APP_SIGNUP_STATE } from '../../actions/constants';
 import onSubmit from '../../actions/onSubmit';
+import resetAppState from '../../actions/resetAppState';
 import HOFreducer from '../../reducers/HOFreducer';
 import fields from '../../utils/fields';
 import appState from '../../utils/appState';
@@ -13,9 +14,12 @@ import appState from '../../utils/appState';
 import LazyImg from '../../components/LazyImg';
 import AuthFormElements from '../../templates/AuthFormElements';
 import Button from '../../components/Button';
+import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import SpinnerLoading from '../../components/SpinnerLoading';
 import './signup.scss';
 
 function Signup(props) {
+  const { requestStatus, modalMsg, errorTag } = props;
   const signupFields = fields(
     'First name',
     'Last name',
@@ -36,13 +40,15 @@ function Signup(props) {
       ejectReducer(UI_SIGNUP_STATE);
       ejectReducer(APP_SIGNUP_STATE);
     };
-  }, [signupFields]);
+  }, []);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
     props.onSubmit(APP_SIGNUP_STATE, UI_SIGNUP_STATE);
   };
+
+  const onModalExit = () =>
+    props.resetAppState(APP_SIGNUP_STATE, appState(APP_SIGNUP_STATE));
 
   const LinkStyle = {
     textAlign: 'center',
@@ -70,8 +76,24 @@ function Signup(props) {
           Already have an account? Login
         </Link>
       </section>
+      {requestStatus && (
+        <RequestStatusModalBg
+          requestStatus={requestStatus}
+          onExit={onModalExit}
+        >
+          {requestStatus === 'pending' ? (
+            <SpinnerLoading />
+          ) : (
+            modalMsg(requestStatus, errorTag)
+          )}
+        </RequestStatusModalBg>
+      )}
     </div>
   );
 }
 
-export default connect(null, { onSubmit })(Signup);
+const mapStateToProps = (state) => {
+  return state[APP_SIGNUP_STATE] || {};
+};
+
+export default connect(mapStateToProps, { onSubmit, resetAppState })(Signup);

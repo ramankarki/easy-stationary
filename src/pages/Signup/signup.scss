@@ -6,11 +6,6 @@
     width: 90%;
     margin: 2rem auto 0;
     height: 50px;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
   }
 
   &__section {
@@ -49,6 +44,27 @@
       .reTypePassword {
         grid-column: span 2;
       }
+    }
+  }
+
+  &__modalMsg {
+    picture {
+      width: 90%;
+      max-width: 50px;
+      margin: auto;
+      height: 50px;
+    }
+
+    p {
+      color: $text-color;
+      margin-top: 1.5rem;
+      line-height: 1.5em;
+      text-align: center;
+    }
+
+    a {
+      display: inline;
+      color: $primary-color;
     }
   }
 }
