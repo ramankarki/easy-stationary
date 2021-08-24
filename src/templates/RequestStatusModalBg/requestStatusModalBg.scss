@@ -14,11 +14,24 @@
 
   &__wrapper {
     width: 90%;
-    max-width: 300px;
+    max-width: 420px;
 
     margin: auto;
-    padding: 1rem;
+    padding: 2rem;
     background-color: white;
     box-shadow: $box-shadow-bold;
+  }
+
+  &__exit {
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: white;
+    img {
+      width: 20px;
+      height: auto;
+    }
   }
 }
