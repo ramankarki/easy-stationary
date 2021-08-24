@@ -3,7 +3,7 @@ import API from '../utils/API';
 const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   const uiState = getState()[UI_STATE_TYPE];
   const appState = getState()[APP_STATE_TYPE];
-  const password = getState()[UI_STATE_TYPE]['Password'].value;
+  const password = getState()[UI_STATE_TYPE]['Password']?.value;
 
   let isSubmitable = true;
   const newUIState = {};

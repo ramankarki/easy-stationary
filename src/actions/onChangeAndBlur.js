@@ -2,7 +2,7 @@ const onChangeAndBlur =
   (TYPE, field, value, eventType = 'onChange') =>
   (dispatch, getState) => {
     const state = getState()[TYPE];
-    const password = state['Password'].value;
+    const password = state['Password']?.value;
     const fieldState = state[field];
 
     if (eventType === 'onBlur') value = value.trim();
