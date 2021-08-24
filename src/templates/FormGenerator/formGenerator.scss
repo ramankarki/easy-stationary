@@ -1,0 +1,72 @@
+@import '../../_variables';
+
+.Form {
+  max-width: $max-content-width;
+  width: 90%;
+  margin: auto;
+
+  &__logo {
+    max-width: 200px;
+    width: 90%;
+    margin: 2rem auto 1rem;
+    height: 50px;
+  }
+
+  &__section {
+    box-shadow: $box-shadow;
+    margin: 0 0 5rem;
+    padding: 1rem 1.5rem 2.2rem;
+  }
+
+  &__heading {
+    text-align: center;
+    font-size: $large-text;
+    font-weight: $medium;
+    color: $primary-color;
+  }
+
+  &__form {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-gap: 1rem 1.2rem;
+
+    label {
+      grid-column: span 2;
+    }
+
+    @media (min-width: $gt-small-screen) {
+      grid-template-columns: 1fr 1fr;
+
+      label {
+        grid-column: span 1;
+      }
+
+      .email,
+      .password,
+      .reTypePassword {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  &__modalMsg {
+    picture {
+      width: 90%;
+      max-width: 50px;
+      margin: auto;
+      height: 50px;
+    }
+
+    p {
+      color: $text-color;
+      margin-top: 1.5rem;
+      line-height: 1.5em;
+      text-align: center;
+    }
+
+    a {
+      display: inline;
+      color: $primary-color;
+    }
+  }
+}
