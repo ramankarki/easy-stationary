@@ -11,7 +11,15 @@ const picture = (image) => (
 );
 
 const errorTags = {
-  accountAlreadyActive: 'accountAlreadyActive',
+  accountAlreadyActive: (
+    <div className="Form__modalMsg">
+      {picture('user')}
+      <p>
+        User account with this email is already active.{' '}
+        <Link to={LOGIN}>Login</Link>
+      </p>
+    </div>
+  ),
   accountNotActive: (
     <div className="Form__modalMsg">
       {picture('error')}
@@ -41,7 +49,12 @@ const errorTags = {
   ),
   activationTokenExpired: 'activationTokenExpired',
   resetPasswordTokenExpired: 'resetPasswordTokenExpired',
-  noUserWithEmail: 'noUserWithEmail',
+  noUserWithEmail: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>User account with this email doesn't exists.</p>
+    </div>
+  ),
   wrongEmailOrPassword: (
     <div className="Form__modalMsg">
       {picture('error')}
