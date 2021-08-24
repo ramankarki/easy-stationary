@@ -31,7 +31,7 @@ const LazyImg = (props) => {
             alt={alt}
             loading="lazy"
             onLoad={handleOnLoad}
-            style={{ position: 'absolute' }}
+            style={{ position: 'absolute', width: '100%', height: 'auto' }}
           />
         )}
         {
