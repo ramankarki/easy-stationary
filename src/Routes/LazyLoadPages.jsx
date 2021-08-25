@@ -12,6 +12,7 @@ const PAGES = [
   'ActivateAccount',
   'ForgotPassword',
   'ResetPassword',
+  'Admin',
   'PageNotFound',
 ];
 
