@@ -11,7 +11,7 @@ import HOFreducer from '../../reducers/HOFreducer';
 
 import FormGenerator from '../../templates/FormGenerator';
 
-function Login(props) {
+function ForgotPassword(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Email');
 
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => {
   return { REDUX_APP_STATE: state[APP_FORGOT_PASSWORD_STATE] || {} };
 };
 
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, {})(ForgotPassword);
