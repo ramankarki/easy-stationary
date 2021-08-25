@@ -7,7 +7,7 @@ import dynamicReducers from './utils/dynamicReducers';
 
 let composeEnhanchers = compose;
 if (process.env.NODE_ENV !== 'production') {
-  composeEnhanchers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  composeEnhanchers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
 const rootReducers = combineReducers({ test: () => 'test' });
