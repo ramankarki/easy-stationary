@@ -26,6 +26,8 @@ function FormGenerator(props) {
     topLogo,
     formHeading,
     buttonValue,
+    forgotPassword,
+    forgotPasswordLinkStyle,
   } = props;
   const { modalMsg, requestStatus, errorTag } = REDUX_APP_STATE;
 
@@ -66,6 +68,7 @@ function FormGenerator(props) {
 
   return (
     <div className="Form">
+      {/* logo */}
       {topLogo && (
         <picture className="Form__logo">
           <LazyImg
@@ -74,10 +77,20 @@ function FormGenerator(props) {
           />
         </picture>
       )}
+
+      {/* form */}
       <section className="Form__section">
         <h1 className="Form__heading">{formHeading}</h1>
         <form onSubmit={onSubmitHandler} className="Form__form">
           {formElements(fieldsObj, UI_STATE)}
+
+          {/* forgot password page link */}
+          {forgotPassword && (
+            <Link to={forgotPassword} style={forgotPasswordLinkStyle}>
+              Forgot password
+            </Link>
+          )}
+
           <Button value={buttonValue} />
         </form>
         {redirect && (
@@ -86,6 +99,8 @@ function FormGenerator(props) {
           </Link>
         )}
       </section>
+
+      {/* modal */}
       {requestStatus && (
         <RequestStatusModalBg
           requestStatus={requestStatus}

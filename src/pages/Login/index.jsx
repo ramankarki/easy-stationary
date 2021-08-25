@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { SIGNUP } from '../../Routes/contants';
+import { SIGNUP, FORGOT_PASSWORD } from '../../Routes/contants';
 import { UI_LOGIN_STATE, APP_LOGIN_STATE, USER } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { injectReducer } from '../../utils/dynamicReducers';
@@ -14,6 +14,15 @@ function Login(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
+  const forgotPasswordLinkStyle = {
+    fontSize: '0.75rem',
+    fontWeight: '600',
+    color: '#2b4775',
+    gridColumn: 'span 2',
+    width: 'max-content',
+    marginLeft: 'auto',
+  };
+
   return (
     <FormGenerator
       formHeading="Login"
@@ -23,6 +32,8 @@ function Login(props) {
       APP_STATE={APP_LOGIN_STATE}
       REDUX_APP_STATE={REDUX_APP_STATE}
       redirect={SIGNUP}
+      forgotPassword={FORGOT_PASSWORD}
+      forgotPasswordLinkStyle={forgotPasswordLinkStyle}
       redirectMsg="New to Easy Stationary? Create Account"
       topLogo
     />
