@@ -10,6 +10,8 @@ const PAGES = [
   'Signup',
   'Login',
   'ActivateAccount',
+  'ForgotPassword',
+  'ResetPassword',
   'PageNotFound',
 ];
 
