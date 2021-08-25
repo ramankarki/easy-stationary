@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import { ACTIVATE_ACCOUNT, LOGIN } from '../Routes/contants';
+import {
+  ACTIVATE_ACCOUNT,
+  LOGIN,
+  FORGOT_PASSWORD,
+  SIGNUP,
+} from '../Routes/contants';
+import queryString from './getQueryString';
 
 import LazyImg from '../components/LazyImg';
 
@@ -24,7 +30,7 @@ const errorTags = {
     <div className="Form__modalMsg">
       {picture('error')}
       <p>
-        User account with this email is not active.{' '}
+        User account with this email is not active!{' '}
         <Link to={ACTIVATE_ACCOUNT}>Activate now</Link>
       </p>
     </div>
@@ -33,7 +39,7 @@ const errorTags = {
     <div className="Form__modalMsg">
       {picture('user')}
       <p>
-        User account with this email already exists but is not active.{' '}
+        User account with this email already exists but is not active!{' '}
         <Link to={ACTIVATE_ACCOUNT}>Activate now</Link>
       </p>
     </div>
@@ -48,11 +54,19 @@ const errorTags = {
     </div>
   ),
   activationTokenExpired: 'activationTokenExpired',
-  resetPasswordTokenExpired: 'resetPasswordTokenExpired',
+  resetPasswordTokenExpired: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>
+        Reset password token is expired!{' '}
+        <Link to={FORGOT_PASSWORD}>Send email again</Link>
+      </p>
+    </div>
+  ),
   noUserWithEmail: (
     <div className="Form__modalMsg">
       {picture('error')}
-      <p>User account with this email doesn't exists.</p>
+      <p>User account with this email doesn't exists!</p>
     </div>
   ),
   wrongEmailOrPassword: (
@@ -61,15 +75,44 @@ const errorTags = {
       <p>Email or Password is wrong!</p>
     </div>
   ),
-  userDoesntExistAnymore: 'userDoesntExistAnymore',
+  userDoesntExistAnymore: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>
+        User account has already been deleted!{' '}
+        <Link to={SIGNUP}>Signup again</Link>
+      </p>
+    </div>
+  ),
   productQuantityOutOfStock: 'productQuantityOutOfStock',
   buyProductToGiveReview: 'buyProductToGiveReview',
   emailUpdateTokenExpired: 'emailUpdateTokenExpired',
   incorrectPassword: 'incorrectPassword',
   logout: 'logout',
-  invalidToken: 'invalidToken',
+  invalidToken: (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>
+        Something went wrong!{' '}
+        <Link
+          to={
+            queryString()['reset-password-token']
+              ? FORGOT_PASSWORD
+              : ACTIVATE_ACCOUNT
+          }
+        >
+          Send email again
+        </Link>
+      </p>
+    </div>
+  ),
 };
 
 const getErrorTag = (errorTag) =>
-  errorTags[errorTag] || <p>Something went wrong! Please try again later</p>;
+  errorTags[errorTag] || (
+    <div className="Form__modalMsg">
+      {picture('error')}
+      <p>Something went wrong! Please try again later</p>;
+    </div>
+  );
 export default getErrorTag;
