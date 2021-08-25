@@ -14,8 +14,11 @@ function Login(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
-  if (props[USER].token)
+  if (props[USER].token) {
+    // add 90 days
+    props[USER].expiryDate = Date.now() + 7776000000;
     localStorage.setItem(USER, JSON.stringify(props[USER]));
+  }
 
   const forgotPasswordLinkStyle = {
     fontSize: '0.75rem',
