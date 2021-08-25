@@ -17,6 +17,9 @@ function ResetPassword(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
+  if (props[USER].token)
+    localStorage.setItem(USER, JSON.stringify(props[USER]));
+
   return (
     <FormGenerator
       formHeading="Reset Password"
@@ -31,7 +34,10 @@ function ResetPassword(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { REDUX_APP_STATE: state[APP_RESET_PASSWORD_STATE] || {} };
+  return {
+    REDUX_APP_STATE: state[APP_RESET_PASSWORD_STATE] || {},
+    [USER]: state[USER] || {},
+  };
 };
 
 export default connect(mapStateToProps, {})(ResetPassword);

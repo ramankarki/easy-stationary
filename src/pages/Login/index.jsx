@@ -14,6 +14,9 @@ function Login(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
+  if (props[USER].token)
+    localStorage.setItem(USER, JSON.stringify(props[USER]));
+
   const forgotPasswordLinkStyle = {
     fontSize: '0.75rem',
     fontWeight: '600',
@@ -41,7 +44,10 @@ function Login(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { REDUX_APP_STATE: state[APP_LOGIN_STATE] || {} };
+  return {
+    REDUX_APP_STATE: state[APP_LOGIN_STATE] || {},
+    [USER]: state[USER] || {},
+  };
 };
 
 export default connect(mapStateToProps, {})(Login);
