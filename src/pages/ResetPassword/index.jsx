@@ -11,7 +11,7 @@ import HOFreducer from '../../reducers/HOFreducer';
 
 import FormGenerator from '../../templates/FormGenerator';
 
-function Login(props) {
+function ResetPassword(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Password', 'Re-type password');
 
@@ -19,8 +19,8 @@ function Login(props) {
 
   return (
     <FormGenerator
-      formHeading="Login"
-      buttonValue="Login"
+      formHeading="Reset Password"
+      buttonValue="Reset Password"
       fieldsObj={loginFields}
       UI_STATE={UI_RESET_PASSWORD_STATE}
       APP_STATE={APP_RESET_PASSWORD_STATE}
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => {
   return { REDUX_APP_STATE: state[APP_RESET_PASSWORD_STATE] || {} };
 };
 
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, {})(ResetPassword);
