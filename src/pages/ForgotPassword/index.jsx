@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import {
   UI_FORGOT_PASSWORD_STATE,
   APP_FORGOT_PASSWORD_STATE,
-  USER,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
-import { injectReducer } from '../../utils/dynamicReducers';
-import HOFreducer from '../../reducers/HOFreducer';
 
 import FormGenerator from '../../templates/FormGenerator';
 
 function ForgotPassword(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Email');
-
-  injectReducer(USER, HOFreducer(USER, {}));
 
   return (
     <FormGenerator

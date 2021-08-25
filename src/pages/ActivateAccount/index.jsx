@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import {
   UI_ACTIVATE_ACCOUNT_STATE,
   APP_ACTIVATE_ACCOUNT_STATE,
-  USER,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
-import { injectReducer } from '../../utils/dynamicReducers';
-import HOFreducer from '../../reducers/HOFreducer';
 
 import FormGenerator from '../../templates/FormGenerator';
 
 function Login(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Email');
-
-  injectReducer(USER, HOFreducer(USER, {}));
 
   return (
     <FormGenerator
