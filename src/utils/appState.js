@@ -95,6 +95,7 @@ const appState = {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return <Redirect to={queryString().redirect.split('#')[1]} />;
     },
+    domainState: USER,
   },
 };
 
