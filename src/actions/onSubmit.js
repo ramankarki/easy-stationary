@@ -1,3 +1,5 @@
+import { batch } from 'react-redux';
+
 import API from '../utils/API';
 
 const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
@@ -30,14 +32,23 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
     });
 
     API.post(appState.apiPath(), apiData)
-      .then(() => {
-        dispatch({
-          type: APP_STATE_TYPE,
-          payload: { ...appState, requestStatus: appState.requestEnum.success },
+      .then(({ data }) => {
+        batch(() => {
+          // dispatch USER domain data
+          dispatch({
+            type: appState.domainState,
+            payload: data,
+          });
+          dispatch({
+            type: APP_STATE_TYPE,
+            payload: {
+              ...appState,
+              requestStatus: appState.requestEnum.success,
+            },
+          });
         });
       })
       .catch(({ response }) => {
-        console.log(response);
         dispatch({
           type: APP_STATE_TYPE,
           payload: {
