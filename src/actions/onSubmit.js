@@ -33,6 +33,13 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
 
     API.post(appState.apiPath(), apiData)
       .then(({ data }) => {
+        // save user data in localStorage
+        if (appState.domainState === 'USER') {
+          // add 90 days
+          data.expiryDate = Date.now() + 7776000000 + '';
+          localStorage.setItem('USER', JSON.stringify(data));
+        }
+
         batch(() => {
           // dispatch USER domain data
           dispatch({
