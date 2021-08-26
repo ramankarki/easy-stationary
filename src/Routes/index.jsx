@@ -1,21 +1,29 @@
-import { Route, HashRouter, Switch } from 'react-router-dom';
+import { Route, HashRouter, Switch, Redirect } from 'react-router-dom';
 
+import { injectReducer } from '../utils/dynamicReducers';
+import HOFreducer from '../reducers/HOFreducer';
+import { LOGIN } from './contants';
 import routes from './routes';
 
-import Protect from './Protect';
-
+const USER = localStorage.getItem('USER');
+let parsedUser;
+if (USER) {
+  parsedUser = JSON.parse(USER);
+  injectReducer('USER', HOFreducer('USER', parsedUser));
+}
 export default function RoutesGenerator() {
   const allTheRoutes = [];
 
   for (let path in routes) {
-    const route = (
-      <Route path={path} exact component={routes[path].component} key={path} />
+    let component = wrapper(
+      parsedUser?.expiryDate,
+      routes[path].private,
+      routes[path].component
     );
 
-    if (routes[path].private) {
-      allTheRoutes.push(<Protect component={route} />);
-    }
-    allTheRoutes.push(route);
+    allTheRoutes.push(
+      <Route key={path} path={path} exact component={component} />
+    );
   }
 
   return (
@@ -23,4 +31,12 @@ export default function RoutesGenerator() {
       <Switch>{allTheRoutes}</Switch>
     </HashRouter>
   );
+}
+
+function wrapper(expiryDate, privateRoute, component) {
+  if (privateRoute) {
+    if (Date.now() < expiryDate) return component;
+    return <Redirect to={LOGIN} />;
+  }
+  return component;
 }
