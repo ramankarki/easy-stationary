@@ -2,7 +2,7 @@ import { Route, HashRouter, Switch, Redirect } from 'react-router-dom';
 
 import { injectReducer } from '../utils/dynamicReducers';
 import HOFreducer from '../reducers/HOFreducer';
-import { LOGIN } from './contants';
+import { LOGIN, ALL_PRODUCTS } from './contants';
 import routes from './routes';
 
 const USER = localStorage.getItem('USER');
@@ -15,15 +15,14 @@ export default function RoutesGenerator() {
   const allTheRoutes = [];
 
   for (let path in routes) {
-    let component = wrapper(
-      parsedUser?.expiryDate,
+    let page = wrapper(
+      parsedUser,
       routes[path].private,
+      routes[path].role,
       routes[path].component
     );
 
-    allTheRoutes.push(
-      <Route key={path} path={path} exact component={component} />
-    );
+    allTheRoutes.push(<Route key={path} path={path} exact component={page} />);
   }
 
   return (
@@ -33,10 +32,16 @@ export default function RoutesGenerator() {
   );
 }
 
-function wrapper(expiryDate, privateRoute, component) {
+function wrapper(parsedUser, privateRoute, role, page) {
+  // if page is accessible by user type.
+  if (!role.includes(parsedUser?.user.role))
+    return <Redirect to={ALL_PRODUCTS} />;
+
+  // check if this page needs authentication.
   if (privateRoute) {
-    if (Date.now() < expiryDate) return component;
+    // check if token is expired.
+    if (Date.now() < parsedUser?.expiryDate) return page;
     return <Redirect to={LOGIN} />;
   }
-  return component;
+  return page;
 }
