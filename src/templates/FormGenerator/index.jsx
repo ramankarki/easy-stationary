@@ -72,7 +72,7 @@ function FormGenerator(props) {
       {topLogo && (
         <picture className="Form__logo">
           <LazyImg
-            src="/assets/Easy Stationary Logo.webp"
+            src="/assets/Easy-Stationary-Logo.webp"
             alt="Easy Stationary Logo"
           />
         </picture>
