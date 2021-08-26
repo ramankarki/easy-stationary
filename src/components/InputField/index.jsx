@@ -31,14 +31,18 @@ const InputField = (props) => {
 
   return (
     <label className={labelClass}>
-      <p className="label__name">
-        {labelName}
-        {validationFailed ? (
-          <span className="label__validationMsg">&nbsp; *{validationMsg}</span>
-        ) : (
-          ''
-        )}
-      </p>
+      {labelName && (
+        <p className="label__name">
+          {labelName}
+          {validationFailed ? (
+            <span className="label__validationMsg">
+              &nbsp; *{validationMsg}
+            </span>
+          ) : (
+            ''
+          )}
+        </p>
+      )}
       <input
         className={inputClass}
         type="text"
