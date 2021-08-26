@@ -28,6 +28,7 @@ const InputField = (props) => {
   const labelClass = classes('label', { [dbProp]: true });
   const inputClass = classes('label__field', {
     'label__field-error': hideLabel ? false : validationFailed,
+    'label__field-nomargin': hideLabel,
   });
 
   return (
