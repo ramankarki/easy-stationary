@@ -14,6 +14,7 @@ const InputField = (props) => {
     dbProp,
     validationFailed,
     validationMsg,
+    hideLabel,
   } = props;
 
   // event handlers
@@ -26,12 +27,12 @@ const InputField = (props) => {
   // dynamic class names
   const labelClass = classes('label', { [dbProp]: true });
   const inputClass = classes('label__field', {
-    'label__field-error': validationFailed,
+    'label__field-error': hideLabel ? false : validationFailed,
   });
 
   return (
     <label className={labelClass}>
-      {labelName && (
+      {!hideLabel && (
         <p className="label__name">
           {labelName}
           {validationFailed ? (
