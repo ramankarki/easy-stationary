@@ -18,7 +18,7 @@ const PAGES = [
 
 function LazyLoadPages(page) {
   const Component = lazy(() => import(`../pages/${page}`));
-  return () => (
+  return (
     <ErrorBoundary>
       <Suspense fallback={PageLoadingSpinner()}>
         <Component />
