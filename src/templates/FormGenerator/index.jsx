@@ -6,7 +6,7 @@ import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import onSubmit from '../../actions/onSubmit';
 import resetAppState from '../../actions/resetAppState';
 import HOFreducer from '../../reducers/HOFreducer';
-import appState from '../../utils/appState';
+import appState from '../../appState/';
 
 import InputField from '../../components/InputField';
 import LazyImg from '../../components/LazyImg';
