@@ -17,12 +17,6 @@ function ResetPassword(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
-  if (props[USER].token) {
-    // add 90 days
-    props[USER].expiryDate = Date.now() + 7776000000;
-    localStorage.setItem(USER, JSON.stringify(props[USER]));
-  }
-
   return (
     <FormGenerator
       formHeading="Reset Password"
@@ -36,11 +30,8 @@ function ResetPassword(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    REDUX_APP_STATE: state[APP_RESET_PASSWORD_STATE] || {},
-    [USER]: state[USER] || {},
-  };
-};
+const mapStateToProps = (state) => ({
+  REDUX_APP_STATE: state[APP_RESET_PASSWORD_STATE] || {},
+});
 
 export default connect(mapStateToProps, {})(ResetPassword);

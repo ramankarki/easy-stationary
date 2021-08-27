@@ -14,12 +14,6 @@ function Login(props) {
 
   injectReducer(USER, HOFreducer(USER, {}));
 
-  if (props[USER].token) {
-    // add 90 days
-    props[USER].expiryDate = Date.now() + 7776000000;
-    localStorage.setItem(USER, JSON.stringify(props[USER]));
-  }
-
   const forgotPasswordLinkStyle = {
     fontSize: '0.75rem',
     fontWeight: '600',
@@ -46,11 +40,8 @@ function Login(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    REDUX_APP_STATE: state[APP_LOGIN_STATE] || {},
-    [USER]: state[USER] || {},
-  };
-};
+const mapStateToProps = (state) => ({
+  REDUX_APP_STATE: state[APP_LOGIN_STATE] || {},
+});
 
 export default connect(mapStateToProps, {})(Login);
