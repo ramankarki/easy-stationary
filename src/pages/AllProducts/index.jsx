@@ -1,7 +1,14 @@
-import './index.scss';
+import Header from '../../templates/Header';
+
+import './allProducts.scss';
 
 function AllProducts() {
-  return <h1>All Products page</h1>;
+  return (
+    <div className="allProducts">
+      <Header />
+      <h1>All Products page</h1>
+    </div>
+  );
 }
 
 export default AllProducts;
