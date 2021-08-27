@@ -14,6 +14,7 @@ const PAGES = [
   'ResetPassword',
   'Admin',
   'Cart',
+  'Dashboard',
   'PageNotFound',
 ];
 

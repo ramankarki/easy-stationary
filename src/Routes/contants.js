@@ -17,7 +17,7 @@ export const ADMIN_SETTINGS = '/admin/settings';
 
 // user routes start
 export const CART = '/cart';
-
+export const DASHBOARD = '/dashboard';
 // user routes end
 
 export const PAGE_NOT_FOUND = '*';
