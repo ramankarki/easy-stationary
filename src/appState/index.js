@@ -1,7 +1,9 @@
 import auth from './auth';
+import category from './category'
 
 const appState = {
   ...auth,
+  ...category
 };
 
 const getAppState = (TYPE) => ({
