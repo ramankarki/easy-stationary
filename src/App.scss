@@ -6,7 +6,7 @@
   box-sizing: border-box;
 
   *:focus {
-    outline: 1px dotted $primary-color;
+    outline: none;
   }
 }
 
@@ -36,4 +36,6 @@ body {
 
 .App {
   display: flex;
+  max-width: $gt-extra-large-screen;
+  margin: auto;
 }
