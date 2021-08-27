@@ -51,6 +51,7 @@ const InputField = (props) => {
         value={value}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
+        placeholder={hideLabel ? 'Search' : ''}
       />
     </label>
   );
