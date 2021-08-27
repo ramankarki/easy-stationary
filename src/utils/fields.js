@@ -46,6 +46,12 @@ const fieldsObject = {
     validationMsg: "Passwords doesn't match!",
     dbProp: 'reTypePassword',
   },
+  Search: {
+    min: 2,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'q',
+  },
 };
 
 const fields = (...args) => {
