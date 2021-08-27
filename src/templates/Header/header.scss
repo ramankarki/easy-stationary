@@ -1,0 +1,78 @@
+@import '../../_variables';
+
+.header {
+  width: 100%;
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  align-items: center;
+  border: 1px solid red;
+
+  @media (min-width: $gt-small-screen) {
+    padding: 1rem 2rem;
+    gap: 3rem;
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 36px;
+    height: 36px;
+
+    @media (min-width: $gt-small-screen) {
+      max-width: 183px;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+
+    label {
+      width: 100%;
+      height: 100%;
+    }
+
+    button {
+      img {
+        width: 20px;
+        height: auto;
+      }
+    }
+  }
+
+  &__buttons {
+    gap: 1rem;
+    display: none;
+
+    @media (min-width: $gt-medium-screen) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .cart-product-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: -0.5rem;
+    top: -0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 2rem;
+
+    font-size: $small-text;
+    font-weight: $medium;
+    background-color: $medium-error-color;
+  }
+
+  .hamburgur {
+    display: none;
+
+    @media (min-width: $gt-medium-screen) {
+      display: block;
+    }
+  }
+}
