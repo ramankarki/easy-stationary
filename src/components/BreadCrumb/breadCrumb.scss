@@ -1,0 +1,23 @@
+@import '../../_variables';
+
+.breadCrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 1rem 0;
+  padding: 0 2rem;
+  border: 1px solid rgb(255, 194, 194);
+
+  font-size: $small-text;
+  font-weight: $medium;
+  color: $primary-color;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
