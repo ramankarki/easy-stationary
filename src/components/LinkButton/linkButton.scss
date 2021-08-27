@@ -1,0 +1,48 @@
+@import '../../_variables';
+
+.linkButton {
+  position: relative;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $normal-text;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &-bold {
+    a {
+      font-weight: $medium;
+    }
+  }
+
+  &__dark {
+    a {
+      color: $secondary-color;
+      background-color: $primary-color;
+    }
+  }
+
+  &__light {
+    a {
+      background-color: $secondary-color;
+      color: $primary-color;
+    }
+    &-nobg {
+      a {
+        background-color: transparent;
+      }
+    }
+  }
+}
