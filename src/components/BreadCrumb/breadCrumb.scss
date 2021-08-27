@@ -4,9 +4,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
-  margin: 1rem 0;
-  padding: 0 2rem;
-  border: 1px solid rgb(255, 194, 194);
+  margin: 0.5rem 0 1rem;
+  padding: 0 1rem;
+
+  @media (min-width: $gt-small-screen) {
+    padding: 0 2rem;
+  }
 
   font-size: $small-text;
   font-weight: $medium;
