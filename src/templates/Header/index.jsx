@@ -72,7 +72,7 @@ function Header(props) {
       </div>
 
       {/* hamburgur button */}
-      {isAuth && <Hamburgur />}
+      {isAuth && isClient && <Hamburgur />}
     </header>
   );
 }
