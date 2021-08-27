@@ -44,5 +44,12 @@
         background-color: transparent;
       }
     }
+
+    &-bgOnHover {
+      a:hover {
+        background-color: $secondary-color;
+        opacity: 1;
+      }
+    }
   }
 }
