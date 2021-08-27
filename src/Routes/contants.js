@@ -15,4 +15,9 @@ export const ADMIN_ORDERS = '/admin/orders';
 export const ADMIN_SETTINGS = '/admin/settings';
 // admin routes end
 
+// user routes start
+export const CART = '/cart';
+
+// user routes end
+
 export const PAGE_NOT_FOUND = '*';

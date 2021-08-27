@@ -8,6 +8,7 @@ import {
   FORGOT_PASSWORD,
   RESET_PASSWORD,
   ADMIN,
+  CART,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -52,6 +53,12 @@ const routes = {
     private: true,
     component: LazyLoadPages.Admin,
     role: ['admin'],
+  },
+
+  [CART]: {
+    private: true,
+    component: LazyLoadPages.Cart,
+    role: ['client'],
   },
 
   [PAGE_NOT_FOUND]: {
