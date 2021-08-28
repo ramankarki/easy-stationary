@@ -38,6 +38,7 @@ function Header(props) {
       <form className="header__form" onSubmit={onSubmitHandler}>
         <InputField
           labelName="Search"
+          placeholder="Search..."
           hideLabel={true}
           TYPE={UI_SEARCH_STATE}
           dbProp={fieldsObj['Search'].dbProp}

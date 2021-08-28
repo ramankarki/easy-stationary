@@ -15,6 +15,7 @@ const InputField = (props) => {
     validationFailed,
     validationMsg,
     hideLabel,
+    placeholder,
   } = props;
 
   // event handlers
@@ -51,7 +52,7 @@ const InputField = (props) => {
         value={value}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
-        placeholder={hideLabel ? 'Search' : ''}
+        placeholder={placeholder || ''}
       />
     </label>
   );
