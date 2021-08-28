@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
-import onSubmit from '../../actions/onSubmit';
+import onCreate from '../../actions/onCreate';
 import resetAppState from '../../actions/resetAppState';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState/';
@@ -53,7 +53,7 @@ function FormGenerator(props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    props.onSubmit(APP_STATE, UI_STATE);
+    props.onCreate(APP_STATE, UI_STATE);
   };
 
   const onModalExit = () => props.resetAppState(APP_STATE, appState(APP_STATE));
@@ -117,4 +117,4 @@ function FormGenerator(props) {
   );
 }
 
-export default connect(null, { onSubmit, resetAppState })(FormGenerator);
+export default connect(null, { onCreate, resetAppState })(FormGenerator);
