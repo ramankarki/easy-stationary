@@ -8,6 +8,7 @@ export const UI_FORGOT_PASSWORD_STATE = 'UI_FORGOT_PASSWORD_STATE';
 export const UI_RESET_PASSWORD_STATE = 'UI_RESET_PASSWORD_STATE';
 export const UI_SEARCH_STATE = 'UI_SEARCH_STATE';
 export const UI_ALL_PRODUCTS_STATE = 'UI_ALL_PRODUCTS_STATE';
+export const UI_CATEGORY_STATE = 'UI_CATEGORY_STATE';
 
 /**
  * @description these state will used to track data like ajax calls behind the seen.
