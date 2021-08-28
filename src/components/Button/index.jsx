@@ -1,8 +1,11 @@
+import classes from '../../utils/classes';
+
 import './button.scss';
 
 function Button(props) {
+  const classNames = classes('button', { 'button-small': props.small });
   return (
-    <button {...props} className="button">
+    <button {...props} className={classNames}>
       {props.value}
     </button>
   );
