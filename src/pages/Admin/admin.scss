@@ -1,0 +1,37 @@
+@import '../../_variables';
+
+.panel {
+  &__division {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    & > * {
+      background-color: $secondary-color;
+      text-align: center;
+      padding: 2rem;
+    }
+  }
+
+  &__subHeading {
+    font-size: $small-text;
+    font-weight: $medium;
+    color: $primary-color;
+  }
+
+  &__data {
+    font-size: $medium-text + 0.2rem;
+    color: $primary-color;
+    font-weight: $medium;
+    margin-top: 0.5rem;
+  }
+
+  .delivered {
+    color: $medium-green;
+  }
+
+  .cancelled {
+    color: $medium-error-color;
+  }
+}
