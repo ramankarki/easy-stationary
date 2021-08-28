@@ -52,6 +52,12 @@ const fieldsObject = {
     validate: isTextBox,
     dbProp: 'q',
   },
+  'Add new category': {
+    min: 2,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'categoryName',
+  },
 };
 
 const fields = (...args) => {
