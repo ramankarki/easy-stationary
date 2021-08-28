@@ -26,8 +26,8 @@ function Admin(props) {
       <Header />
       <BreadCrumb />
 
-      <section className="admin__sectionCover">
-        <aside>
+      <div className="admin__sectionCover">
+        <div>
           {aside.map(({ iconsrc, value, path }) => (
             <LinkButton
               key={iconsrc}
@@ -41,14 +41,14 @@ function Admin(props) {
               {value}
             </LinkButton>
           ))}
-        </aside>
+        </div>
 
         {/* right panel */}
         <div className="panel">
           <h1>{heading}</h1>
           {props.children}
         </div>
-      </section>
+      </div>
 
       {/* modal */}
       {requestStatus && (
