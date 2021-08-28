@@ -13,6 +13,7 @@ const PAGES = [
   'ForgotPassword',
   'ResetPassword',
   'Admin',
+  'AdminCategory',
   'Cart',
   'Dashboard',
   'PageNotFound',
