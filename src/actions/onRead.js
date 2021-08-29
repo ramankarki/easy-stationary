@@ -1,9 +1,11 @@
 import { batch } from 'react-redux';
 
 import API from '../utils/API';
+import { READ } from './constants';
 
 const getData = (APP_STATE) => (dispatch, getState) => {
   const appState = getState()[APP_STATE];
+  const { domainState, dynamicState } = appState;
 
   dispatch({
     type: APP_STATE,
@@ -19,7 +21,10 @@ const getData = (APP_STATE) => (dispatch, getState) => {
           localStorage.setItem('USER', JSON.stringify(user));
         }
 
-        dispatch({ type: appState.domainState, payload: data });
+        dispatch({
+          type: dynamicState ? domainState + READ : domainState,
+          payload: data,
+        });
         dispatch({
           type: APP_STATE,
           payload: { ...appState, requestStatus: null },
