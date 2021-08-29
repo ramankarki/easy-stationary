@@ -5,6 +5,7 @@ import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
 import onRead from '../../actions/onRead';
 import appState from '../../appState';
 import HOFreducer from '../../reducers/HOFreducer';
+import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
 
@@ -18,7 +19,10 @@ function Admin(props) {
     APP_CATEGORY_STATE,
     HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
   );
-  injectReducer(CATEGORY, HOFreducer(CATEGORY, {}));
+  injectReducer(
+    CATEGORY,
+    HOFdomainReducer(CATEGORY, 'categories', 'categoryName')
+  );
 
   if (!categories) props.onRead(APP_CATEGORY_STATE);
 
