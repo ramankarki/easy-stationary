@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import { injectReducer } from '../../utils/dynamicReducers';
-import { APP_GET_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
-import getData from '../../actions/getData';
+import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
+import onRead from '../../actions/onRead';
 import appState from '../../appState';
 import HOFreducer from '../../reducers/HOFreducer';
 
@@ -15,12 +15,12 @@ function Admin(props) {
   const { cancelledOrders, deliveredOrders, pendingOrders } = user;
 
   injectReducer(
-    APP_GET_CATEGORY_STATE,
-    HOFreducer(APP_GET_CATEGORY_STATE, appState(APP_GET_CATEGORY_STATE))
+    APP_CATEGORY_STATE,
+    HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
   );
   injectReducer(CATEGORY, HOFreducer(CATEGORY, {}));
 
-  if (!categories) props.getData(APP_GET_CATEGORY_STATE);
+  if (!categories) props.onRead(APP_CATEGORY_STATE);
 
   const productsNum = categories
     ? categories.reduce((acc, category) => acc + category.noOfProducts, 0)
@@ -50,10 +50,10 @@ function Admin(props) {
   );
 }
 
-const mapStateToProps = ({ USER, CATEGORY, APP_GET_CATEGORY_STATE }) => ({
+const mapStateToProps = ({ USER, CATEGORY, APP_CATEGORY_STATE }) => ({
   ...USER,
   ...CATEGORY,
-  ...APP_GET_CATEGORY_STATE,
+  ...APP_CATEGORY_STATE,
 });
 
-export default connect(mapStateToProps, { getData })(Admin);
+export default connect(mapStateToProps, { onRead })(Admin);
