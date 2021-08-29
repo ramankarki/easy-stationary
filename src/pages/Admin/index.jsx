@@ -21,7 +21,7 @@ function Admin(props) {
   );
   injectReducer(
     CATEGORY,
-    HOFdomainReducer(CATEGORY, 'categories', 'categoryName')
+    HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
   );
 
   if (!categories) props.onRead(APP_CATEGORY_STATE);
