@@ -27,6 +27,7 @@ export const APP_CATEGORY_STATE = 'APP_CATEGORY_STATE';
  * @description Domain state operation type
  */
 export const CREATE = '_CREATE';
+export const READ = '_READ';
 export const UPDATE = '_UPDATE';
 export const DELETE = '_DELETE';
 
