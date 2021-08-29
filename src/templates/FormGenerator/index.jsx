@@ -29,7 +29,8 @@ function FormGenerator(props) {
     forgotPassword,
     forgotPasswordLinkStyle,
   } = props;
-  const { modalMsg, requestStatus, errorTag } = REDUX_APP_STATE;
+  let { modalMsg, requestStatus, errorTag } = REDUX_APP_STATE;
+  errorTag = errorTag === 'alreadyExists' ? errorTag + 'Signup' : errorTag;
 
   injectReducer(UI_STATE, HOFreducer(UI_STATE, fieldsObj));
   injectReducer(APP_STATE, HOFreducer(APP_STATE, appState(APP_STATE)));

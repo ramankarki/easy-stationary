@@ -44,7 +44,7 @@ const errorTags = {
       </p>
     </div>
   ),
-  alreadyExists: (
+  alreadyExistsSignup: (
     <div className="Form__modalMsg">
       {picture('error')}
       <p>
