@@ -18,7 +18,7 @@ const picture = (image) => (
 
 const errorTags = {
   accountAlreadyActive: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('user')}
       <p>
         User account with this email is already active.{' '}
@@ -27,7 +27,7 @@ const errorTags = {
     </div>
   ),
   accountNotActive: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>
         User account with this email is not active!{' '}
@@ -36,7 +36,7 @@ const errorTags = {
     </div>
   ),
   alreadyExistsNotActive: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('user')}
       <p>
         User account with this email already exists but is not active!{' '}
@@ -45,7 +45,7 @@ const errorTags = {
     </div>
   ),
   alreadyExistsSignup: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>
         User account with this email already exists.{' '}
@@ -55,7 +55,7 @@ const errorTags = {
   ),
   activationTokenExpired: 'activationTokenExpired',
   resetPasswordTokenExpired: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>
         Reset password token is expired!{' '}
@@ -64,19 +64,19 @@ const errorTags = {
     </div>
   ),
   noUserWithEmail: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>User account with this email doesn't exists!</p>
     </div>
   ),
   wrongEmailOrPassword: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>Email or Password is wrong!</p>
     </div>
   ),
   userDoesntExistAnymore: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>
         User account has already been deleted!{' '}
@@ -90,7 +90,7 @@ const errorTags = {
   incorrectPassword: 'incorrectPassword',
   logout: 'logout',
   invalidToken: (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>
         Something went wrong!{' '}
@@ -110,7 +110,7 @@ const errorTags = {
 
 const getErrorTag = (errorTag) =>
   errorTags[errorTag] || (
-    <div className="Form__modalMsg">
+    <div className="modalBg__modalMsg">
       {picture('error')}
       <p>Something went wrong! Please try again later</p>
     </div>
