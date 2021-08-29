@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import onCreate from '../../actions/onCreate';
-import resetAppState from '../../actions/resetAppState';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState/';
 
@@ -57,8 +56,6 @@ function FormGenerator(props) {
     props.onCreate(APP_STATE, UI_STATE);
   };
 
-  const onModalExit = () => props.resetAppState(APP_STATE, appState(APP_STATE));
-
   const LinkStyle = {
     textAlign: 'center',
     marginTop: '2rem',
@@ -105,7 +102,7 @@ function FormGenerator(props) {
       {requestStatus && (
         <RequestStatusModalBg
           requestStatus={requestStatus}
-          onExit={onModalExit}
+          APP_STATE={APP_STATE}
         >
           {requestStatus === 'pending' ? (
             <SpinnerLoading />
@@ -118,4 +115,4 @@ function FormGenerator(props) {
   );
 }
 
-export default connect(null, { onCreate, resetAppState })(FormGenerator);
+export default connect(null, { onCreate })(FormGenerator);
