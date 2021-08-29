@@ -10,9 +10,15 @@ const getData = (APP_STATE) => (dispatch, getState) => {
     payload: { ...appState, requestStatus: 'pending' },
   });
 
-  API.get(appState.apiPath())
+  API.get(appState.getRoute())
     .then(({ data }) =>
       batch(() => {
+        if (appState.domainState === 'USER') {
+          const user = JSON.parse(localStorage.getItem('USER'));
+          user.user = data.user;
+          localStorage.setItem('USER', JSON.stringify(user));
+        }
+
         dispatch({ type: appState.domainState, payload: data });
         dispatch({
           type: APP_STATE,
