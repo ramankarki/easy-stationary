@@ -53,6 +53,12 @@ const errorTags = {
       </p>
     </div>
   ),
+  alreadyExistsCategory: (
+    <div className="modalBg__modalMsg">
+      {picture('error')}
+      <p>Duplicate category is not allowed!</p>
+    </div>
+  ),
   activationTokenExpired: 'activationTokenExpired',
   resetPasswordTokenExpired: (
     <div className="modalBg__modalMsg">
