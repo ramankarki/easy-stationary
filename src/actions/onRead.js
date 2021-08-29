@@ -3,7 +3,7 @@ import { batch } from 'react-redux';
 import API from '../utils/API';
 import { READ } from './constants';
 
-const getData = (APP_STATE) => (dispatch, getState) => {
+const onRead = (APP_STATE) => (dispatch, getState) => {
   const appState = getState()[APP_STATE];
   const { domainState, dynamicState } = appState;
 
@@ -43,4 +43,4 @@ const getData = (APP_STATE) => (dispatch, getState) => {
     );
 };
 
-export default getData;
+export default onRead;
