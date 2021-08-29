@@ -20,7 +20,14 @@ export const APP_FORGOT_PASSWORD_STATE = 'APP_FORGOT_PASSWORD_STATE';
 export const APP_RESET_PASSWORD_STATE = 'APP_RESET_PASSWORD_STATE';
 export const APP_ALL_PRODUCTS_STATE = 'APP_ALL_PRODUCTS_STATE';
 export const APP_SEARCH_STATE = 'APP_SEARCH_STATE';
-export const APP_GET_CATEGORY_STATE = 'APP_GET_CATEGORY_STATE';
+export const APP_CATEGORY_STATE = 'APP_CATEGORY_STATE';
+
+/**
+ * @description Domain state operation type
+ */
+export const CREATE = '_CREATE';
+export const UPDATE = '_UPDATE';
+export const DELETE = '_DELETE';
 
 /**
  * @description data received from server will be stored here.
