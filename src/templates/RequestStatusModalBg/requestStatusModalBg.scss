@@ -22,6 +22,27 @@
     box-shadow: $box-shadow-bold;
   }
 
+  &__modalMsg {
+    picture {
+      width: 90%;
+      max-width: 50px;
+      margin: auto;
+      height: 50px;
+    }
+
+    p {
+      color: $text-color;
+      margin-top: 1.5rem;
+      line-height: 1.5em;
+      text-align: center;
+    }
+
+    a {
+      display: inline;
+      color: $primary-color;
+    }
+  }
+
   &__exit {
     display: block;
     margin-left: auto;
