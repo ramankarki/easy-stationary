@@ -31,13 +31,16 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
       payload: { ...appState, requestStatus: appState.requestEnum.pending },
     });
 
-    API.post(appState.apiPath(), apiData)
+    API.post(appState.postRoute(), apiData)
       .then(({ data }) => {
         // save user data in localStorage
         if (appState.domainState === 'USER') {
           // add 90 days
-          data.expiryDate = Date.now() + 7776000000 + '';
-          localStorage.setItem('USER', JSON.stringify(data));
+          const user = {
+            token: data.token,
+            expiryDate: Date.now() + 7776000000 + '',
+          };
+          localStorage.setItem('USER', JSON.stringify(user));
         }
 
         batch(() => {
@@ -50,7 +53,7 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
             type: APP_STATE_TYPE,
             payload: {
               ...appState,
-              requestStatus: appState.requestEnum.success,
+              requestStatus: appState.requestEnum.postSuccess,
             },
           });
         });
