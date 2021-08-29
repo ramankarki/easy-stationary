@@ -1,10 +1,13 @@
 import { batch } from 'react-redux';
 
 import API from '../utils/API';
+import { CREATE } from './constants';
 
 const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   const uiState = getState()[UI_STATE_TYPE];
   const appState = getState()[APP_STATE_TYPE];
+  const { domainState, dynamicState } = appState;
+
   const password = getState()[UI_STATE_TYPE]['Password']?.value;
 
   let isSubmitable = true;
@@ -43,7 +46,7 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
         batch(() => {
           // dispatch USER domain data
           dispatch({
-            type: appState.domainState,
+            type: dynamicState ? domainState + CREATE : domainState,
             payload: data,
           });
           dispatch({
