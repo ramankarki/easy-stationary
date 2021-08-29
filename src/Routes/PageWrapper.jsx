@@ -1,18 +1,27 @@
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { injectReducer, ejectReducer } from '../utils/dynamicReducers';
+import { injectReducer } from '../utils/dynamicReducers';
 import HOFreducer from '../reducers/HOFreducer';
 import { LOGIN, ALL_PRODUCTS } from './contants';
+import { APP_USER_STATE } from '../actions/constants';
+import appState from '../appState';
+import onRead from '../actions/onRead';
 
 function Wrapper(props) {
-  const { route } = props;
+  const { route, USER } = props;
   const { private: privateRoute, role, component } = route;
 
-  const USER = localStorage.getItem('USER');
-  let user;
-  if (USER) {
-    user = JSON.parse(USER);
-    ejectReducer('USER');
+  injectReducer(
+    APP_USER_STATE,
+    HOFreducer(APP_USER_STATE, appState(APP_USER_STATE))
+  );
+
+  if (!USER) props.onRead(APP_USER_STATE);
+
+  let user = localStorage.getItem('USER');
+  if (user) {
+    user = JSON.parse(user);
     injectReducer('USER', HOFreducer('USER', user));
   }
 
@@ -28,4 +37,6 @@ function Wrapper(props) {
   return component;
 }
 
-export default Wrapper;
+const mapStateToProps = ({ USER }) => ({ USER });
+
+export default connect(mapStateToProps, { onRead })(Wrapper);
