@@ -17,6 +17,7 @@ const category = {
       }
     },
     domainState: CATEGORY,
+    dynamicState: true,
   },
 };
 
