@@ -9,7 +9,8 @@ import LinkButton from '../../components/LinkButton';
 import './adminPageTemplate.scss';
 
 function Admin(props) {
-  const { requestStatus, modalMsg, errorTag, heading, APP_STATE } = props;
+  let { requestStatus, modalMsg, errorTag, heading, APP_STATE } = props;
+  errorTag = errorTag === 'alreadyExists' ? errorTag + 'Category' : errorTag;
 
   const aside = getAside(
     'Dashboard',
