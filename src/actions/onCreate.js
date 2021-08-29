@@ -36,11 +36,8 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
         // save user data in localStorage
         if (appState.domainState === 'USER') {
           // add 90 days
-          const user = {
-            token: data.token,
-            expiryDate: Date.now() + 7776000000 + '',
-          };
-          localStorage.setItem('USER', JSON.stringify(user));
+          data.expiryDate = Date.now() + 7776000000 + '';
+          localStorage.setItem('USER', JSON.stringify(data));
         }
 
         batch(() => {
