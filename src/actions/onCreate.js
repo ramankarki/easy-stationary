@@ -11,10 +11,20 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   const password = getState()[UI_STATE_TYPE]['Password']?.value;
 
   let isSubmitable = true;
+
+  // to check if validation fails onSubmit
   const newUIState = {};
+
+  // to reset UI state onSubmit success
+  const resetUIState = {};
+
+  // to submit on API if form isSubmitable
   const apiData = {};
+
   // validate before submitting & collect data in new obj for API call
   for (let fieldName in uiState) {
+    resetUIState[fieldName] = { ...uiState[fieldName], value: '' };
+
     let { value, dbProp } = uiState[fieldName];
     const checkValidation = !uiState[fieldName].validate(value, password);
 
@@ -49,6 +59,7 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
             type: dynamicState ? domainState + CREATE : domainState,
             payload: data,
           });
+
           dispatch({
             type: APP_STATE_TYPE,
             payload: {
@@ -57,6 +68,12 @@ const onSubmit = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
                 ? null
                 : appState.requestEnum.postSuccess,
             },
+          });
+
+          // reset UI state
+          dispatch({
+            type: UI_STATE_TYPE,
+            payload: resetUIState,
           });
         });
       })
