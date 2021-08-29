@@ -4,6 +4,7 @@ import getErrorTag from '../utils/errorTags';
 const category = {
   [APP_CATEGORY_STATE]: {
     getRoute: () => `/api/v1/category`,
+    postRoute: () => `/api/v1/category`,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
         case 'postSuccess':
