@@ -9,7 +9,7 @@ import LinkButton from '../../components/LinkButton';
 import './adminPageTemplate.scss';
 
 function Admin(props) {
-  const { requestStatus, modalMsg, errorTag, heading } = props;
+  const { requestStatus, modalMsg, errorTag, heading, APP_STATE } = props;
 
   const aside = getAside(
     'Dashboard',
@@ -52,7 +52,10 @@ function Admin(props) {
 
       {/* modal */}
       {requestStatus && (
-        <RequestStatusModalBg requestStatus={requestStatus}>
+        <RequestStatusModalBg
+          requestStatus={requestStatus || 'failed'}
+          APP_STATE={APP_STATE}
+        >
           {requestStatus === 'pending' ? (
             <SpinnerLoading />
           ) : (
