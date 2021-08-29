@@ -16,7 +16,7 @@ import LazyImg from '../components/LazyImg';
 
 const auth = {
   [APP_SIGNUP_STATE]: {
-    apiPath: (redirectPath = ALL_PRODUCTS) =>
+    postRoute: (redirectPath = ALL_PRODUCTS) =>
       `/api/v1/auth/signup?redirect=${window.location.origin}/%23${redirectPath}`,
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
@@ -38,7 +38,7 @@ const auth = {
     },
   },
   [APP_LOGIN_STATE]: {
-    apiPath: () => `/api/v1/auth/login`,
+    postRoute: () => `/api/v1/auth/login`,
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return <Redirect to={ALL_PRODUCTS} />;
@@ -46,7 +46,7 @@ const auth = {
     domainState: USER,
   },
   [APP_ACTIVATE_ACCOUNT_STATE]: {
-    apiPath: (redirectPath = ALL_PRODUCTS) =>
+    postRoute: (redirectPath = ALL_PRODUCTS) =>
       `/api/v1/auth/resend-activation-link?redirect=${window.location.origin}/%23${redirectPath}`,
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
@@ -68,7 +68,7 @@ const auth = {
     },
   },
   [APP_FORGOT_PASSWORD_STATE]: {
-    apiPath: (redirectPath = ALL_PRODUCTS) =>
+    postRoute: (redirectPath = ALL_PRODUCTS) =>
       `/api/v1/auth/forgot-password?reset-password-page=${window.location.origin}/%23${RESET_PASSWORD}&redirect=${window.location.origin}/%23${redirectPath}`,
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
@@ -90,7 +90,7 @@ const auth = {
     },
   },
   [APP_RESET_PASSWORD_STATE]: {
-    apiPath: () => `/api/v1/auth/reset-password/${queryString().token}`,
+    postRoute: () => `/api/v1/auth/reset-password/${queryString().token}`,
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return <Redirect to={queryString().redirect.split('#')[1]} />;
