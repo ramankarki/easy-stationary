@@ -68,7 +68,7 @@ function AdminCategory(props) {
 
         <div className="category__categories">
           {categories?.map((category) => (
-            <div className="categoryBox">
+            <div key={category.categoryName} className="categoryBox">
               {category.categoryName} ({category.noOfProducts})
               <button
                 onClick={triggerCriticalModal(
