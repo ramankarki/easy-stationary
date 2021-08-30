@@ -1,5 +1,5 @@
 /**
- * @description these state will be used in UI.
+ * @description these state will be used in UI forms.
  */
 export const UI_SIGNUP_STATE = 'UI_SIGNUP_STATE';
 export const UI_LOGIN_STATE = 'UI_LOGIN_STATE';
@@ -40,3 +40,8 @@ export const USER = 'USER';
  * @description dynamic domain state
  */
 export const CATEGORY = 'CATEGORY';
+
+/**
+ * @description miscellaneous, everything that doesn't in above states
+ */
+export const CRITICAL_MODAL_STATE = 'CRITICAL_MODAL_STATE';
