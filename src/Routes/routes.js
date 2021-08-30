@@ -11,6 +11,7 @@ import {
   CART,
   DASHBOARD,
   ADMIN_CATEGORY,
+  ADMIN_SETTINGS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -60,6 +61,12 @@ const routes = {
   [ADMIN_CATEGORY]: {
     private: true,
     component: LazyLoadPages.AdminCategory,
+    role: ['admin'],
+  },
+
+  [ADMIN_SETTINGS]: {
+    private: true,
+    component: LazyLoadPages.AdminSettings,
     role: ['admin'],
   },
 
