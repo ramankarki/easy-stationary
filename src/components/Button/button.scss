@@ -16,6 +16,10 @@
     padding: 0.5rem 1rem;
   }
 
+  &-danger {
+    background-color: $medium-error-color;
+  }
+
   &:hover {
     opacity: 0.85;
   }
