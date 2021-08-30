@@ -41,6 +41,20 @@ const fieldsObject = {
     validationMsg: 'Length should be more than 12!',
     dbProp: 'password',
   },
+  'Current password': {
+    validate: isTextBox,
+    min: 12,
+    max: 999999,
+    validationMsg: 'Length should be more than 12!',
+    dbProp: 'password',
+  },
+  'New password': {
+    validate: isTextBox,
+    min: 12,
+    max: 999999,
+    validationMsg: 'Length should be more than 12!',
+    dbProp: 'newPassword',
+  },
   'Re-type password': {
     validate: isReTypePassword,
     validationMsg: "Passwords doesn't match!",
