@@ -6,7 +6,7 @@ import { CREATE } from './constants';
 const onPost = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   const uiState = getState()[UI_STATE_TYPE];
   const appState = getState()[APP_STATE_TYPE];
-  const { domainState, dynamicState, noSuccessModal } = appState;
+  const { domainState, dynamicState, noSuccessModal, noReset } = appState;
 
   const password = getState()[UI_STATE_TYPE]['Password']?.value;
 
@@ -56,7 +56,7 @@ const onPost = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
         batch(() => {
           // dispatch USER domain data
           dispatch({
-            type: dynamicState ? domainState + CREATE : domainState,
+            type: dynamicState ? domainState + CREATE : domainState || '',
             payload: data,
           });
 
@@ -71,10 +71,11 @@ const onPost = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
           });
 
           // reset UI state
-          dispatch({
-            type: UI_STATE_TYPE,
-            payload: resetUIState,
-          });
+          if (!noReset)
+            dispatch({
+              type: UI_STATE_TYPE,
+              payload: resetUIState,
+            });
         });
       })
       .catch(({ response }) => {
