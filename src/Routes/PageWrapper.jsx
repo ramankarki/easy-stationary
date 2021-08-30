@@ -6,7 +6,7 @@ import HOFreducer from '../reducers/HOFreducer';
 import { LOGIN, ALL_PRODUCTS } from './contants';
 import { APP_USER_STATE } from '../actions/constants';
 import appState from '../appState';
-import onRead from '../actions/onRead';
+import onGet from '../actions/onGet';
 
 function Wrapper(props) {
   const { route, USER } = props;
@@ -17,7 +17,7 @@ function Wrapper(props) {
     HOFreducer(APP_USER_STATE, appState(APP_USER_STATE))
   );
 
-  if (!USER) props.onRead(APP_USER_STATE);
+  if (!USER) props.onGet(APP_USER_STATE);
 
   let user = localStorage.getItem('USER');
   if (user) {
@@ -39,4 +39,4 @@ function Wrapper(props) {
 
 const mapStateToProps = ({ USER }) => ({ USER });
 
-export default connect(mapStateToProps, { onRead })(Wrapper);
+export default connect(mapStateToProps, { onGet })(Wrapper);
