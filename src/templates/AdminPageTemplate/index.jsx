@@ -3,6 +3,7 @@ import getAside from '../../utils/asideButtonsData';
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
 import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import CriticalDeleteModal from '../CriticalDeleteModal';
 import SpinnerLoading from '../../components/SpinnerLoading';
 import LinkButton from '../../components/LinkButton';
 
@@ -64,6 +65,9 @@ function Admin(props) {
           )}
         </RequestStatusModalBg>
       )}
+
+      {/* critical modal */}
+      <CriticalDeleteModal />
     </div>
   );
 }
