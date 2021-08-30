@@ -5,14 +5,9 @@ const category = {
   [APP_CATEGORY_STATE]: {
     getRoute: () => `/api/v1/category`,
     postRoute: () => `/api/v1/category`,
+    deleteRoute: (categoryName) => `/api/v1/category/${categoryName}`,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
-        case 'postSuccess':
-          return;
-        case 'patchSuccess':
-          return;
-        case 'deleteSuccess':
-          return;
         default:
           return getErrorTag(errorTag);
       }
