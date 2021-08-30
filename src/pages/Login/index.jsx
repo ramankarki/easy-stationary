@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { SIGNUP, FORGOT_PASSWORD } from '../../Routes/contants';
@@ -12,7 +13,7 @@ function Login(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Email', 'Password');
 
-  injectReducer(USER, HOFreducer(USER, {}));
+  useEffect(() => injectReducer(USER, HOFreducer(USER, {})), []);
 
   const forgotPasswordLinkStyle = {
     fontSize: '0.75rem',

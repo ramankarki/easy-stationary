@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 import {
   UI_RESET_PASSWORD_STATE,
@@ -15,7 +16,7 @@ function ResetPassword(props) {
   const { REDUX_APP_STATE } = props;
   const loginFields = fields('Password', 'Re-type password');
 
-  injectReducer(USER, HOFreducer(USER, {}));
+  useEffect(() => injectReducer(USER, HOFreducer(USER, {})), []);
 
   return (
     <FormGenerator
