@@ -5,8 +5,8 @@ import {
   APP_CATEGORY_STATE,
   CATEGORY,
 } from '../../actions/constants';
-import onRead from '../../actions/onRead';
-import onCreate from '../../actions/onCreate';
+import onGet from '../../actions/onGet';
+import onPost from '../../actions/onPost';
 import onDelete from '../../actions/onDelete';
 import { injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -37,12 +37,12 @@ function AdminCategory(props) {
     HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
   );
 
-  if (!categories) props.onRead(APP_CATEGORY_STATE);
+  if (!categories) props.onGet(APP_CATEGORY_STATE);
 
   // event handlers
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    props.onCreate(APP_CATEGORY_STATE, UI_CATEGORY_STATE);
+    props.onPost(APP_CATEGORY_STATE, UI_CATEGORY_STATE);
   };
 
   const onCategoryDelete = (deleteObj, categoryName) => () =>
@@ -93,6 +93,6 @@ const mapStateToProps = ({ APP_CATEGORY_STATE, CATEGORY }) => ({
   ...CATEGORY,
 });
 
-export default connect(mapStateToProps, { onRead, onCreate, onDelete })(
+export default connect(mapStateToProps, { onGet, onPost, onDelete })(
   AdminCategory
 );
