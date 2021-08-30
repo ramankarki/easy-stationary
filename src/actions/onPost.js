@@ -3,7 +3,7 @@ import { batch } from 'react-redux';
 import API from '../utils/API';
 import { CREATE } from './constants';
 
-const onCreate = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
+const onPost = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   const uiState = getState()[UI_STATE_TYPE];
   const appState = getState()[APP_STATE_TYPE];
   const { domainState, dynamicState, noSuccessModal } = appState;
@@ -92,4 +92,4 @@ const onCreate = (APP_STATE_TYPE, UI_STATE_TYPE) => (dispatch, getState) => {
   }
 };
 
-export default onCreate;
+export default onPost;
