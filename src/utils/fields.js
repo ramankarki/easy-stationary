@@ -58,6 +58,12 @@ const fieldsObject = {
     validate: isTextBox,
     dbProp: 'categoryName',
   },
+  'Critical modal': {
+    min: 1,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'dull, wont be used',
+  },
 };
 
 const fields = (...args) => {
