@@ -21,7 +21,7 @@ const auth = {
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return (
-        <div className="Form__modalMsg">
+        <div className="modalBg__modalMsg">
           <picture>
             <LazyImg src="/assets/check.svg" alt="success icon" />
           </picture>
@@ -51,7 +51,7 @@ const auth = {
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return (
-        <div className="Form__modalMsg">
+        <div className="modalBg__modalMsg">
           <picture>
             <LazyImg src="/assets/check.svg" alt="success icon" />
           </picture>
@@ -73,7 +73,7 @@ const auth = {
     modalMsg: (requestStatus, errorTag) => {
       if (requestStatus === 'failed') return getErrorTag(errorTag);
       return (
-        <div className="Form__modalMsg">
+        <div className="modalBg__modalMsg">
           <picture>
             <LazyImg src="/assets/check.svg" alt="success icon" />
           </picture>
