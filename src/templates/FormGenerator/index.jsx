@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
-import onCreate from '../../actions/onCreate';
+import onPost from '../../actions/onPost';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState/';
 
@@ -53,7 +53,7 @@ function FormGenerator(props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    props.onCreate(APP_STATE, UI_STATE);
+    props.onPost(APP_STATE, UI_STATE);
   };
 
   const LinkStyle = {
@@ -115,4 +115,4 @@ function FormGenerator(props) {
   );
 }
 
-export default connect(null, { onCreate })(FormGenerator);
+export default connect(null, { onPost })(FormGenerator);
