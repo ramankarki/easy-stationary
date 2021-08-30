@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { injectReducer } from '../../utils/dynamicReducers';
 import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
-import onRead from '../../actions/onRead';
+import onGet from '../../actions/onGet';
 import appState from '../../appState';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
@@ -24,7 +24,7 @@ function Admin(props) {
     HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
   );
 
-  if (!categories) props.onRead(APP_CATEGORY_STATE);
+  if (!categories) props.onGet(APP_CATEGORY_STATE);
 
   const productsNum = categories
     ? categories.reduce((acc, category) => acc + category.noOfProducts, 0)
@@ -60,4 +60,4 @@ const mapStateToProps = ({ USER, CATEGORY, APP_CATEGORY_STATE }) => ({
   ...APP_CATEGORY_STATE,
 });
 
-export default connect(mapStateToProps, { onRead })(Admin);
+export default connect(mapStateToProps, { onGet })(Admin);
