@@ -55,7 +55,7 @@ const user = {
           return (
             <div className="modalBg__modalMsg">
               <picture>
-                <LazyImg src="/assets/check.svg" alt="success icon" />
+                <img src="/assets/check.svg" alt="success icon" />
               </picture>
               <p>Password changed successfuly!</p>
             </div>
@@ -64,6 +64,7 @@ const user = {
           return getErrorTag(errorTag);
       }
     },
+    domainState: USER,
   },
 };
 
