@@ -16,14 +16,21 @@ const InputField = (props) => {
     validationMsg,
     hideLabel,
     placeholder,
+    reTypeCompareValue,
   } = props;
 
   // event handlers
   const onChangeHandler = (event) =>
-    onChangeAndBlur(TYPE, labelName, event.target.value);
+    onChangeAndBlur(TYPE, labelName, event.target.value, reTypeCompareValue);
 
   const onBlurHandler = (event) =>
-    onChangeAndBlur(TYPE, labelName, event.target.value, 'onBlur');
+    onChangeAndBlur(
+      TYPE,
+      labelName,
+      event.target.value,
+      reTypeCompareValue,
+      'onBlur'
+    );
 
   // dynamic class names
   const labelClass = classes('label', { [dbProp]: true });
