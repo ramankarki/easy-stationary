@@ -1,11 +1,13 @@
 import auth from './auth';
 import user from './user';
 import category from './category';
+import singleProduct from './singleProduct';
 
 const appState = {
   ...auth,
   ...category,
   ...user,
+  ...singleProduct,
 };
 
 const getAppState = (TYPE) => ({
