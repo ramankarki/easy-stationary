@@ -21,7 +21,7 @@ function BreadCrumb() {
 function getBreads() {
   let breads = [];
 
-  const path = window.location.hash.slice(1);
+  const path = window.location.hash.slice(1).split('?')[0];
   if (path.length === 1) return breads;
 
   const breadKeys = path.split('/').filter(Boolean);
