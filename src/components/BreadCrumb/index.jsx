@@ -28,7 +28,7 @@ function getBreads() {
   const breadValues = breadKeys.map((keys) => '/' + keys);
 
   breadKeys.forEach((key, index) => {
-    let titleCase = key[0].toUpperCase() + key.replace(/\//g, ' ').slice(1);
+    let titleCase = key[0].toUpperCase() + key.replace(/[-/]/g, ' ').slice(1);
     let route = breadValues.slice(0, index + 1).join('');
     breads = [...breads, [titleCase, route]];
   });
