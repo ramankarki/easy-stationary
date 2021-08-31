@@ -51,7 +51,7 @@ const user = {
     patchRoute: () => `/api/v1/user/update-password`,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
-        case 'patchtSuccess':
+        case 'patchSuccess':
           return (
             <div className="modalBg__modalMsg">
               <picture>
