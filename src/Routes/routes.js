@@ -12,6 +12,7 @@ import {
   DASHBOARD,
   ADMIN_CATEGORY,
   ADMIN_SETTINGS,
+  ADMIN_ADD_NEW_PRODUCT,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -67,6 +68,12 @@ const routes = {
   [ADMIN_SETTINGS]: {
     private: true,
     component: LazyLoadPages.AdminSettings,
+    role: ['admin'],
+  },
+
+  [ADMIN_ADD_NEW_PRODUCT]: {
+    private: true,
+    component: LazyLoadPages.AdminAddNewProduct,
     role: ['admin'],
   },
 

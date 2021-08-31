@@ -15,6 +15,7 @@ const PAGES = [
   'Admin',
   'AdminCategory',
   'AdminSettings',
+  'AdminAddNewProduct',
   'Cart',
   'Dashboard',
   'PageNotFound',
