@@ -13,7 +13,7 @@ function RequestStatusModalBg(props) {
   return createPortal(
     <div className="modalBg">
       <div className="modalBg__wrapper">
-        {props.requestStatus === 'failed' && (
+        {props.requestStatus !== 'pending' && (
           <button className="modalBg__exit" onClick={onModalExit}>
             <img src="/assets/exit icon.svg" alt="exit icon" />
           </button>
