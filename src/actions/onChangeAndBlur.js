@@ -1,8 +1,14 @@
 const onChangeAndBlur =
-  (TYPE, field, value, eventType = 'onChange') =>
+  (
+    TYPE,
+    field,
+    value,
+    reTypeCompareValue = 'Password',
+    eventType = 'onChange'
+  ) =>
   (dispatch, getState) => {
     const state = getState()[TYPE];
-    const password = state['Password']?.value;
+    const password = state[reTypeCompareValue]?.value;
     const fieldState = state[field];
 
     if (eventType === 'onBlur') value = value.trim();
