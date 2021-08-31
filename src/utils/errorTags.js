@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import {
   ACTIVATE_ACCOUNT,
@@ -93,8 +93,13 @@ const errorTags = {
   productQuantityOutOfStock: 'productQuantityOutOfStock',
   buyProductToGiveReview: 'buyProductToGiveReview',
   emailUpdateTokenExpired: 'emailUpdateTokenExpired',
-  incorrectPassword: 'incorrectPassword',
-  logout: 'logout',
+  incorrectPassword: (
+    <div className="modalBg__modalMsg">
+      {picture('error')}
+      <p>Current password is wrong!</p>
+    </div>
+  ),
+  logout: <Redirect to={LOGIN} />,
   invalidToken: (
     <div className="modalBg__modalMsg">
       {picture('error')}
