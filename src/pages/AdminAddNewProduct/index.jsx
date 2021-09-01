@@ -15,6 +15,9 @@ import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
+import onChangeArrayOrObj from '../../actions/onChangeArrayOrObj';
+import onArrayValueAdd from '../../actions/onArrayValueAdd';
+import onObjValueAdd from '../../actions/onObjValueAdd';
 import classes from '../../utils/classes';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
@@ -25,7 +28,20 @@ import './adminAddNewProduct.scss';
 
 function AdminAddNewProduct(props) {
   const { categories } = props;
+
   const productDescription = props['Product description'];
+
+  const productQualities = props['Product qualities'];
+  const lastIndex = productQualities?.value.length - 1;
+  const lastIndexProductQuality = productQualities?.value[lastIndex];
+
+  const productSpecificationKey = props['Product specification key'];
+  const keyLastIndex = productSpecificationKey?.value.length - 1;
+  const keyLastValue = productSpecificationKey?.value[keyLastIndex];
+
+  const productSpecificationValue = props['Product specification value'];
+  const valueLastIndex = productSpecificationValue?.value.length - 1;
+  const valueLastValue = productSpecificationValue?.value[valueLastIndex];
 
   const imageFields = fields('First image', 'Second image', 'Third image');
   const commonInputFields = fields(
@@ -38,7 +54,8 @@ function AdminAddNewProduct(props) {
     'Category name',
     'Product description',
     'Product qualities',
-    'Product specification'
+    'Product specification key',
+    'Product specification value'
   );
 
   // inject category
@@ -100,6 +117,23 @@ function AdminAddNewProduct(props) {
       undefined,
       'onBlur'
     );
+  };
+
+  const onArrayOrObjChange = (fieldName, key) => (event) => {
+    props.onChangeArrayOrObj(
+      UI_SINGLE_PRODUCT_STATE,
+      fieldName,
+      key,
+      event.target.value
+    );
+  };
+
+  const addArray = (fieldName) => () => {
+    props.onArrayValueAdd(UI_SINGLE_PRODUCT_STATE, fieldName);
+  };
+
+  const addSpecification = (fieldName) => () => {
+    props.onObjValueAdd(UI_SINGLE_PRODUCT_STATE, fieldName);
   };
 
   const onSumitHandler = (event) => {
@@ -175,6 +209,7 @@ function AdminAddNewProduct(props) {
           </select>
         </label>
 
+        {/* product description textarea field */}
         <label className="label productDescription">
           <p className="label__name">
             Product description{' '}
@@ -191,6 +226,43 @@ function AdminAddNewProduct(props) {
               onChange={onChangeHandler('Product description')}
               onBlur={onBlurHandler('Product description')}
             ></textarea>
+          </div>
+        </label>
+
+        {/* product qualities, array of input text fields */}
+        <label className="label productQualities">
+          <p className="label__name">Product qualities</p>
+          <div className="productQualities__list">
+            <ul>
+              {productQualities?.value.map((val, index) => {
+                if (index === lastIndex) return undefined;
+
+                return (
+                  <li key={val + Date.now()}>
+                    <input
+                      className="label__field"
+                      type="text"
+                      value={val}
+                      onChange={onArrayOrObjChange('Product qualities', index)}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="productQualities__addQuality">
+              <input
+                className="label__field"
+                type="text"
+                value={lastIndexProductQuality}
+                onChange={onArrayOrObjChange('Product qualities', lastIndex)}
+              />
+              <Button
+                value="Add"
+                small="true"
+                type="button"
+                onClick={addArray('Product qualities')}
+              />
+            </div>
           </div>
         </label>
       </form>
@@ -210,6 +282,10 @@ const mapStateToProps = ({
   APP_SINGLE_PRODUCT_STATE,
 });
 
-export default connect(mapStateToProps, { onChangeAndBlur, onGet })(
-  AdminAddNewProduct
-);
+export default connect(mapStateToProps, {
+  onChangeAndBlur,
+  onGet,
+  onChangeArrayOrObj,
+  onArrayValueAdd,
+  onObjValueAdd,
+})(AdminAddNewProduct);
