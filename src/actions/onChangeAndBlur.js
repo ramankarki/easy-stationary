@@ -28,34 +28,36 @@ const onChangeAndBlur =
       },
     });
 
-    if (field.includes('image') && value) {
-      reader.readAsDataURL(value);
-      reader.onload = (event) =>
+    if (field.includes('image')) {
+      if (value) {
+        reader.readAsDataURL(value);
+        reader.onload = (event) =>
+          dispatch({
+            type: TYPE,
+            payload: {
+              ...state,
+              [field]: {
+                ...state[field],
+                value,
+                validationFailed,
+                base64: event.target.result,
+              },
+            },
+          });
+      } else {
         dispatch({
           type: TYPE,
           payload: {
             ...state,
             [field]: {
               ...state[field],
-              value,
+              value: '',
               validationFailed,
-              base64: event.target.result,
+              base64: undefined,
             },
           },
         });
-    } else {
-      dispatch({
-        type: TYPE,
-        payload: {
-          ...state,
-          [field]: {
-            ...state[field],
-            value: '',
-            validationFailed,
-            base64: undefined,
-          },
-        },
-      });
+      }
     }
   };
 
