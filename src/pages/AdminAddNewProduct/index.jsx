@@ -265,6 +265,68 @@ function AdminAddNewProduct(props) {
             </div>
           </div>
         </label>
+
+        {/* product specification, double array of input text fields */}
+        <label className="label productSpecification">
+          <p className="label__name">Product specification</p>
+          <div className="productSpecification__list">
+            {productSpecificationKey?.value.map((val, index, arr) => {
+              if (index === arr.length - 1) return undefined;
+
+              return (
+                <div
+                  className="productSpecification__list__child"
+                  key={val + Date.now()}
+                >
+                  <input
+                    className="label__field"
+                    type="text"
+                    value={val}
+                    onChange={onArrayOrObjChange(
+                      'Product specification key',
+                      index
+                    )}
+                  />
+                  <input
+                    className="label__field"
+                    type="text"
+                    value={productSpecificationValue?.value[index]}
+                    onChange={onArrayOrObjChange(
+                      'Product specification value',
+                      index
+                    )}
+                  />
+                </div>
+              );
+            })}
+            <div className="productSpecification__addSpecification">
+              <input
+                className="label__field"
+                type="text"
+                value={keyLastValue}
+                onChange={onArrayOrObjChange(
+                  'Product specification key',
+                  keyLastIndex
+                )}
+              />
+              <input
+                className="label__field"
+                type="text"
+                value={valueLastValue}
+                onChange={onArrayOrObjChange(
+                  'Product specification value',
+                  valueLastIndex
+                )}
+              />
+              <Button
+                value="Add"
+                small="true"
+                type="button"
+                onClick={addSpecification('Product specification')}
+              />
+            </div>
+          </div>
+        </label>
       </form>
     </AdminPageTemplate>
   );
