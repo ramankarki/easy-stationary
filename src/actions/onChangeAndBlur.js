@@ -1,3 +1,5 @@
+const reader = new FileReader();
+
 const onChangeAndBlur =
   (
     TYPE,
@@ -26,8 +28,7 @@ const onChangeAndBlur =
       },
     });
 
-    if (field.includes('image')) {
-      const reader = new FileReader();
+    if (field.includes('image') && value) {
       reader.readAsDataURL(value);
       reader.onload = (event) =>
         dispatch({
@@ -42,6 +43,19 @@ const onChangeAndBlur =
             },
           },
         });
+    } else {
+      dispatch({
+        type: TYPE,
+        payload: {
+          ...state,
+          [field]: {
+            ...state[field],
+            value: '',
+            validationFailed,
+            base64: undefined,
+          },
+        },
+      });
     }
   };
 
