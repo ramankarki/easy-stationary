@@ -78,6 +78,15 @@ const fieldsObject = {
     validate: isTextBox,
     dbProp: 'dull, wont be used',
   },
+  'First image': {
+    dbProp: 'imageUrl',
+  },
+  'Second image': {
+    dbProp: 'imageUrl',
+  },
+  'Third image': {
+    dbProp: 'imageUrl',
+  },
 };
 
 const fields = (...args) => {
