@@ -87,6 +87,58 @@ const fieldsObject = {
   'Third image': {
     dbProp: 'imageUrl',
   },
+  'Product name': {
+    min: 2,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'productName',
+    validationMsg: 'Product name is required!',
+  },
+  'Brand name': {
+    min: 2,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'brandName',
+    validationMsg: 'Brand name is required!',
+  },
+  'Price (Rs.)': {
+    min: 1,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'price',
+    validationMsg: 'Price is required!',
+    valueType: Number,
+  },
+  Quantity: {
+    min: 1,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'quantity',
+    validationMsg: 'Quantity is required!',
+    valueType: Number,
+  },
+  'Category name': {
+    dbProp: 'categoryName',
+  },
+  'Product description': {
+    min: 160,
+    max: 999999,
+    validate: isTextBox,
+    dbProp: 'productDescription',
+    validationMsg: 'Min 160 characters is required!',
+  },
+  'Product qualities': {
+    value: [''],
+    dbProp: 'productQualities',
+  },
+  'Product specification key': {
+    value: [''],
+    dbProp: 'productSpecification',
+  },
+  'Product specification value': {
+    value: [''],
+    dbProp: 'productSpecification',
+  },
 };
 
 const fields = (...args) => {
