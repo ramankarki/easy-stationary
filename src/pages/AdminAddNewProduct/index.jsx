@@ -81,6 +81,14 @@ function AdminAddNewProduct(props) {
     props.onChangeAndBlur(UI_SINGLE_PRODUCT_STATE, fieldName);
   };
 
+  const onChangeHandler = (fieldName) => (event) => {
+    props.onChangeAndBlur(
+      UI_SINGLE_PRODUCT_STATE,
+      fieldName,
+      event.target.value
+    );
+  };
+
   const onSumitHandler = (event) => {
     event.preventDefault();
   };
@@ -129,6 +137,25 @@ function AdminAddNewProduct(props) {
             dbProp={commonInputFields[fieldName].dbProp}
           />
         ))}
+
+        {/* category field with option type */}
+        <label className="label categoryName">
+          <p className="label__name">Category name</p>
+          <select
+            onChange={onChangeHandler('Category name')}
+            required
+            className="label__field"
+          >
+            <option selected disabled value="">
+              Select category
+            </option>
+            {categories?.map(({ categoryName }) => (
+              <option key={categoryName} value={categoryName}>
+                {categoryName}
+              </option>
+            ))}
+          </select>
+        </label>
       </form>
     </AdminPageTemplate>
   );
