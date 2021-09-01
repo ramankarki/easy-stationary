@@ -16,7 +16,7 @@ import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
-import LazyImg from '../../components/LazyImg';
+import Button from '../../components/Button';
 
 import './adminAddNewProduct.scss';
 
@@ -47,12 +47,16 @@ function AdminAddNewProduct(props) {
     HOFreducer(UI_SINGLE_PRODUCT_STATE, { ...imageFields })
   );
 
-  const onImageChange = (fieldName) => (event) => {
+  const onSelectImage = (fieldName) => (event) => {
     props.onChangeAndBlur(
       UI_SINGLE_PRODUCT_STATE,
       fieldName,
       event.target.files[0]
     );
+  };
+
+  const onDeSelectImage = (fieldName) => (event) => {
+    props.onChangeAndBlur(UI_SINGLE_PRODUCT_STATE, fieldName);
   };
 
   const onSumitHandler = (event) => {
@@ -67,18 +71,30 @@ function AdminAddNewProduct(props) {
     >
       <form onSubmit={onSumitHandler} className="product">
         {Object.keys(imageFields).map((fieldName) => (
-          <label className="product__image">
-            <input
-              type="file"
-              accept="image/png, image/jpeg"
-              onChange={onImageChange(fieldName)}
-            />
-            <img
-              src={props[fieldName]?.base64 || '/assets/image placeholder.svg'}
-              alt="placeholder"
-            />
-            <p>Upload</p>
-          </label>
+          <div key={fieldName} className="product__image">
+            <label className="product__image">
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={onSelectImage(fieldName)}
+              />
+              <img
+                src={
+                  props[fieldName]?.base64 || '/assets/image placeholder.svg'
+                }
+                alt="placeholder"
+              />
+              {!props[fieldName]?.base64 && <p>Select image</p>}
+            </label>
+            {props[fieldName]?.base64 && (
+              <Button
+                onClick={onDeSelectImage(fieldName)}
+                value="Clear image"
+                small="true"
+                danger="true"
+              />
+            )}
+          </div>
         ))}
       </form>
     </AdminPageTemplate>
