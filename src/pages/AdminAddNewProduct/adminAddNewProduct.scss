@@ -1,0 +1,29 @@
+@import '../../_variables';
+
+.product {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  &__image {
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      transition: opacity 500ms ease-out;
+    }
+
+    p {
+      margin-top: 0.5rem;
+      color: $primary-color;
+      font-size: $small-text;
+      font-weight: $heavy;
+      text-align: center;
+    }
+  }
+}
