@@ -36,4 +36,30 @@
       opacity: 0.5;
     }
   }
+
+  .productDescription {
+    grid-column: span 3;
+
+    .inputWrapper {
+      margin-top: 0.5rem;
+      background-color: $secondary-color;
+
+      &-error {
+        background-color: $light-error-color;
+      }
+    }
+
+    textarea {
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 150px;
+      margin: 1rem 0;
+      border: none;
+      padding: 0 1rem;
+      font-size: $normal-text;
+      color: $text-color;
+      background-color: transparent;
+      line-height: 1.5rem;
+    }
+  }
 }

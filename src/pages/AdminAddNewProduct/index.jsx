@@ -15,6 +15,7 @@ import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
+import classes from '../../utils/classes';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
 import Button from '../../components/Button';
@@ -24,6 +25,8 @@ import './adminAddNewProduct.scss';
 
 function AdminAddNewProduct(props) {
   const { categories } = props;
+  const productDescription = props['Product description'];
+
   const imageFields = fields('First image', 'Second image', 'Third image');
   const commonInputFields = fields(
     'Product name',
@@ -77,7 +80,7 @@ function AdminAddNewProduct(props) {
     );
   };
 
-  const onDeSelectImage = (fieldName) => (event) => {
+  const onDeSelectImage = (fieldName) => () => {
     props.onChangeAndBlur(UI_SINGLE_PRODUCT_STATE, fieldName);
   };
 
@@ -89,9 +92,23 @@ function AdminAddNewProduct(props) {
     );
   };
 
+  const onBlurHandler = (fieldName) => (event) => {
+    props.onChangeAndBlur(
+      UI_SINGLE_PRODUCT_STATE,
+      fieldName,
+      event.target.value,
+      undefined,
+      'onBlur'
+    );
+  };
+
   const onSumitHandler = (event) => {
     event.preventDefault();
   };
+
+  const inputClass = classes('inputWrapper', {
+    'inputWrapper-error': productDescription?.validationFailed,
+  });
 
   return (
     <AdminPageTemplate
@@ -105,6 +122,7 @@ function AdminAddNewProduct(props) {
           <div key={fieldName} className="product__image">
             <label className="product__image">
               <input
+                required
                 type="file"
                 accept="image/png, image/jpeg"
                 onChange={onSelectImage(fieldName)}
@@ -155,6 +173,25 @@ function AdminAddNewProduct(props) {
               </option>
             ))}
           </select>
+        </label>
+
+        <label className="label productDescription">
+          <p className="label__name">
+            Product description{' '}
+            {productDescription?.validationFailed ? (
+              <span className="label__validationMsg">
+                &nbsp; *{productDescription.validationMsg}
+              </span>
+            ) : (
+              ''
+            )}
+          </p>
+          <div className={inputClass}>
+            <textarea
+              onChange={onChangeHandler('Product description')}
+              onBlur={onBlurHandler('Product description')}
+            ></textarea>
+          </div>
         </label>
       </form>
     </AdminPageTemplate>
