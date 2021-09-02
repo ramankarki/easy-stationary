@@ -18,6 +18,7 @@ import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import onChangeArrayOrObj from '../../actions/onChangeArrayOrObj';
 import onArrayValueAdd from '../../actions/onArrayValueAdd';
 import onObjValueAdd from '../../actions/onObjValueAdd';
+import onAddNewProduct from '../../actions/onAddNewProduct';
 import classes from '../../utils/classes';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
@@ -155,11 +156,12 @@ function AdminAddNewProduct(props) {
     >
       <form onSubmit={onSumitHandler} className="product">
         {/* input type file for selecting images */}
-        {Object.keys(imageFields).map((fieldName) => (
+        {Object.keys(imageFields).map((fieldName, index) => (
           <div key={fieldName} className="product__image">
             <label className="product__image">
               <input
                 required
+                name={'image' + index}
                 type="file"
                 accept="image/png, image/jpeg"
                 onChange={onSelectImage(fieldName)}
@@ -200,6 +202,7 @@ function AdminAddNewProduct(props) {
           <p className="label__name">Category name</p>
           <select
             onChange={onChangeHandler('Category name')}
+            name="categoryName"
             required
             className="label__field"
           >
@@ -229,6 +232,7 @@ function AdminAddNewProduct(props) {
           <div className={inputClass}>
             <textarea
               required
+              name="productDescription"
               onChange={onChangeHandler('Product description')}
               onBlur={onBlurHandler('Product description')}
             ></textarea>
@@ -247,6 +251,7 @@ function AdminAddNewProduct(props) {
                   <li key={val + Date.now()}>
                     <input
                       required
+                      name={'productQuality' + index}
                       className="label__field"
                       type="text"
                       value={val}
@@ -290,6 +295,7 @@ function AdminAddNewProduct(props) {
                 >
                   <input
                     required
+                    name="key"
                     className="label__field"
                     type="text"
                     value={val}
@@ -300,6 +306,7 @@ function AdminAddNewProduct(props) {
                   />
                   <input
                     required
+                    name="value"
                     className="label__field"
                     type="text"
                     value={productSpecificationValue?.value[index]}
@@ -340,7 +347,11 @@ function AdminAddNewProduct(props) {
           </div>
         </label>
 
-        <Button style={{ gridColumn: 'span 3' }} value="Create product" />
+        <Button
+          onClick={props.onAddNewProduct}
+          style={{ gridColumn: 'span 3' }}
+          value="Create product"
+        />
       </form>
     </AdminPageTemplate>
   );
@@ -364,4 +375,5 @@ export default connect(mapStateToProps, {
   onChangeArrayOrObj,
   onArrayValueAdd,
   onObjValueAdd,
+  onAddNewProduct,
 })(AdminAddNewProduct);
