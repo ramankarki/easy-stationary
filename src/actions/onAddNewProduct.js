@@ -45,8 +45,8 @@ const addNewProduct = () => (dispatch, getState) => {
     payload: { ...appState, requestStatus: appState.requestEnum.pending },
   });
 
-  API.post(appState.postRoute(data.categoryName), data)
-    .then(({ data }) => {
+  API.post(appState.postRoute(data.categoryName || null), data)
+    .then(({ data }) =>
       batch(() => {
         // dispatch USER domain data
         dispatch({
@@ -61,8 +61,8 @@ const addNewProduct = () => (dispatch, getState) => {
             requestStatus: appState.requestEnum.postSuccess,
           },
         });
-      });
-    })
+      })
+    )
     .catch(({ response }) => {
       dispatch({
         type: APP_SINGLE_PRODUCT_STATE,
