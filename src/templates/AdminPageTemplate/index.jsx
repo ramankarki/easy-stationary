@@ -55,7 +55,7 @@ function Admin(props) {
       {/* modal */}
       {requestStatus && (
         <RequestStatusModalBg
-          requestStatus={requestStatus || 'failed'}
+          requestStatus={requestStatus}
           APP_STATE={APP_STATE}
         >
           {requestStatus === 'pending' ? (
