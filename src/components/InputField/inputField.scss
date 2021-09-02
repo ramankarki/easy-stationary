@@ -14,7 +14,7 @@
     color: $text-color;
     background-color: $secondary-color;
     border: none;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 
     &::placeholder {
       font-size: $normal-text - 0.1rem;
