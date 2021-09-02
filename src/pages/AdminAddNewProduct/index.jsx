@@ -149,8 +149,13 @@ function AdminAddNewProduct(props) {
     'inputWrapper-error': productDescription?.validationFailed,
   });
 
-  const onProductQualityDel = (fieldName, index) => () =>
-    props.onArrElementDel(fieldName, index);
+  const onProductQualityDel = (index) => () =>
+    props.onArrElementDel('Product qualities', index);
+
+  const onProductSpecificationDel = (index) => () => {
+    props.onArrElementDel('Product specification key', index);
+    props.onArrElementDel('Product specification value', index);
+  };
 
   if (!props.requestStatus)
     props = { ...props, ...props.APP_SINGLE_PRODUCT_STATE };
@@ -266,10 +271,10 @@ function AdminAddNewProduct(props) {
                     />
                     <Button
                       type="button"
-                      value="Del"
+                      value="DEL"
                       danger="true"
                       small="true"
-                      onClick={onProductQualityDel('Product qualities', index)}
+                      onClick={onProductQualityDel(index)}
                     />
                   </li>
                 );
@@ -328,6 +333,13 @@ function AdminAddNewProduct(props) {
                       'Product specification value',
                       index
                     )}
+                  />
+                  <Button
+                    type="button"
+                    value="DEL"
+                    danger="true"
+                    small="true"
+                    onClick={onProductSpecificationDel(index)}
                   />
                 </div>
               );

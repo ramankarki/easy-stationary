@@ -70,13 +70,13 @@
 
 .productQualities {
   &__list {
+    margin-top: 0.5rem;
     ul {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
 
       li {
-        margin-top: 0.5rem;
         display: flex;
         gap: 1rem;
         input {
@@ -87,7 +87,7 @@
   }
 
   &__addQuality {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: flex;
     gap: 1rem;
 
@@ -99,6 +99,7 @@
 
 .productSpecification {
   &__list {
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -106,11 +107,13 @@
     &__child {
       display: flex;
       gap: 1rem;
+      input {
+        margin-top: 0;
+      }
     }
   }
 
   &__addSpecification {
-    margin-top: 0.5rem;
     display: flex;
     gap: 1rem;
 
