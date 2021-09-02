@@ -19,6 +19,7 @@ import onChangeArrayOrObj from '../../actions/onChangeArrayOrObj';
 import onArrayValueAdd from '../../actions/onArrayValueAdd';
 import onObjValueAdd from '../../actions/onObjValueAdd';
 import onAddNewProduct from '../../actions/onAddNewProduct';
+import onArrElementDel from '../../actions/onArrElementDel';
 import classes from '../../utils/classes';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
@@ -148,6 +149,9 @@ function AdminAddNewProduct(props) {
     'inputWrapper-error': productDescription?.validationFailed,
   });
 
+  const onProductQualityDel = (fieldName, index) => () =>
+    props.onArrElementDel(fieldName, index);
+
   if (!props.requestStatus)
     props = { ...props, ...props.APP_SINGLE_PRODUCT_STATE };
 
@@ -259,6 +263,13 @@ function AdminAddNewProduct(props) {
                       type="text"
                       value={val}
                       onChange={onArrayOrObjChange('Product qualities', index)}
+                    />
+                    <Button
+                      type="button"
+                      value="Del"
+                      danger="true"
+                      small="true"
+                      onClick={onProductQualityDel('Product qualities', index)}
                     />
                   </li>
                 );
@@ -379,4 +390,5 @@ export default connect(mapStateToProps, {
   onArrayValueAdd,
   onObjValueAdd,
   onAddNewProduct,
+  onArrElementDel,
 })(AdminAddNewProduct);

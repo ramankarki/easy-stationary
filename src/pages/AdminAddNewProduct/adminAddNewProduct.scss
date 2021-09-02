@@ -74,6 +74,15 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+
+      li {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 1rem;
+        input {
+          margin-top: 0;
+        }
+      }
     }
   }
 
