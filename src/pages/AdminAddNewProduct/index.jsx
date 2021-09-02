@@ -32,16 +32,19 @@ function AdminAddNewProduct(props) {
   const productDescription = props['Product description'];
 
   const productQualities = props['Product qualities'];
-  const lastIndex = productQualities?.value.length - 1;
-  const lastIndexProductQuality = productQualities?.value[lastIndex];
+  const lastQualityIndex = productQualities?.value.length - 1;
+  const lastQualityValue = productQualities?.value[lastQualityIndex];
 
   const productSpecificationKey = props['Product specification key'];
-  const keyLastIndex = productSpecificationKey?.value.length - 1;
-  const keyLastValue = productSpecificationKey?.value[keyLastIndex];
+  const lastSpecificationKeyIndex = productSpecificationKey?.value.length - 1;
+  const lastSpecificationKeyValue =
+    productSpecificationKey?.value[lastSpecificationKeyIndex];
 
   const productSpecificationValue = props['Product specification value'];
-  const valueLastIndex = productSpecificationValue?.value.length - 1;
-  const valueLastValue = productSpecificationValue?.value[valueLastIndex];
+  const lastSpecificationValueIndex =
+    productSpecificationValue?.value.length - 1;
+  const lastSpecificationValueVal =
+    productSpecificationValue?.value[lastSpecificationValueIndex];
 
   const imageFields = fields('First image', 'Second image', 'Third image');
   const commonInputFields = fields(
@@ -175,6 +178,8 @@ function AdminAddNewProduct(props) {
                 value="Clear image"
                 small="true"
                 danger="true"
+                type="button"
+                style={{ width: '100%' }}
               />
             )}
           </div>
@@ -235,7 +240,7 @@ function AdminAddNewProduct(props) {
           <div className="productQualities__list">
             <ul>
               {productQualities?.value.map((val, index) => {
-                if (index === lastIndex) return undefined;
+                if (index === lastQualityIndex) return undefined;
 
                 return (
                   <li key={val + Date.now()}>
@@ -253,8 +258,11 @@ function AdminAddNewProduct(props) {
               <input
                 className="label__field"
                 type="text"
-                value={lastIndexProductQuality}
-                onChange={onArrayOrObjChange('Product qualities', lastIndex)}
+                value={lastQualityValue}
+                onChange={onArrayOrObjChange(
+                  'Product qualities',
+                  lastQualityIndex
+                )}
               />
               <Button
                 value="Add"
@@ -303,19 +311,19 @@ function AdminAddNewProduct(props) {
               <input
                 className="label__field"
                 type="text"
-                value={keyLastValue}
+                value={lastSpecificationKeyValue}
                 onChange={onArrayOrObjChange(
                   'Product specification key',
-                  keyLastIndex
+                  lastSpecificationKeyIndex
                 )}
               />
               <input
                 className="label__field"
                 type="text"
-                value={valueLastValue}
+                value={lastSpecificationValueVal}
                 onChange={onArrayOrObjChange(
                   'Product specification value',
-                  valueLastIndex
+                  lastSpecificationValueIndex
                 )}
               />
               <Button
