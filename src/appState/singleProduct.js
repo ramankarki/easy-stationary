@@ -6,6 +6,12 @@ import LazyImg from '../components/LazyImg';
 const singleProduct = {
   [APP_SINGLE_PRODUCT_STATE]: {
     postRoute: (categoryName) => `/api/v1/single-product/${categoryName}`,
+    getRoute: () => {
+      const [categoryName, productId] = window.location.hash
+        .split('/')
+        .slice(1);
+      return `/api/v1/single-product/${categoryName}/${productId}`;
+    },
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
         case 'postSuccess':
