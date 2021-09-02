@@ -148,6 +148,9 @@ function AdminAddNewProduct(props) {
     'inputWrapper-error': productDescription?.validationFailed,
   });
 
+  if (!props.requestStatus)
+    props = { ...props, ...props.APP_SINGLE_PRODUCT_STATE };
+
   return (
     <AdminPageTemplate
       {...props}
