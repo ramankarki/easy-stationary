@@ -41,4 +41,9 @@ textarea {
   display: flex;
   max-width: $gt-extra-large-screen;
   margin: auto;
+  padding: 0 1rem;
+
+  @media (min-width: $gt-small-screen) {
+    padding: 0 2rem;
+  }
 }
