@@ -4,11 +4,10 @@
   width: 100%;
   display: flex;
   gap: 1.5rem;
-  padding: 1rem;
+  padding: 1rem 0;
   align-items: center;
 
   @media (min-width: $gt-small-screen) {
-    padding: 1rem 2rem;
     gap: 3rem;
   }
 
