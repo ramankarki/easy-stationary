@@ -1,7 +1,7 @@
 import {
   ROOT,
   SIGNUP,
-  ALL_PRODUCTS,
+  LANDING_PAGE,
   PAGE_NOT_FOUND,
   LOGIN,
   ACTIVATE_ACCOUNT,
@@ -20,7 +20,7 @@ import LazyLoadPages from './LazyLoadPages';
 const routes = {
   [ROOT]: {
     private: false,
-    component: LazyLoadPages.Landing,
+    component: LazyLoadPages.AllProducts,
   },
 
   [SIGNUP]: {
@@ -48,9 +48,9 @@ const routes = {
     component: LazyLoadPages.ResetPassword,
   },
 
-  [ALL_PRODUCTS]: {
+  [LANDING_PAGE]: {
     private: false,
-    component: LazyLoadPages.AllProducts,
+    component: LazyLoadPages.Landing,
   },
 
   [ADMIN]: {

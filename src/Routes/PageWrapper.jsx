@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { injectReducer } from '../utils/dynamicReducers';
 import HOFreducer from '../reducers/HOFreducer';
-import { LOGIN, ALL_PRODUCTS } from './contants';
+import { LOGIN, ROOT } from './contants';
 import { APP_USER_STATE } from '../actions/constants';
 import appState from '../appState';
 import onGet from '../actions/onGet';
@@ -31,7 +31,7 @@ function Wrapper(props) {
     if (!user || Date.now() > +user.expiryDate) return <Redirect to={LOGIN} />;
 
     // if page is accessible by user type.
-    if (!role.includes(user.user.role)) return <Redirect to={ALL_PRODUCTS} />;
+    if (!role.includes(user.user.role)) return <Redirect to={ROOT} />;
   }
 
   return component;
