@@ -228,6 +228,7 @@ function AdminAddNewProduct(props) {
           </p>
           <div className={inputClass}>
             <textarea
+              required
               onChange={onChangeHandler('Product description')}
               onBlur={onBlurHandler('Product description')}
             ></textarea>
@@ -245,6 +246,7 @@ function AdminAddNewProduct(props) {
                 return (
                   <li key={val + Date.now()}>
                     <input
+                      required
                       className="label__field"
                       type="text"
                       value={val}
@@ -287,6 +289,7 @@ function AdminAddNewProduct(props) {
                   key={val + Date.now()}
                 >
                   <input
+                    required
                     className="label__field"
                     type="text"
                     value={val}
@@ -296,6 +299,7 @@ function AdminAddNewProduct(props) {
                     )}
                   />
                   <input
+                    required
                     className="label__field"
                     type="text"
                     value={productSpecificationValue?.value[index]}
@@ -335,6 +339,8 @@ function AdminAddNewProduct(props) {
             </div>
           </div>
         </label>
+
+        <Button style={{ gridColumn: 'span 3' }} value="Create product" />
       </form>
     </AdminPageTemplate>
   );
