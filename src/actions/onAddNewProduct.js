@@ -16,14 +16,11 @@ const addNewProduct = () => (dispatch, getState) => {
   const uiState = getState()[UI_SINGLE_PRODUCT_STATE];
   const appState = getState()[APP_SINGLE_PRODUCT_STATE];
   const data = {};
+  data['imageUrl'] = [];
 
   for (let field in uiState) {
-    // imageUrl
-    if (field.includes('image')) {
-      data['imageUrl'] = data['imageUrl'] || [];
-      if (uiState[field].src) {
-        data['imageUrl'].push(...data['imageUrl'], uiState[field].src);
-      }
+    if (field.includes('image') && uiState[field].src) {
+      data['imageUrl'] = [...data['imageUrl'], uiState[field].src];
     }
 
     // other fields
