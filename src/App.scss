@@ -39,11 +39,22 @@ textarea {
 
 .App {
   display: flex;
-  max-width: $gt-extra-large-screen;
   margin: auto;
   padding: 0 1rem;
 
   @media (min-width: $gt-small-screen) {
     padding: 0 2rem;
+  }
+
+  @media (min-width: $gt-medium-screen) {
+    max-width: $gt-medium-screen;
+  }
+
+  @media (min-width: $gt-large-screen) {
+    max-width: $gt-large-screen;
+  }
+
+  @media (min-width: $gt-extra-large-screen) {
+    max-width: $gt-extra-large-screen;
   }
 }
