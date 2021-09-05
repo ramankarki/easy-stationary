@@ -9,7 +9,7 @@ function Button(props) {
   });
   return (
     <button {...props} className={classNames}>
-      {props.value}
+      {props.value || props.children}
     </button>
   );
 }
