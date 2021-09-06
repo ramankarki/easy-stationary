@@ -7,11 +7,17 @@ import {
   SINGLE_PRODUCT,
   APP_SINGLE_CATEGORY_PRODUCTS_STATE,
   MULTIPLE_PRODUCTS,
+  REVIEWS,
+  UI_REVIEWS_STATE,
+  APP_REVIEWS_STATE,
 } from '../../actions/constants';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
+import onPost from '../../actions/onPost';
+import onChangeAndBlur from '../../actions/onChangeAndBlur';
+import fields from '../../utils/fields';
 
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -19,13 +25,13 @@ import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
 import SpinnerLoading from '../../components/SpinnerLoading';
 import Button from '../../components/Button';
 import RatingsStar from '../../components/RatingStars';
+import ProductCardGen from '../../templates/ProductCardGen';
 
 import cartIcon from './cart icon.svg';
 import './singleProduct.scss';
-import ProductCardGen from '../../templates/ProductCardGen';
 
 function SingleProduct(props) {
-  const { product, products } = props;
+  const { product, products, Ratings, Description } = props;
   let { requestStatus, errorTag, modalMsg } = props;
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
@@ -56,6 +62,24 @@ function SingleProduct(props) {
     HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
   );
 
+  // reviews
+  const reviewFields = fields(
+    'Ratings',
+    'Description',
+    'ProductId',
+    'CategoryName'
+  );
+  const [categoryName, productId] = window.location.hash.split('/').slice(1);
+  reviewFields['ProductId'].value = productId;
+  reviewFields['CategoryName'].value = categoryName;
+
+  injectReducer(REVIEWS, HOFdomainReducer(REVIEWS, 'reviews', 'review'));
+  injectReducer(UI_REVIEWS_STATE, HOFreducer(UI_REVIEWS_STATE, reviewFields));
+  injectReducer(
+    APP_REVIEWS_STATE,
+    HOFreducer(APP_REVIEWS_STATE, appState(APP_REVIEWS_STATE))
+  );
+
   useEffect(() => {
     props.onGet(APP_SINGLE_PRODUCT_STATE);
     props.onGet(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
@@ -74,6 +98,17 @@ function SingleProduct(props) {
     : 0;
 
   const onSmallImgClick = (index) => () => setActiveImgIndex(index);
+
+  const onSelectRatingEmoji = (index) => () =>
+    props.onChangeAndBlur(UI_REVIEWS_STATE, 'Ratings', index);
+
+  const onTextAreaChange = (event) =>
+    props.onChangeAndBlur(UI_REVIEWS_STATE, 'Description', event.target.value);
+
+  const onReviewSubmitHandler = (event) => {
+    event.preventDefault();
+    props.onPost(APP_REVIEWS_STATE, UI_REVIEWS_STATE);
+  };
 
   return (
     <div className="singleProduct">
@@ -166,13 +201,19 @@ function SingleProduct(props) {
       {/* customer reviews */}
       <section className="customerReviews">
         <h2>Customer reviews</h2>
+
+        {/* reviews content wrapper */}
         <div className="customerReviews__contentWrapper">
+          {/* reviews data graph */}
           <div className="customerReviews__dataContainer">
             {product
               ? Object.keys(product.ratings)
                   .map((key) =>
                     product.ratings[key] ? (
-                      <div className="customerReviews__dataCell">
+                      <div
+                        key={key + 'star'}
+                        className="customerReviews__dataCell"
+                      >
                         <span>{key} stars</span>
                         <div className="customerReviews__dataCellBox">
                           <div
@@ -192,6 +233,31 @@ function SingleProduct(props) {
                   .reverse()
               : ''}
           </div>
+
+          {/* reviews form */}
+          <form
+            onSubmit={onReviewSubmitHandler}
+            className="customerReviews__form"
+          >
+            <h3>Give feedback</h3>
+            <div className="customerReviews__form__emojis">
+              {['☹️', '😐', '🙂', '😊', '😍'].map((emoji, index) => (
+                <span
+                  key={emoji}
+                  onClick={onSelectRatingEmoji(index + 1)}
+                  style={Ratings?.value === index + 1 ? { opacity: '1' } : {}}
+                >
+                  {emoji}
+                </span>
+              ))}
+            </div>
+            <textarea
+              onChange={onTextAreaChange}
+              value={Description?.value}
+              placeholder="Leave you message..."
+            ></textarea>
+            <Button value="Submit" />
+          </form>
         </div>
       </section>
 
@@ -213,10 +279,14 @@ const mapStateToProps = ({
   SINGLE_PRODUCT,
   APP_SINGLE_PRODUCT_STATE,
   MULTIPLE_PRODUCTS,
+  UI_REVIEWS_STATE,
 }) => ({
   ...SINGLE_PRODUCT,
   ...APP_SINGLE_PRODUCT_STATE,
   ...MULTIPLE_PRODUCTS,
+  ...UI_REVIEWS_STATE,
 });
 
-export default connect(mapStateToProps, { onGet })(SingleProduct);
+export default connect(mapStateToProps, { onGet, onChangeAndBlur, onPost })(
+  SingleProduct
+);
