@@ -247,6 +247,7 @@ function AdminAddNewProduct(props) {
               name="productDescription"
               onChange={onChangeHandler('Product description')}
               onBlur={onBlurHandler('Product description')}
+              value={productDescription?.value}
             ></textarea>
           </div>
         </label>
