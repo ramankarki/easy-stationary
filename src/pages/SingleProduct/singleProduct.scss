@@ -156,3 +156,32 @@ hr {
     margin-bottom: 2rem;
   }
 }
+
+.customerReviews {
+  &__dataContainer {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &__dataCell {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    gap: 1rem;
+
+    span {
+      line-height: 1.6rem;
+      color: $primary-color;
+      font-size: $small-text;
+      font-weight: $medium;
+    }
+
+    &Box {
+      background-color: $secondary-color;
+
+      div {
+        height: 100%;
+        background-color: $primary-color;
+      }
+    }
+  }
+}

@@ -157,9 +157,42 @@ function SingleProduct(props) {
           : ''}
       </section>
 
+      {/* related items section */}
       <section className="relatedItem">
         <h2>Related items</h2>
         <ProductCardGen products={products && products.slice(0, 3)} />
+      </section>
+
+      {/* customer reviews */}
+      <section className="customerReviews">
+        <h2>Customer reviews</h2>
+        <div className="customerReviews__contentWrapper">
+          <div className="customerReviews__dataContainer">
+            {product
+              ? Object.keys(product.ratings)
+                  .map((key) =>
+                    product.ratings[key] ? (
+                      <div className="customerReviews__dataCell">
+                        <span>{key} stars</span>
+                        <div className="customerReviews__dataCellBox">
+                          <div
+                            style={{
+                              width: `${
+                                (product.ratings[key] / noOfPeopleRated) * 100
+                              }%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span>{product.ratings[key]} people</span>
+                      </div>
+                    ) : (
+                      ''
+                    )
+                  )
+                  .reverse()
+              : ''}
+          </div>
+        </div>
       </section>
 
       {/* modal */}
