@@ -139,6 +139,25 @@ const fieldsObject = {
     value: [''],
     dbProp: 'productSpecification',
   },
+  Ratings: {
+    dbProp: 'ratings',
+    value: 3,
+    validate: () => true,
+  },
+  Description: {
+    dbProp: 'description',
+    min: 2,
+    max: 999999,
+    validate: isTextBox,
+  },
+  ProductId: {
+    dbProp: 'productId',
+    validate: () => true,
+  },
+  CategoryName: {
+    dbProp: 'categoryName',
+    validate: () => true,
+  },
 };
 
 const fields = (...args) => {
