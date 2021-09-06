@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { injectReducer } from '../../utils/dynamicReducers';
 import {
@@ -32,7 +32,7 @@ function SingleProduct(props) {
     HOFreducer(APP_SINGLE_PRODUCT_STATE, appState(APP_SINGLE_PRODUCT_STATE))
   );
 
-  if (!product) props.onGet(APP_SINGLE_PRODUCT_STATE);
+  useEffect(() => props.onGet(APP_SINGLE_PRODUCT_STATE), []);
 
   // convert cloudinary url to transformed url to get transformed image
   product?.imageUrl.forEach((url, index) => {
