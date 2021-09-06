@@ -58,3 +58,9 @@ textarea {
     max-width: $gt-extra-large-screen;
   }
 }
+
+hr {
+  background-color: $light-gray-border;
+  height: 1px;
+  border: none;
+}
