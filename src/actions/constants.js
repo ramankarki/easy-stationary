@@ -12,6 +12,7 @@ export const UI_SINGLE_PRODUCT_STATE = 'UI_SINGLE_PRODUCT_STATE';
 export const UI_SEARCH_STATE = 'UI_SEARCH_STATE';
 export const UI_ALL_PRODUCTS_STATE = 'UI_ALL_PRODUCTS_STATE';
 export const UI_CATEGORY_STATE = 'UI_CATEGORY_STATE';
+export const UI_REVIEWS_STATE = 'UI_REVIEWS_STATE';
 
 /**
  * @description these state will used to track data like ajax calls behind the seen.
@@ -29,6 +30,7 @@ export const APP_ALL_PRODUCTS_STATE = 'APP_ALL_PRODUCTS_STATE';
 export const APP_SEARCH_STATE = 'APP_SEARCH_STATE';
 export const APP_CATEGORY_STATE = 'APP_CATEGORY_STATE';
 export const APP_SINGLE_CATEGORY_PRODUCTS_STATE = 'APP_MULTIPLE_PRODUCTS_STATE';
+export const APP_REVIEWS_STATE = 'APP_REVIEWS_STATE';
 
 /**
  * @description Domain state operation type
@@ -49,6 +51,7 @@ export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
  */
 export const CATEGORY = 'CATEGORY';
 export const MULTIPLE_PRODUCTS = 'MULTIPLE_PRODUCTS';
+export const REVIEWS = 'REVIEWS';
 
 /**
  * @description miscellaneous, everything that doesn't in above states
