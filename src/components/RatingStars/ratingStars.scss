@@ -1,4 +1,10 @@
+@import '../../_variables';
+
 .ratings {
   display: flex;
   gap: 0.3rem;
+
+  span {
+    color: $primary-color;
+  }
 }

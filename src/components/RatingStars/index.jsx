@@ -20,6 +20,7 @@ function RatingsStar(props) {
         if (index + 1 <= avg) src = active;
         return <img key={src + star} src={src} alt="star" />;
       })}
+      {props.peopleNumber && <span>({noOfPeople})</span>}
     </div>
   );
 }
