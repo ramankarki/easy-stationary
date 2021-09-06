@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { useState } from 'react';
 
 import { injectReducer } from '../../utils/dynamicReducers';
 import {
@@ -23,6 +24,8 @@ function SingleProduct(props) {
   const { product } = props;
   let { requestStatus, errorTag, modalMsg } = props;
 
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+
   injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
   injectReducer(
     APP_SINGLE_PRODUCT_STATE,
@@ -32,15 +35,18 @@ function SingleProduct(props) {
   if (!product) props.onGet(APP_SINGLE_PRODUCT_STATE);
 
   // convert cloudinary url to transformed url to get transformed image
-  const breakUrl = product?.imageUrl[0].split('upload');
-  let transformedImgUrl;
-  if (breakUrl)
-    transformedImgUrl = breakUrl[0] + 'upload/ar_3:2,c_fill' + breakUrl[1];
+  product?.imageUrl.forEach((url, index) => {
+    const breakUrl = product?.imageUrl[index].split('upload');
+    product.imageUrl[index] =
+      breakUrl[0] + 'upload/ar_3:2,c_fill' + breakUrl[1];
+  });
 
   // no of people rated
   const noOfPeopleRated = product
     ? Object.values(product.ratings).reduce((acc, val) => acc + val, 0)
     : 0;
+
+  const onSmallImgClick = (index) => () => setActiveImgIndex(index);
 
   return (
     <div className="singleProduct">
@@ -51,9 +57,23 @@ function SingleProduct(props) {
       <div className="singleProduct__heroSection">
         <picture>
           <img
-            src={transformedImgUrl || `/assets/image placeholder.svg`}
+            className="singleProduct__bigImage"
+            src={
+              product?.imageUrl[activeImgIndex] ||
+              `/assets/image placeholder.svg`
+            }
             alt="product"
           />
+          <div className="singleProduct__smallImages">
+            {product?.imageUrl.map((url, index) => (
+              <img
+                style={activeImgIndex === index ? { opacity: '1' } : {}}
+                src={url}
+                alt="product"
+                onClick={onSmallImgClick(index)}
+              />
+            ))}
+          </div>
         </picture>
 
         {/* hero content */}
