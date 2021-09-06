@@ -18,7 +18,7 @@ function RatingsStar(props) {
       {Object.keys(props.ratings).map((star, index) => {
         let src = inActive;
         if (index + 1 <= avg) src = active;
-        return <img key={src} src={src} alt="star" />;
+        return <img key={src + star} src={src} alt="star" />;
       })}
     </div>
   );
