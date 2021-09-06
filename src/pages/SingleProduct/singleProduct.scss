@@ -1,5 +1,9 @@
 @import '../../_variables';
 
+hr {
+  margin: 2rem 0;
+}
+
 .singleProduct {
   width: 100%;
 
@@ -92,6 +96,50 @@
       @media (min-width: $gt-small-screen) {
         font-size: $extra-large-text;
       }
+    }
+  }
+}
+
+.about {
+  width: 100%;
+  max-width: $gt-medium-screen;
+  margin: 4rem auto 0;
+  background-color: $secondary-color;
+  padding: 2.5rem 2rem;
+
+  h3 {
+    color: $text-color;
+    font-size: $medium-text;
+    font-weight: $medium;
+    margin: 0 0 1.3rem;
+
+    @media (min-width: $gt-medium-screen) {
+      font-size: $large-text;
+    }
+  }
+
+  p {
+    color: $text-color;
+    line-height: 1.5rem;
+  }
+
+  li {
+    color: $text-color;
+    line-height: 2rem;
+  }
+
+  .specCell {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+
+    &:nth-child(even) {
+      background-color: white;
+    }
+
+    span {
+      width: 100%;
+      color: $text-color;
     }
   }
 }

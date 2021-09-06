@@ -102,6 +102,32 @@ function SingleProduct(props) {
         </div>
       </div>
 
+      {/* about product section */}
+      <section className="about">
+        <h3>Product description</h3>
+        <p>{product?.productDescription}</p>
+        <hr />
+        <h3>Product qualities</h3>
+        <ul>
+          {product?.productQualities.map(
+            (quality) => quality && <li>{quality}</li>
+          )}
+        </ul>
+        <hr />
+        <h3>Product specification</h3>
+        {product
+          ? Object.keys(product.productSpecification).map(
+              (key) =>
+                key && (
+                  <div className="specCell">
+                    <span>{key}</span>
+                    <span>{product.productSpecification[key]}</span>
+                  </div>
+                )
+            )
+          : ''}
+      </section>
+
       {/* modal */}
       {requestStatus && (
         <RequestStatusModalBg requestStatus={requestStatus}>
