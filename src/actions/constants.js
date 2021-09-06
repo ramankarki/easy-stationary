@@ -28,6 +28,7 @@ export const APP_SINGLE_PRODUCT_STATE = 'APP_SINGLE_PRODUCT_STATE';
 export const APP_ALL_PRODUCTS_STATE = 'APP_ALL_PRODUCTS_STATE';
 export const APP_SEARCH_STATE = 'APP_SEARCH_STATE';
 export const APP_CATEGORY_STATE = 'APP_CATEGORY_STATE';
+export const APP_SINGLE_CATEGORY_PRODUCTS_STATE = 'APP_MULTIPLE_PRODUCTS_STATE';
 
 /**
  * @description Domain state operation type
@@ -47,6 +48,7 @@ export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
  * @description dynamic domain state
  */
 export const CATEGORY = 'CATEGORY';
+export const MULTIPLE_PRODUCTS = 'MULTIPLE_PRODUCTS';
 
 /**
  * @description miscellaneous, everything that doesn't in above states
