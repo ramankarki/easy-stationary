@@ -143,3 +143,15 @@ hr {
     }
   }
 }
+
+.relatedItem {
+  margin-top: 4rem;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    font-size: $large-text;
+    font-weight: $medium;
+    margin-bottom: 2rem;
+  }
+}

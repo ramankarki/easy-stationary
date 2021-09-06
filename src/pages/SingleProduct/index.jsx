@@ -5,8 +5,11 @@ import { injectReducer } from '../../utils/dynamicReducers';
 import {
   APP_SINGLE_PRODUCT_STATE,
   SINGLE_PRODUCT,
+  APP_SINGLE_CATEGORY_PRODUCTS_STATE,
+  MULTIPLE_PRODUCTS,
 } from '../../actions/constants';
 import HOFreducer from '../../reducers/HOFreducer';
+import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
 
@@ -19,20 +22,44 @@ import RatingsStar from '../../components/RatingStars';
 
 import cartIcon from './cart icon.svg';
 import './singleProduct.scss';
+import ProductCardGen from '../../templates/ProductCardGen';
 
 function SingleProduct(props) {
-  const { product } = props;
+  const { product, products } = props;
   let { requestStatus, errorTag, modalMsg } = props;
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const [history, setHistory] = useState(window.location.hash);
 
+  window.addEventListener('popstate', () => {
+    document.documentElement.scrollTop = 0;
+    setHistory(window.location.hash);
+  });
+
+  // single product
   injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
   injectReducer(
     APP_SINGLE_PRODUCT_STATE,
     HOFreducer(APP_SINGLE_PRODUCT_STATE, appState(APP_SINGLE_PRODUCT_STATE))
   );
 
-  useEffect(() => props.onGet(APP_SINGLE_PRODUCT_STATE), []);
+  // single category products
+  injectReducer(
+    APP_SINGLE_CATEGORY_PRODUCTS_STATE,
+    HOFreducer(
+      APP_SINGLE_CATEGORY_PRODUCTS_STATE,
+      appState(APP_SINGLE_CATEGORY_PRODUCTS_STATE)
+    )
+  );
+  injectReducer(
+    MULTIPLE_PRODUCTS,
+    HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
+  );
+
+  useEffect(() => {
+    props.onGet(APP_SINGLE_PRODUCT_STATE);
+    props.onGet(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
+  }, [history]);
 
   // convert cloudinary url to transformed url to get transformed image
   product?.imageUrl.forEach((url, index) => {
@@ -67,6 +94,7 @@ function SingleProduct(props) {
           <div className="singleProduct__smallImages">
             {product?.imageUrl.map((url, index) => (
               <img
+                key={url + index}
                 style={activeImgIndex === index ? { opacity: '1' } : {}}
                 src={url}
                 alt="product"
@@ -110,7 +138,8 @@ function SingleProduct(props) {
         <h3>Product qualities</h3>
         <ul>
           {product?.productQualities.map(
-            (quality) => quality && <li>{quality}</li>
+            (quality, index) =>
+              quality && <li key={quality + index}>{quality}</li>
           )}
         </ul>
         <hr />
@@ -119,13 +148,18 @@ function SingleProduct(props) {
           ? Object.keys(product.productSpecification).map(
               (key) =>
                 key && (
-                  <div className="specCell">
+                  <div key={key} className="specCell">
                     <span>{key}</span>
                     <span>{product.productSpecification[key]}</span>
                   </div>
                 )
             )
           : ''}
+      </section>
+
+      <section className="relatedItem">
+        <h2>Related items</h2>
+        <ProductCardGen products={products && products.slice(0, 3)} />
       </section>
 
       {/* modal */}
@@ -142,9 +176,14 @@ function SingleProduct(props) {
   );
 }
 
-const mapStateToProps = ({ SINGLE_PRODUCT, APP_SINGLE_PRODUCT_STATE }) => ({
+const mapStateToProps = ({
+  SINGLE_PRODUCT,
+  APP_SINGLE_PRODUCT_STATE,
+  MULTIPLE_PRODUCTS,
+}) => ({
   ...SINGLE_PRODUCT,
   ...APP_SINGLE_PRODUCT_STATE,
+  ...MULTIPLE_PRODUCTS,
 });
 
 export default connect(mapStateToProps, { onGet })(SingleProduct);
