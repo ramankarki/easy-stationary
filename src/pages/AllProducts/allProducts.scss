@@ -59,10 +59,8 @@
     position: relative;
     margin: 2rem 0;
     padding: 0.8rem 1rem;
-    border-top: 1px solid $light-gray-border;
-    border-bottom: 1px solid $light-gray-border;
+    border: 1px solid $light-gray-border;
     overflow: auto;
-    box-shadow: 0 0 3rem -2.1rem $primary-color inset;
 
     &::-webkit-scrollbar {
       height: 0.5rem;
