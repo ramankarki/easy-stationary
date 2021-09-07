@@ -38,7 +38,7 @@ const onGet =
           type: APP_STATE,
           payload: {
             ...appState,
-            errorTag: response.data.message.split(':')[0],
+            errorTag: response?.data.message.split(':')[0],
             requestStatus: 'failed',
           },
         })
