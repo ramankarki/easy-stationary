@@ -54,6 +54,38 @@
       line-height: 1.6rem;
     }
   }
+
+  &__categoryBar {
+    position: relative;
+    margin: 2rem 0;
+    padding: 0.8rem 1rem;
+    border-top: 1px solid $light-gray-border;
+    border-bottom: 1px solid $light-gray-border;
+    overflow: auto;
+    box-shadow: 0 0 3rem -2.1rem $primary-color inset;
+
+    &::-webkit-scrollbar {
+      height: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2b477577;
+    }
+
+    &Wrapper {
+      display: flex;
+      gap: 1.5rem;
+
+      span {
+        font-size: $small-text;
+        font-weight: $heavy;
+      }
+    }
+
+    div {
+      width: max-content;
+    }
+  }
 }
 
 .spinnerWrapper {
