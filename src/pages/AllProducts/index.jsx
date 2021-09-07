@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 import onGet from '../../actions/onGet';
-import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
+import {
+  APP_CATEGORY_STATE,
+  CATEGORY,
+  APP_ALL_PRODUCTS_STATE,
+} from '../../actions/constants';
 import { injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
@@ -24,10 +28,17 @@ function AllProducts(props) {
   );
   categories?.unshift({ noOfProducts, categoryName: 'All products' });
 
+  // inject category
   injectReducer(CATEGORY, HOFdomainReducer(CATEGORY, 'categories', 'category'));
   injectReducer(
     APP_CATEGORY_STATE,
     HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
+  );
+
+  // inject all products
+  injectReducer(
+    APP_ALL_PRODUCTS_STATE,
+    HOFreducer(APP_ALL_PRODUCTS_STATE, appState(APP_ALL_PRODUCTS_STATE))
   );
 
   useEffect(() => {
