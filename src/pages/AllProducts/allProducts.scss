@@ -55,15 +55,28 @@
     }
   }
 
-  &__categoryBar {
-    position: relative;
+  &__categoryFilterBar {
     margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    @media (min-width: $gt-small-screen) {
+      gap: 2rem;
+    }
+  }
+
+  &__categoryBar {
     padding: 0.8rem 1rem;
     border: 1px solid $light-gray-border;
     overflow: auto;
 
     &::-webkit-scrollbar {
       height: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $secondary-color;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -82,6 +95,41 @@
 
     div {
       width: max-content;
+    }
+  }
+
+  &__filterBtn {
+    background-color: $primary-color;
+    min-width: max-content;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    span {
+      font-size: $small-text;
+      color: white;
+      font-weight: $heavy;
+      display: none;
+    }
+
+    select {
+      color: $primary-color;
+      padding: 0.2rem;
+    }
+
+    @media (min-width: $gt-medium-screen) {
+      padding: 0.8rem;
+      font-size: $normal-text;
+      font-weight: $medium;
+
+      select {
+        font-size: $normal-text;
+      }
+
+      span {
+        display: block;
+      }
     }
   }
 }

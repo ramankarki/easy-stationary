@@ -96,20 +96,30 @@ function AllProducts(props) {
         </div>
       </div>
 
-      {/* category bar */}
-      <div className="allProducts__categoryBar">
-        <div className="allProducts__categoryBarWrapper">
-          {categories?.map(({ noOfProducts, categoryName }, index) => (
-            <LinkButton
-              key={categoryName}
-              to={!index ? ROOT : '/' + categoryName}
-              dark={path === categoryName}
-            >
-              {categoryName}
-              <span>({noOfProducts})</span>
-            </LinkButton>
-          ))}
+      {/* category bar with filter button aside */}
+      <div className="allProducts__categoryFilterBar">
+        <div className="allProducts__categoryBar">
+          <div className="allProducts__categoryBarWrapper">
+            {categories?.map(({ noOfProducts, categoryName }, index) => (
+              <LinkButton
+                key={categoryName}
+                to={!index ? ROOT : '/' + categoryName}
+                dark={path === categoryName}
+              >
+                {categoryName}
+                <span>({noOfProducts})</span>
+              </LinkButton>
+            ))}
+          </div>
         </div>
+        <label className="allProducts__filterBtn">
+          <span>Sort by:</span>
+          <select>
+            <option value="">Best match</option>
+            <option value="price">Price low to high</option>
+            <option value="-price">Price high to low</option>
+          </select>
+        </label>
       </div>
 
       {/* products grid */}
