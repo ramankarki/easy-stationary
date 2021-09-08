@@ -1,4 +1,6 @@
-import { injectReducer } from '../../utils/dynamicReducers';
+import { useEffect } from 'react';
+
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import classes from '../../utils/classes';
 
@@ -18,6 +20,12 @@ function UpdateEmailPassword(props) {
   }
 
   injectReducer(UI_STATE, HOFreducer(UI_STATE, fields));
+
+  useEffect(() => {
+    return () => {
+      ejectReducer(UI_STATE);
+    };
+  });
 
   const formElements = (fieldsObj, TYPE) =>
     Object.keys(fieldsObj).map((fieldName) => (

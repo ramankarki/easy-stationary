@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
 import onGet from '../../actions/onGet';
 import appState from '../../appState';
@@ -23,6 +24,13 @@ function Admin(props) {
     CATEGORY,
     HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
   );
+
+  useEffect(() => {
+    return () => {
+      ejectReducer(APP_CATEGORY_STATE);
+      ejectReducer(CATEGORY);
+    };
+  });
 
   if (!categories) props.onGet(APP_CATEGORY_STATE);
 

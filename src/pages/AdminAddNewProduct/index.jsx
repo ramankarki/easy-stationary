@@ -8,7 +8,7 @@ import {
   CATEGORY,
   APP_CATEGORY_STATE,
 } from '../../actions/constants';
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import appState from '../../appState';
@@ -90,6 +90,14 @@ function AdminAddNewProduct(props) {
         ...unCommonFields,
       })
     );
+
+    return () => {
+      ejectReducer(APP_CATEGORY_STATE);
+      ejectReducer(CATEGORY);
+      ejectReducer(SINGLE_PRODUCT);
+      ejectReducer(APP_SINGLE_PRODUCT_STATE);
+      ejectReducer(UI_SINGLE_PRODUCT_STATE);
+    };
   }, []);
 
   const onSelectImage = (fieldName) => (event) => {

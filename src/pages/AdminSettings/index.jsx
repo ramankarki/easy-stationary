@@ -1,22 +1,22 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 import onPost from '../../actions/onPost';
 import onPatch from '../../actions/onPatch';
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState';
 import fields from '../../utils/fields';
-
-import AdminPageTemplate from '../../templates/AdminPageTemplate';
-import UpdateForm from '../../templates/UpdateForm';
-import Button from '../../components/Button';
-
 import {
   UI_USER_EMAIL_UPDATE_STATE,
   APP_USER_EMAIL_UPDATE_STATE,
   UI_USER_PASSWORD_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
 } from '../../actions/constants';
+
+import AdminPageTemplate from '../../templates/AdminPageTemplate';
+import UpdateForm from '../../templates/UpdateForm';
+import Button from '../../components/Button';
 
 import './adminSettings.scss';
 
@@ -35,6 +35,13 @@ function AdminSettings(props) {
       appState(APP_USER_PASSWORD_UPDATE_STATE)
     )
   );
+
+  useEffect(() => {
+    return () => {
+      ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
+      ejectReducer(APP_USER_PASSWORD_UPDATE_STATE);
+    };
+  });
 
   const emailField = fields('Email');
   const passwordField = fields(
