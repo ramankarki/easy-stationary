@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import {
   APP_SINGLE_PRODUCT_STATE,
   SINGLE_PRODUCT,
@@ -83,6 +83,16 @@ function SingleProduct(props) {
   useEffect(() => {
     props.onGet(APP_SINGLE_PRODUCT_STATE);
     props.onGet(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
+
+    return () => {
+      ejectReducer(APP_SINGLE_PRODUCT_STATE);
+      ejectReducer(SINGLE_PRODUCT);
+      ejectReducer(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
+      ejectReducer(MULTIPLE_PRODUCTS);
+      ejectReducer(REVIEWS);
+      ejectReducer(UI_REVIEWS_STATE);
+      ejectReducer(APP_REVIEWS_STATE);
+    };
   }, [history]);
 
   // convert cloudinary url to transformed url to get transformed image
