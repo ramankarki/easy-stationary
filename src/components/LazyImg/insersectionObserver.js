@@ -28,5 +28,5 @@ export function useIntersection(elem, callback) {
     return () => {
       observer.unobserve(target);
     };
-  }, []);
+  }, [elem]);
 }
