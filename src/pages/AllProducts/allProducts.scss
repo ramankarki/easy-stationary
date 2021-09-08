@@ -99,41 +99,44 @@
   }
 
   &__filterBtn {
-    background-color: $primary-color;
-    min-width: max-content;
-    padding: 1px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-width: max-content;
+    padding: 1px;
+    border: 1px solid $secondary-color;
 
     span {
-      font-size: $small-text;
-      color: white;
-      font-weight: $heavy;
       display: none;
     }
 
     select {
-      color: $primary-color;
       padding: 0.2rem;
+      border: none;
+      background-color: $primary-color;
+      color: white;
+
+      option:hover {
+        background-color: #2b477577 !important;
+      }
     }
 
     @media (min-width: $gt-medium-screen) {
-      padding: 0.8rem;
+      padding: 0.5rem;
       font-size: $normal-text;
       font-weight: $medium;
 
-      select {
+      span {
+        display: block;
+        color: $primary-color;
         font-size: $normal-text;
       }
 
-      span {
-        display: block;
+      select {
+        font-weight: $medium;
+        font-size: $normal-text;
+        padding: 0.5rem;
       }
     }
   }
-}
-
-.spinnerWrapper {
-  border: 1px solid red;
 }
