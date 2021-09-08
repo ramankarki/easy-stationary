@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 import {
   UI_CATEGORY_STATE,
@@ -8,7 +9,7 @@ import {
 import onGet from '../../actions/onGet';
 import onPost from '../../actions/onPost';
 import onDelete from '../../actions/onDelete';
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import fields from '../../utils/fields';
@@ -36,6 +37,14 @@ function AdminCategory(props) {
     CATEGORY,
     HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
   );
+
+  useEffect(() => {
+    return () => {
+      ejectReducer(CATEGORY);
+      ejectReducer(UI_CATEGORY_STATE);
+      ejectReducer(APP_CATEGORY_STATE);
+    };
+  }, []);
 
   if (!categories) props.onGet(APP_CATEGORY_STATE);
 
