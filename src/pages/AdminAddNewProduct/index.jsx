@@ -74,11 +74,9 @@ function AdminAddNewProduct(props) {
       HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
     );
 
-    if (!categories) props.onGet(APP_CATEGORY_STATE);
-  }, []);
+    props.onGet(APP_CATEGORY_STATE);
 
-  // inject single product
-  useEffect(() => {
+    // inject single product
     injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
     injectReducer(
       APP_SINGLE_PRODUCT_STATE,
