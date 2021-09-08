@@ -68,7 +68,7 @@
 
   &__categoryBar {
     padding: 0.8rem 1rem;
-    border: 1px solid $light-gray-border;
+    border: 1px solid $secondary-color;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -101,7 +101,7 @@
   &__filterBtn {
     background-color: $primary-color;
     min-width: max-content;
-    padding: 0.5rem;
+    padding: 1px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
