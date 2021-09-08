@@ -20,7 +20,7 @@ export function useIntersection(elem, callback) {
   useEffect(() => {
     const target = elem.current;
     let observer = new IntersectionObserver(handleIntersections, {
-      rootMargin: '350px',
+      rootMargin: '700px',
       threshold: '0',
     });
     observer.observe(target);
