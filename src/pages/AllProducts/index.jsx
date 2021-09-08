@@ -25,7 +25,7 @@ import './allProducts.scss';
 function AllProducts(props) {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('');
-  const [noOfProductsHistory, setNoOfProductsHistory] = useState(0);
+  const [showSpinner, setShowSpinner] = useState(true);
 
   const spinnerRef = useRef();
 
@@ -63,12 +63,14 @@ function AllProducts(props) {
     categories?.unshift({ noOfProducts, categoryName: 'All products' });
 
   const path = window.location.hash.split('/')[1] || 'All products';
+  const { noOfProducts: productsNo } =
+    categories?.find((obj) => obj.categoryName === path) || {};
 
   const loadAllProducts = () => {
-    if (products?.length !== noOfProductsHistory) {
+    if (showSpinner) {
       props.onGet(APP_ALL_PRODUCTS_STATE, page, sort);
       setPage(page + 1);
-      setNoOfProductsHistory(products?.length);
+      setShowSpinner(!products || productsNo !== products?.length);
     }
   };
 
@@ -114,9 +116,11 @@ function AllProducts(props) {
       <ProductCardGen products={products} />
 
       {/* spinner */}
-      <div ref={spinnerRef} className="spinnerWrapper">
-        <SpinnerLoading />
-      </div>
+      {showSpinner && (
+        <div ref={spinnerRef} className="spinnerWrapper">
+          <SpinnerLoading />
+        </div>
+      )}
     </div>
   );
 }
