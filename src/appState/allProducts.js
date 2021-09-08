@@ -6,7 +6,7 @@ import {
 const singleCategoryProducts = {
   [APP_ALL_PRODUCTS_STATE]: {
     getRoute: (page, sort = '') =>
-      `/api/v1/all-products?page=${page}&limit=6&sort=${sort}`,
+      `/api/v1/all-products?page=${page}&limit=9&sort=${sort}`,
     domainState: MULTIPLE_PRODUCTS,
     dynamicState: true,
   },
