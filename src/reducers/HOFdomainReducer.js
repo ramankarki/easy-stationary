@@ -1,4 +1,4 @@
-import { CREATE, READ, UPDATE, DELETE } from '../actions/constants';
+import { CREATE, READ, UPDATE, DELETE, RESET } from '../actions/constants';
 import sortArray from '../utils/sortArray';
 
 const HOFdomainReducer =
@@ -26,6 +26,9 @@ const HOFdomainReducer =
           ...state,
           [arrayProp]: state[arrayProp].filter((obj) => obj !== action.payload),
         };
+
+      case TYPE + RESET:
+        return action.payload;
 
       default:
         return state;
