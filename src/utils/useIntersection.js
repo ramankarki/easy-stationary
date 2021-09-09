@@ -9,7 +9,7 @@ function handleIntersections(entries, observer) {
   });
 }
 
-export function useIntersection(elem, callback) {
+export function useIntersection(elem, callback, dependency) {
   // change scope to call later
   callBackFunc = callback;
 
@@ -19,10 +19,13 @@ export function useIntersection(elem, callback) {
       rootMargin: '100px',
       threshold: '0',
     });
-    observer.observe(target);
 
-    return () => {
-      observer.unobserve(target);
-    };
-  }, [elem]);
+    if (target) {
+      observer.observe(target);
+
+      return () => {
+        observer.unobserve(target);
+      };
+    }
+  }, [elem, dependency]);
 }

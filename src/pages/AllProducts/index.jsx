@@ -80,7 +80,7 @@ function AllProducts(props) {
     }
   };
 
-  useIntersection(spinnerRef, loadAllProducts);
+  useIntersection(spinnerRef, loadAllProducts, products);
 
   const onFilterChange = (event) => setSort(event.target.value);
 
