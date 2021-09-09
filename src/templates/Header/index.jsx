@@ -1,10 +1,19 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 import { UI_SEARCH_STATE } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
-import { LOGIN, SIGNUP, CART, ADMIN, DASHBOARD } from '../../Routes/contants';
+import {
+  LOGIN,
+  SIGNUP,
+  CART,
+  ADMIN,
+  DASHBOARD,
+  SEARCH,
+} from '../../Routes/contants';
 
 import LazyImg from '../../components/LazyImg';
 import InputField from '../../components/InputField';
@@ -23,10 +32,22 @@ function Header(props) {
   const isClient = user?.role === 'client';
 
   const fieldsObj = fields('Search');
-  injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
+  useEffect(() => {
+    injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
+  }, []);
+
+  const history = useHistory();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+
+    if (props.Search?.value.trim()) {
+      if (window.location.hash === '#/search') {
+        props.searchFunc();
+      } else {
+        history.push(SEARCH);
+      }
+    }
   };
 
   return (
@@ -78,6 +99,10 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = ({ USER }) => ({ USER });
+const mapStateToProps = ({ USER, UI_SEARCH_STATE, APP_CATEGORY_STATE }) => ({
+  USER,
+  ...UI_SEARCH_STATE,
+  ...APP_CATEGORY_STATE,
+});
 
 export default connect(mapStateToProps, {})(Header);
