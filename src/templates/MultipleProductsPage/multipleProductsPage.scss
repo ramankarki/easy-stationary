@@ -140,6 +140,13 @@
   }
 }
 
+.searchResultMsg {
+  color: $primary-color;
+  font-weight: $medium;
+  font-size: $medium-text;
+  margin-bottom: 2rem;
+}
+
 .spinnerWrapper {
   padding: 0 0 4rem;
 }
