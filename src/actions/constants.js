@@ -39,6 +39,7 @@ export const CREATE = '_CREATE';
 export const READ = '_READ';
 export const UPDATE = '_UPDATE';
 export const DELETE = '_DELETE';
+export const RESET = '_RESET';
 
 /**
  * @description data received from server will be stored here - static domain state
