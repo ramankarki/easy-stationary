@@ -24,14 +24,14 @@ import ProductCardGen from '../../templates/ProductCardGen';
 
 import './multipleProductsPage.scss';
 
-function AllProducts(props) {
+function MultipleProductsPage(props) {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('');
   const [showSpinner, setShowSpinner] = useState(true);
 
   const spinnerRef = useRef();
 
-  let { categories, products, APP_MULTIPLE_PRODUCTS_STATE } = props;
+  let { categories, products, APP_MULTIPLE_PRODUCTS_STATE, Search } = props;
 
   const [history, setHistory] = useState(window.location.hash);
 
@@ -41,10 +41,10 @@ function AllProducts(props) {
     props.resetAppState(MULTIPLE_PRODUCTS + RESET, {});
   };
 
-  window.addEventListener('popstate', () => {
+  const onCategoryBtnClick = () => {
     setHistory(window.location.hash);
     resetMultipleProducts();
-  });
+  };
 
   useEffect(() => {
     // inject category
@@ -52,9 +52,12 @@ function AllProducts(props) {
       CATEGORY,
       HOFdomainReducer(CATEGORY, 'categories', 'category')
     );
+
+    const appCategoryState = appState(APP_CATEGORY_STATE);
+    appCategoryState.searchFunc = onCategoryBtnClick;
     injectReducer(
       APP_CATEGORY_STATE,
-      HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
+      HOFreducer(APP_CATEGORY_STATE, appCategoryState)
     );
 
     props.onGet(APP_CATEGORY_STATE);
@@ -114,7 +117,8 @@ function AllProducts(props) {
           setPage(page + 1);
         },
         page,
-        sort
+        sort,
+        Search?.value
       );
     }
   };
@@ -152,6 +156,7 @@ function AllProducts(props) {
                 key={categoryName}
                 to={!index ? ROOT : '/' + categoryName}
                 dark={currentCategory === categoryName}
+                onClick={onCategoryBtnClick}
               >
                 {categoryName}
                 <span>({noOfProducts})</span>
@@ -169,8 +174,15 @@ function AllProducts(props) {
         </label>
       </div>
 
+      {/* search result message */}
+      {currentCategory === 'search' ? (
+        <p className="searchResultMsg">Search results for "{Search?.value}"</p>
+      ) : (
+        ''
+      )}
+
       {/* products grid */}
-      <ProductCardGen products={products} />
+      <ProductCardGen products={products ? [...products] : []} />
 
       {/* spinner */}
       {showSpinner && (
@@ -182,9 +194,12 @@ function AllProducts(props) {
   );
 }
 
-const mapStateToProps = ({ CATEGORY, MULTIPLE_PRODUCTS }) => ({
+const mapStateToProps = ({ CATEGORY, MULTIPLE_PRODUCTS, UI_SEARCH_STATE }) => ({
   ...CATEGORY,
   ...MULTIPLE_PRODUCTS,
+  ...UI_SEARCH_STATE,
 });
 
-export default connect(mapStateToProps, { onGet, resetAppState })(AllProducts);
+export default connect(mapStateToProps, { onGet, resetAppState })(
+  MultipleProductsPage
+);
