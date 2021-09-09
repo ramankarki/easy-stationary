@@ -42,26 +42,6 @@ function SingleProduct(props) {
     setHistory(window.location.hash);
   });
 
-  // single product
-  injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
-  injectReducer(
-    APP_SINGLE_PRODUCT_STATE,
-    HOFreducer(APP_SINGLE_PRODUCT_STATE, appState(APP_SINGLE_PRODUCT_STATE))
-  );
-
-  // single category products
-  injectReducer(
-    APP_SINGLE_CATEGORY_PRODUCTS_STATE,
-    HOFreducer(
-      APP_SINGLE_CATEGORY_PRODUCTS_STATE,
-      appState(APP_SINGLE_CATEGORY_PRODUCTS_STATE)
-    )
-  );
-  injectReducer(
-    MULTIPLE_PRODUCTS,
-    HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
-  );
-
   // reviews
   const reviewFields = fields(
     'Ratings',
@@ -73,14 +53,37 @@ function SingleProduct(props) {
   reviewFields['ProductId'].value = productId;
   reviewFields['CategoryName'].value = categoryName;
 
-  injectReducer(REVIEWS, HOFdomainReducer(REVIEWS, 'reviews', 'review'));
-  injectReducer(UI_REVIEWS_STATE, HOFreducer(UI_REVIEWS_STATE, reviewFields));
-  injectReducer(
-    APP_REVIEWS_STATE,
-    HOFreducer(APP_REVIEWS_STATE, appState(APP_REVIEWS_STATE))
-  );
-
   useEffect(() => {
+    // single product
+    injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
+    injectReducer(
+      APP_SINGLE_PRODUCT_STATE,
+      HOFreducer(APP_SINGLE_PRODUCT_STATE, appState(APP_SINGLE_PRODUCT_STATE))
+    );
+
+    // single category products
+    injectReducer(
+      APP_SINGLE_CATEGORY_PRODUCTS_STATE,
+      HOFreducer(
+        APP_SINGLE_CATEGORY_PRODUCTS_STATE,
+        appState(APP_SINGLE_CATEGORY_PRODUCTS_STATE)
+      )
+    );
+
+    // multiple products domain state
+    injectReducer(
+      MULTIPLE_PRODUCTS,
+      HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
+    );
+
+    // reviews state
+    injectReducer(REVIEWS, HOFdomainReducer(REVIEWS, 'reviews', 'review'));
+    injectReducer(UI_REVIEWS_STATE, HOFreducer(UI_REVIEWS_STATE, reviewFields));
+    injectReducer(
+      APP_REVIEWS_STATE,
+      HOFreducer(APP_REVIEWS_STATE, appState(APP_REVIEWS_STATE))
+    );
+
     props.onGet(APP_SINGLE_PRODUCT_STATE);
     props.onGet(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
 
