@@ -17,6 +17,7 @@ const PAGES = [
   'AdminSettings',
   'AdminAddNewProduct',
   'SingleProduct',
+  'SingleCategoryProducts',
   'Cart',
   'Dashboard',
   'PageNotFound',

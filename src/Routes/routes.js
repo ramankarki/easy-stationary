@@ -14,6 +14,7 @@ import {
   ADMIN_SETTINGS,
   ADMIN_ADD_NEW_PRODUCT,
   SINGLE_PRODUCT,
+  SINGLE_CATEGORY_PRODUCTS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -78,11 +79,6 @@ const routes = {
     role: ['admin'],
   },
 
-  [SINGLE_PRODUCT]: {
-    private: false,
-    component: LazyLoadPages.SingleProduct,
-  },
-
   [CART]: {
     private: true,
     component: LazyLoadPages.Cart,
@@ -93,6 +89,16 @@ const routes = {
     private: true,
     component: LazyLoadPages.Dashboard,
     role: ['client'],
+  },
+
+  [SINGLE_PRODUCT]: {
+    private: false,
+    component: LazyLoadPages.SingleProduct,
+  },
+
+  [SINGLE_CATEGORY_PRODUCTS]: {
+    private: false,
+    component: LazyLoadPages.SingleCategoryProducts,
   },
 
   [PAGE_NOT_FOUND]: {
