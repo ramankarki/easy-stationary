@@ -3,8 +3,14 @@ import { batch } from 'react-redux';
 import API from '../utils/API';
 import { READ } from './constants';
 
+/**
+ *
+ * @param {Object} APP_STATE
+ * @param {Function} callbackFunc
+ * @param  {...any} args
+ */
 const onGet =
-  (APP_STATE, ...args) =>
+  (APP_STATE, callbackFunc = () => {}, ...args) =>
   (dispatch, getState) => {
     const appState = getState()[APP_STATE];
     const { domainState, dynamicState } = appState;
@@ -29,8 +35,9 @@ const onGet =
           });
           dispatch({
             type: APP_STATE,
-            payload: { ...appState, requestStatus: null, res: data },
+            payload: { ...appState, requestStatus: null },
           });
+          callbackFunc(data);
         })
       )
       .catch(({ response }) =>

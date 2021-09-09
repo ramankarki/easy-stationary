@@ -29,7 +29,7 @@ function AllProducts(props) {
 
   const spinnerRef = useRef();
 
-  let { categories, products, res } = props;
+  let { categories, products } = props;
 
   // inject category
   injectReducer(CATEGORY, HOFdomainReducer(CATEGORY, 'categories', 'category'));
@@ -74,9 +74,15 @@ function AllProducts(props) {
 
   const loadAllProducts = () => {
     if (showSpinner) {
-      props.onGet(APP_ALL_PRODUCTS_STATE, page, sort);
-      setPage(page + 1);
-      setShowSpinner(!res || !!res.products.length);
+      props.onGet(
+        APP_ALL_PRODUCTS_STATE,
+        (data) => {
+          setShowSpinner(!!data.products.length);
+          setPage(page + 1);
+        },
+        page,
+        sort
+      );
     }
   };
 
@@ -150,7 +156,6 @@ const mapStateToProps = ({
 }) => ({
   ...CATEGORY,
   ...MULTIPLE_PRODUCTS,
-  ...APP_ALL_PRODUCTS_STATE,
 });
 
 export default connect(mapStateToProps, { onGet })(AllProducts);
