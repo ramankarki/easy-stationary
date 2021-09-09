@@ -29,7 +29,7 @@ const onGet =
           });
           dispatch({
             type: APP_STATE,
-            payload: { ...appState, requestStatus: null },
+            payload: { ...appState, requestStatus: null, res: data },
           });
         })
       )
