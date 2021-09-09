@@ -21,22 +21,22 @@ import Button from '../../components/Button';
 import './adminSettings.scss';
 
 function AdminSettings(props) {
-  injectReducer(
-    APP_USER_EMAIL_UPDATE_STATE,
-    HOFreducer(
-      APP_USER_EMAIL_UPDATE_STATE,
-      appState(APP_USER_EMAIL_UPDATE_STATE)
-    )
-  );
-  injectReducer(
-    APP_USER_PASSWORD_UPDATE_STATE,
-    HOFreducer(
-      APP_USER_PASSWORD_UPDATE_STATE,
-      appState(APP_USER_PASSWORD_UPDATE_STATE)
-    )
-  );
-
   useEffect(() => {
+    injectReducer(
+      APP_USER_EMAIL_UPDATE_STATE,
+      HOFreducer(
+        APP_USER_EMAIL_UPDATE_STATE,
+        appState(APP_USER_EMAIL_UPDATE_STATE)
+      )
+    );
+    injectReducer(
+      APP_USER_PASSWORD_UPDATE_STATE,
+      HOFreducer(
+        APP_USER_PASSWORD_UPDATE_STATE,
+        appState(APP_USER_PASSWORD_UPDATE_STATE)
+      )
+    );
+
     return () => {
       ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
       ejectReducer(APP_USER_PASSWORD_UPDATE_STATE);

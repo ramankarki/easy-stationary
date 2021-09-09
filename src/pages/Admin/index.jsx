@@ -16,23 +16,22 @@ function Admin(props) {
   const { user, categories } = props;
   const { cancelledOrders, deliveredOrders, pendingOrders } = user;
 
-  injectReducer(
-    APP_CATEGORY_STATE,
-    HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
-  );
-  injectReducer(
-    CATEGORY,
-    HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
-  );
-
   useEffect(() => {
+    injectReducer(
+      APP_CATEGORY_STATE,
+      HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
+    );
+    injectReducer(
+      CATEGORY,
+      HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
+    );
+
+    props.onGet(APP_CATEGORY_STATE);
     return () => {
       ejectReducer(APP_CATEGORY_STATE);
       ejectReducer(CATEGORY);
     };
-  });
-
-  if (!categories) props.onGet(APP_CATEGORY_STATE);
+  }, []);
 
   const productsNum = categories
     ? categories.reduce((acc, category) => acc + category.noOfProducts, 0)

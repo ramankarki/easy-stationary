@@ -25,28 +25,28 @@ import './adminCategory.scss';
 function AdminCategory(props) {
   const { categories } = props;
 
-  injectReducer(
-    UI_CATEGORY_STATE,
-    HOFreducer(UI_CATEGORY_STATE, fields('Add new category'))
-  );
-  injectReducer(
-    APP_CATEGORY_STATE,
-    HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
-  );
-  injectReducer(
-    CATEGORY,
-    HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
-  );
-
   useEffect(() => {
+    injectReducer(
+      UI_CATEGORY_STATE,
+      HOFreducer(UI_CATEGORY_STATE, fields('Add new category'))
+    );
+    injectReducer(
+      APP_CATEGORY_STATE,
+      HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
+    );
+    injectReducer(
+      CATEGORY,
+      HOFdomainReducer(CATEGORY, 'categories', 'category', 'categoryName')
+    );
+
+    props.onGet(APP_CATEGORY_STATE);
+
     return () => {
       ejectReducer(CATEGORY);
       ejectReducer(UI_CATEGORY_STATE);
       ejectReducer(APP_CATEGORY_STATE);
     };
   }, []);
-
-  if (!categories) props.onGet(APP_CATEGORY_STATE);
 
   // event handlers
   const onSubmitHandler = (event) => {
