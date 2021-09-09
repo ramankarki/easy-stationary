@@ -18,7 +18,7 @@ export function useIntersection(elem, callback, dependency) {
     if (!target) return;
 
     let observer = new IntersectionObserver(handleIntersections, {
-      rootMargin: '100px',
+      rootMargin: '700px',
       threshold: '0',
     });
 
