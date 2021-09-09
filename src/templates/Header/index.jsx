@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
-import { UI_SEARCH_STATE, MULTIPLE_PRODUCTS } from '../../actions/constants';
+import { UI_SEARCH_STATE } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import { LOGIN, SIGNUP, CART, ADMIN, DASHBOARD } from '../../Routes/contants';
-import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 
 import LazyImg from '../../components/LazyImg';
 import InputField from '../../components/InputField';
@@ -25,10 +24,6 @@ function Header(props) {
 
   const fieldsObj = fields('Search');
   injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
-  injectReducer(
-    MULTIPLE_PRODUCTS,
-    HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
-  );
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
