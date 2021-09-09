@@ -15,6 +15,7 @@ import {
   ADMIN_ADD_NEW_PRODUCT,
   SINGLE_PRODUCT,
   SINGLE_CATEGORY_PRODUCTS,
+  SEARCH,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -89,6 +90,11 @@ const routes = {
     private: true,
     component: LazyLoadPages.Dashboard,
     role: ['client'],
+  },
+
+  [SEARCH]: {
+    private: false,
+    component: LazyLoadPages.Search,
   },
 
   [SINGLE_PRODUCT]: {

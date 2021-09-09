@@ -8,6 +8,7 @@ export const FORGOT_PASSWORD = '/auth/forgot-password';
 export const RESET_PASSWORD = '/auth/reset-password';
 export const SINGLE_PRODUCT = '/:categoryName/:productId';
 export const SINGLE_CATEGORY_PRODUCTS = '/:categoryName';
+export const SEARCH = '/search';
 
 // admin routes start
 export const ADMIN = '/admin';
