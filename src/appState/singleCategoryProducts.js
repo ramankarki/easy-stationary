@@ -5,9 +5,9 @@ import {
 
 const singleCategoryProducts = {
   [APP_SINGLE_CATEGORY_PRODUCTS_STATE]: {
-    getRoute: () => {
+    getRoute: (page, sort) => {
       const [categoryName] = window.location.hash.split('/').slice(1);
-      return `/api/v1/category/${categoryName}`;
+      return `/api/v1/category/${categoryName}?page=${page}&limit=9&sort=${sort}`;
     },
     domainState: MULTIPLE_PRODUCTS,
     dynamicState: true,
