@@ -15,17 +15,17 @@ export function useIntersection(elem, callback, dependency) {
 
   useEffect(() => {
     const target = elem.current;
+    if (!target) return;
+
     let observer = new IntersectionObserver(handleIntersections, {
       rootMargin: '100px',
       threshold: '0',
     });
 
-    if (target) {
-      observer.observe(target);
+    observer.observe(target);
 
-      return () => {
-        observer.unobserve(target);
-      };
-    }
+    return () => {
+      observer.unobserve(target);
+    };
   }, [elem, dependency]);
 }
