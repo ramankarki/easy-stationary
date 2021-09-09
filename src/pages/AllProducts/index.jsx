@@ -6,6 +6,7 @@ import {
   APP_CATEGORY_STATE,
   CATEGORY,
   APP_ALL_PRODUCTS_STATE,
+  MULTIPLE_PRODUCTS,
 } from '../../actions/constants';
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -43,6 +44,10 @@ function AllProducts(props) {
     APP_ALL_PRODUCTS_STATE,
     HOFreducer(APP_ALL_PRODUCTS_STATE, appState(APP_ALL_PRODUCTS_STATE))
   );
+  injectReducer(
+    MULTIPLE_PRODUCTS,
+    HOFdomainReducer(MULTIPLE_PRODUCTS, 'products')
+  );
 
   useEffect(() => {
     props.onGet(APP_CATEGORY_STATE);
@@ -51,6 +56,7 @@ function AllProducts(props) {
       ejectReducer(CATEGORY);
       ejectReducer(APP_CATEGORY_STATE);
       ejectReducer(APP_ALL_PRODUCTS_STATE);
+      ejectReducer(MULTIPLE_PRODUCTS);
     };
   }, []);
 
