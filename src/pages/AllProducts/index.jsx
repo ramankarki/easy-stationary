@@ -7,6 +7,7 @@ import {
   CATEGORY,
   APP_ALL_PRODUCTS_STATE,
   MULTIPLE_PRODUCTS,
+  RESET,
 } from '../../actions/constants';
 import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -14,6 +15,7 @@ import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import appState from '../../appState';
 import { ROOT } from '../../Routes/contants';
 import { useIntersection } from '../../utils/useIntersection';
+import resetAppState from '../../actions/resetAppState';
 
 import Header from '../../templates/Header';
 import SpinnerLoading from '../../components/SpinnerLoading';
@@ -65,7 +67,11 @@ function AllProducts(props) {
   // set page value to 1
   // set showSpinner to true
   useEffect(() => {
-    console.log('filter changed');
+    if (!products) return;
+
+    setShowSpinner(true);
+    setPage(1);
+    props.resetAppState(MULTIPLE_PRODUCTS + RESET, {});
   }, [sort]);
 
   const noOfProducts = categories?.reduce(
@@ -155,13 +161,9 @@ function AllProducts(props) {
   );
 }
 
-const mapStateToProps = ({
-  CATEGORY,
-  MULTIPLE_PRODUCTS,
-  APP_ALL_PRODUCTS_STATE,
-}) => ({
+const mapStateToProps = ({ CATEGORY, MULTIPLE_PRODUCTS }) => ({
   ...CATEGORY,
   ...MULTIPLE_PRODUCTS,
 });
 
-export default connect(mapStateToProps, { onGet })(AllProducts);
+export default connect(mapStateToProps, { onGet, resetAppState })(AllProducts);
