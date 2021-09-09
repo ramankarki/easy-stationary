@@ -5,6 +5,7 @@ import singleProduct from './singleProduct';
 import singleCategoryProducts from './singleCategoryProducts';
 import reviews from './reviews';
 import allProducts from './allProducts';
+import search from './search';
 
 const appState = {
   ...auth,
@@ -14,6 +15,7 @@ const appState = {
   ...singleCategoryProducts,
   ...reviews,
   ...allProducts,
+  ...search,
 };
 
 const getAppState = (TYPE) => ({
