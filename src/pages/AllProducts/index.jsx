@@ -29,7 +29,7 @@ function AllProducts(props) {
 
   const spinnerRef = useRef();
 
-  let { categories, products } = props;
+  let { categories, products, res } = props;
 
   // inject category
   injectReducer(CATEGORY, HOFdomainReducer(CATEGORY, 'categories', 'category'));
@@ -54,6 +54,14 @@ function AllProducts(props) {
     };
   }, []);
 
+  // filter option onChange
+  // reset multiple products
+  // set page value to 1
+  // set showSpinner to true
+  useEffect(() => {
+    console.log('filter changed');
+  }, [sort]);
+
   const noOfProducts = categories?.reduce(
     (acc, val) => acc + val.noOfProducts,
     0
@@ -62,19 +70,19 @@ function AllProducts(props) {
   if (categories && categories[0].categoryName !== 'All products')
     categories?.unshift({ noOfProducts, categoryName: 'All products' });
 
-  const path = window.location.hash.split('/')[1] || 'All products';
-  const { noOfProducts: productsNo } =
-    categories?.find((obj) => obj.categoryName === path) || {};
+  const currentCategory = window.location.hash.split('/')[1] || 'All products';
 
   const loadAllProducts = () => {
     if (showSpinner) {
       props.onGet(APP_ALL_PRODUCTS_STATE, page, sort);
       setPage(page + 1);
-      setShowSpinner(!products || productsNo !== products?.length);
+      setShowSpinner(!res || !!res.products.length);
     }
   };
 
   useIntersection(spinnerRef, loadAllProducts);
+
+  const onFilterChange = (event) => setSort(event.target.value);
 
   return (
     <div className="allProducts">
@@ -104,7 +112,7 @@ function AllProducts(props) {
               <LinkButton
                 key={categoryName}
                 to={!index ? ROOT : '/' + categoryName}
-                dark={path === categoryName}
+                dark={currentCategory === categoryName}
               >
                 {categoryName}
                 <span>({noOfProducts})</span>
@@ -114,7 +122,7 @@ function AllProducts(props) {
         </div>
         <label className="allProducts__filterBtn">
           <span>Sort by:</span>
-          <select>
+          <select onChange={onFilterChange}>
             <option value="">Best match</option>
             <option value="price">Price low to high</option>
             <option value="-price">Price high to low</option>
@@ -135,9 +143,14 @@ function AllProducts(props) {
   );
 }
 
-const mapStateToProps = ({ CATEGORY, MULTIPLE_PRODUCTS }) => ({
+const mapStateToProps = ({
+  CATEGORY,
+  MULTIPLE_PRODUCTS,
+  APP_ALL_PRODUCTS_STATE,
+}) => ({
   ...CATEGORY,
   ...MULTIPLE_PRODUCTS,
+  ...APP_ALL_PRODUCTS_STATE,
 });
 
 export default connect(mapStateToProps, { onGet })(AllProducts);
