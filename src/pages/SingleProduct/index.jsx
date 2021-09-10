@@ -42,6 +42,11 @@ function SingleProduct(props) {
     setHistory(!history);
   };
 
+  window.addEventListener('popstate', () => {
+    if (/auth|admin/.test(window.location.hash)) return;
+    refreshPage();
+  });
+
   // reviews
   const reviewFields = fields(
     'Ratings',
@@ -208,10 +213,7 @@ function SingleProduct(props) {
       {/* related items section */}
       <section className="relatedItem">
         <h2>Related items</h2>
-        <ProductCardGen
-          onClick={refreshPage}
-          products={products && products.slice(0, 3)}
-        />
+        <ProductCardGen products={products && products.slice(0, 3)} />
       </section>
 
       {/* customer reviews */}
