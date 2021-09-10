@@ -125,6 +125,10 @@ function MultipleProductsPage(props) {
 
   const onFilterChange = (event) => setSort(event.target.value);
 
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
     <div className="allProducts">
       <Header />
@@ -179,7 +183,7 @@ function MultipleProductsPage(props) {
       )}
 
       {/* products grid */}
-      <ProductCardGen products={products} />
+      <ProductCardGen onClick={scrollTop} products={products} />
 
       {/* spinner */}
       {showSpinner && (
