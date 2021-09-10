@@ -12,8 +12,11 @@ function ProductCardGen(props) {
         product.imageUrl[0] =
           breakUrl[0] + 'upload/ar_3:2,c_fill' + breakUrl[1];
 
+        const blankFunc = () => {};
+
         return (
           <Link
+            onClick={props.onClick || blankFunc}
             to={`/${product.categoryName}/${product.productId}`}
             style={{ textDecoration: 'none' }}
             key={product.productId}
