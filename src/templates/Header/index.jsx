@@ -43,8 +43,7 @@ function Header(props) {
 
     if (props.Search?.value.trim()) {
       if (window.location.hash === '#/search') {
-        const navEvent = new PopStateEvent('popstate');
-        window.dispatchEvent(navEvent);
+        props.searchFunc();
       } else {
         history.push(SEARCH);
       }
@@ -100,9 +99,10 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = ({ USER, UI_SEARCH_STATE }) => ({
+const mapStateToProps = ({ USER, UI_SEARCH_STATE, APP_CATEGORY_STATE }) => ({
   USER,
   ...UI_SEARCH_STATE,
+  ...APP_CATEGORY_STATE,
 });
 
 export default connect(mapStateToProps, {})(Header);
