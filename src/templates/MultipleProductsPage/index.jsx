@@ -41,10 +41,10 @@ function MultipleProductsPage(props) {
     props.resetAppState(MULTIPLE_PRODUCTS + RESET, {});
   };
 
-  window.addEventListener('popstate', () => {
+  const onCategoryBtnClick = () => {
     setHistory(window.location.hash);
     resetMultipleProducts();
-  });
+  };
 
   useEffect(() => {
     // inject category
@@ -53,9 +53,11 @@ function MultipleProductsPage(props) {
       HOFdomainReducer(CATEGORY, 'categories', 'category')
     );
 
+    const appCategoryState = appState(APP_CATEGORY_STATE);
+    appCategoryState.searchFunc = onCategoryBtnClick;
     injectReducer(
       APP_CATEGORY_STATE,
-      HOFreducer(APP_CATEGORY_STATE, appState(APP_CATEGORY_STATE))
+      HOFreducer(APP_CATEGORY_STATE, appCategoryState)
     );
 
     props.onGet(APP_CATEGORY_STATE);
@@ -158,6 +160,7 @@ function MultipleProductsPage(props) {
                 key={categoryName}
                 to={!index ? ROOT : '/' + categoryName}
                 dark={currentCategory === categoryName}
+                onClick={onCategoryBtnClick}
               >
                 {categoryName}
                 <span>({noOfProducts})</span>
