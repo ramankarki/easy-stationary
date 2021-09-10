@@ -37,14 +37,10 @@ function SingleProduct(props) {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [history, setHistory] = useState(true);
 
-  const refreshPage = () => {
-    document.documentElement.scrollTop = 0;
-    setHistory(!history);
-  };
-
   window.addEventListener('popstate', () => {
     if (/auth|admin/.test(window.location.hash)) return;
-    refreshPage();
+    document.documentElement.scrollTop = 0;
+    setHistory(!history);
   });
 
   // reviews
