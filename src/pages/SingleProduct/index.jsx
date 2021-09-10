@@ -38,7 +38,12 @@ function SingleProduct(props) {
   const [history, setHistory] = useState(true);
 
   window.addEventListener('popstate', () => {
-    if (/auth|admin/.test(window.location.hash)) return;
+    if (
+      /auth|admin||landing-page|search|cart|dashboard/.test(
+        window.location.hash.split('/')[1]
+      )
+    )
+      return;
     document.documentElement.scrollTop = 0;
     setHistory(!history);
   });
