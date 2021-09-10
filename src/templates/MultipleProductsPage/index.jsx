@@ -41,9 +41,15 @@ function MultipleProductsPage(props) {
     props.resetAppState(MULTIPLE_PRODUCTS + RESET, {});
   };
 
-  const onCategoryBtnClick = () => {
+  const refetchData = () => {
     setHistory(window.location.hash);
     resetMultipleProducts();
+  };
+
+  const popStateListener = () => {
+    const path = window.location.hash.split('/')[1];
+    if (/auth|admin|landing-page|search|cart|dashboard/.test(path)) return;
+    refetchData();
   };
 
   useEffect(() => {
@@ -54,7 +60,7 @@ function MultipleProductsPage(props) {
     );
 
     const appCategoryState = appState(APP_CATEGORY_STATE);
-    appCategoryState.searchFunc = onCategoryBtnClick;
+    appCategoryState.searchFunc = refetchData;
     injectReducer(
       APP_CATEGORY_STATE,
       HOFreducer(APP_CATEGORY_STATE, appCategoryState)
@@ -62,9 +68,13 @@ function MultipleProductsPage(props) {
 
     props.onGet(APP_CATEGORY_STATE);
 
+    window.addEventListener('popstate', popStateListener);
+
     return () => {
       ejectReducer(CATEGORY);
       ejectReducer(APP_CATEGORY_STATE);
+
+      window.removeEventListener('popstate', popStateListener);
     };
   }, []);
 
@@ -160,7 +170,6 @@ function MultipleProductsPage(props) {
                 key={categoryName}
                 to={!index ? ROOT : '/' + categoryName}
                 dark={currentCategory === categoryName}
-                onClick={onCategoryBtnClick}
               >
                 {categoryName}
                 <span>({noOfProducts})</span>
