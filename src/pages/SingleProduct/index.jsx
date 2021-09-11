@@ -37,16 +37,13 @@ function SingleProduct(props) {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [history, setHistory] = useState(true);
 
-  window.addEventListener('popstate', () => {
-    if (
-      /auth|admin||landing-page|search|cart|dashboard/.test(
-        window.location.hash.split('/')[1]
-      )
-    )
+  const refetchData = () => {
+    const path = window.location.hash.split('/')[1];
+    if (!path || /auth|admin|landing-page|search|cart|dashboard/.test(path))
       return;
     document.documentElement.scrollTop = 0;
     setHistory(!history);
-  });
+  };
 
   // reviews
   const reviewFields = fields(
@@ -92,8 +89,10 @@ function SingleProduct(props) {
 
     props.onGet(APP_SINGLE_PRODUCT_STATE);
     props.onGet(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
+    window.addEventListener('popstate', refetchData);
 
     return () => {
+      window.removeEventListener('popstate', refetchData);
       ejectReducer(APP_SINGLE_PRODUCT_STATE);
       ejectReducer(SINGLE_PRODUCT);
       ejectReducer(APP_SINGLE_CATEGORY_PRODUCTS_STATE);
@@ -214,7 +213,10 @@ function SingleProduct(props) {
       {/* related items section */}
       <section className="relatedItem">
         <h2>Related items</h2>
-        <ProductCardGen products={products && products.slice(0, 3)} />
+        <ProductCardGen
+          onClick={refetchData}
+          products={products && products.slice(0, 3)}
+        />
       </section>
 
       {/* customer reviews */}
