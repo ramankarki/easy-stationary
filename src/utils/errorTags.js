@@ -5,6 +5,7 @@ import {
   LOGIN,
   FORGOT_PASSWORD,
   SIGNUP,
+  CART,
 } from '../Routes/contants';
 import queryString from './getQueryString';
 
@@ -120,7 +121,10 @@ const errorTags = {
   productAlreadyExistsShoppingCart: (
     <div className="modalBg__modalMsg">
       {picture('error')}
-      <p>This product is already in shopping cart.</p>
+      <p>
+        This product is already in shopping cart. <br />
+        <Link to={CART}>Place order</Link>
+      </p>
     </div>
   ),
 };
