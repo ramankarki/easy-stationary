@@ -92,7 +92,12 @@ const errorTags = {
     </div>
   ),
   productQuantityOutOfStock: 'productQuantityOutOfStock',
-  buyProductToGiveReview: 'buyProductToGiveReview',
+  buyProductToGiveReview: (
+    <div className="modalBg__modalMsg">
+      {picture('error')}
+      <p>Please buy this product first to give review!</p>
+    </div>
+  ),
   emailUpdateTokenExpired: 'emailUpdateTokenExpired',
   incorrectPassword: (
     <div className="modalBg__modalMsg">
