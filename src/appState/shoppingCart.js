@@ -32,6 +32,7 @@ const shoppingCart = {
       }
     },
     domainState: SHOPPING_CART,
+    noReset: true,
   },
 };
 
