@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 
-import { UI_SEARCH_STATE } from '../../actions/constants';
+import {
+  UI_SEARCH_STATE,
+  APP_SHOPPING_CART_STATE,
+  SHOPPING_CART,
+} from '../../actions/constants';
 import fields from '../../utils/fields';
 import { injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -14,6 +18,8 @@ import {
   DASHBOARD,
   SEARCH,
 } from '../../Routes/contants';
+import appState from '../../appState';
+import onGet from '../../actions/onGet';
 
 import LazyImg from '../../components/LazyImg';
 import InputField from '../../components/InputField';
@@ -34,6 +40,13 @@ function Header(props) {
   const fieldsObj = fields('Search');
   useEffect(() => {
     injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
+    injectReducer(
+      APP_SHOPPING_CART_STATE,
+      HOFreducer(APP_SHOPPING_CART_STATE, appState(APP_SHOPPING_CART_STATE))
+    );
+    injectReducer(SHOPPING_CART, HOFreducer(SHOPPING_CART, {}));
+
+    props.onGet(APP_SHOPPING_CART_STATE);
   }, []);
 
   const history = useHistory();
@@ -79,7 +92,13 @@ function Header(props) {
             iconsrc={isAuth ? cartIcon : null}
             alt="cart icon"
           >
-            {isAuth ? <span className="cart-product-num">90</span> : 'Signup'}
+            {isAuth ? (
+              <span className="cart-product-num">
+                {props.shoppingCart?.length || '-'}
+              </span>
+            ) : (
+              'Signup'
+            )}
           </LinkButton>
         )}
 
@@ -99,10 +118,16 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = ({ USER, UI_SEARCH_STATE, APP_CATEGORY_STATE }) => ({
+const mapStateToProps = ({
+  USER,
+  UI_SEARCH_STATE,
+  APP_CATEGORY_STATE,
+  SHOPPING_CART,
+}) => ({
   USER,
   ...UI_SEARCH_STATE,
   ...APP_CATEGORY_STATE,
+  ...SHOPPING_CART,
 });
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, { onGet })(Header);
