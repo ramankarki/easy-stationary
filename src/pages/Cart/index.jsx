@@ -18,7 +18,7 @@ function Cart(props) {
       <HeroSection
         imgUrl="url('/assets/cart.webp')"
         heading="Place your order"
-        text='Select the product quantity you want. Place your order by clicking "Place order" button and your products will arive at your address in no time.'
+        text='Select the product quantity you want. Place your order by clicking "Place order" button and your products will arive at your address in no time. Payment will be on cash after delivery.'
       />
 
       {/* modal */}
