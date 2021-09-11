@@ -117,6 +117,12 @@ const errorTags = {
       </p>
     </div>
   ),
+  productAlreadyExistsShoppingCart: (
+    <div className="modalBg__modalMsg">
+      {picture('error')}
+      <p>This product is already in shopping cart.</p>
+    </div>
+  ),
 };
 
 const getErrorTag = (errorTag) =>
