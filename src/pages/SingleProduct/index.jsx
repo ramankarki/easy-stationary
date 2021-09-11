@@ -10,6 +10,7 @@ import {
   REVIEWS,
   UI_REVIEWS_STATE,
   APP_REVIEWS_STATE,
+  UI_SHOPPING_CART_STATE,
 } from '../../actions/constants';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
@@ -46,15 +47,11 @@ function SingleProduct(props) {
   };
 
   // reviews
-  const reviewFields = fields(
-    'Ratings',
-    'Description',
-    'ProductId',
-    'CategoryName'
-  );
+  const reviewFields = fields('Ratings', 'Description');
+  const productFields = fields('ProductId', 'CategoryName');
   const [categoryName, productId] = window.location.hash.split('/').slice(1);
-  reviewFields['ProductId'].value = productId;
-  reviewFields['CategoryName'].value = categoryName;
+  productFields['ProductId'].value = productId;
+  productFields['CategoryName'].value = categoryName;
 
   useEffect(() => {
     // single product
@@ -81,10 +78,19 @@ function SingleProduct(props) {
 
     // reviews state
     injectReducer(REVIEWS, HOFdomainReducer(REVIEWS, 'reviews', 'review'));
-    injectReducer(UI_REVIEWS_STATE, HOFreducer(UI_REVIEWS_STATE, reviewFields));
+    injectReducer(
+      UI_REVIEWS_STATE,
+      HOFreducer(UI_REVIEWS_STATE, { ...reviewFields, ...productFields })
+    );
     injectReducer(
       APP_REVIEWS_STATE,
       HOFreducer(APP_REVIEWS_STATE, appState(APP_REVIEWS_STATE))
+    );
+
+    // shopping cart
+    injectReducer(
+      UI_SHOPPING_CART_STATE,
+      HOFreducer(UI_SHOPPING_CART_STATE, productFields)
     );
 
     props.onGet(APP_SINGLE_PRODUCT_STATE);
