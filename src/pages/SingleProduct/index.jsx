@@ -11,6 +11,7 @@ import {
   UI_REVIEWS_STATE,
   APP_REVIEWS_STATE,
   UI_SHOPPING_CART_STATE,
+  APP_SHOPPING_CART_STATE,
 } from '../../actions/constants';
 import HOFreducer from '../../reducers/HOFreducer';
 import HOFdomainReducer from '../../reducers/HOFdomainReducer';
@@ -33,7 +34,6 @@ import './singleProduct.scss';
 
 function SingleProduct(props) {
   const { product, products, Ratings, Description } = props;
-  let { requestStatus, errorTag, modalMsg } = props;
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [history, setHistory] = useState(true);
@@ -46,14 +46,14 @@ function SingleProduct(props) {
     setHistory(!history);
   };
 
-  // reviews
-  const reviewFields = fields('Ratings', 'Description');
-  const productFields = fields('ProductId', 'CategoryName');
-  const [categoryName, productId] = window.location.hash.split('/').slice(1);
-  productFields['ProductId'].value = productId;
-  productFields['CategoryName'].value = categoryName;
-
   useEffect(() => {
+    // reviews
+    const reviewFields = fields('Ratings', 'Description');
+    const productFields = fields('ProductId', 'CategoryName');
+    const [categoryName, productId] = window.location.hash.split('/').slice(1);
+    productFields['ProductId'].value = productId;
+    productFields['CategoryName'].value = categoryName;
+
     // single product
     injectReducer(SINGLE_PRODUCT, HOFreducer(SINGLE_PRODUCT, {}));
     injectReducer(
@@ -106,6 +106,7 @@ function SingleProduct(props) {
       ejectReducer(REVIEWS);
       ejectReducer(UI_REVIEWS_STATE);
       ejectReducer(APP_REVIEWS_STATE);
+      ejectReducer(UI_SHOPPING_CART_STATE);
     };
   }, [history]);
 
@@ -133,6 +134,21 @@ function SingleProduct(props) {
     event.preventDefault();
     props.onPost(APP_REVIEWS_STATE, UI_REVIEWS_STATE);
   };
+
+  const onAddToCart = () => {
+    props.onPost(APP_SHOPPING_CART_STATE, UI_SHOPPING_CART_STATE);
+  };
+
+  let APP_STATE = APP_SINGLE_PRODUCT_STATE;
+  if (!props.requestStatus) {
+    if (props.APP_REVIEWS_STATE?.requestStatus) {
+      props = { ...props, ...props.APP_REVIEWS_STATE };
+      APP_STATE = APP_REVIEWS_STATE;
+    } else {
+      props = { ...props, ...props.APP_SHOPPING_CART_STATE };
+      APP_STATE = APP_SHOPPING_CART_STATE;
+    }
+  }
 
   return (
     <div className="singleProduct">
@@ -177,6 +193,7 @@ function SingleProduct(props) {
             <span>Rs. {product?.price}</span> &nbsp; - Delivery charge included
           </p>
           <Button
+            onClick={onAddToCart}
             style={{
               display: 'flex',
               gap: '1rem',
@@ -289,12 +306,15 @@ function SingleProduct(props) {
       </section>
 
       {/* modal */}
-      {requestStatus && (
-        <RequestStatusModalBg requestStatus={requestStatus}>
-          {requestStatus === 'pending' ? (
+      {props.requestStatus && (
+        <RequestStatusModalBg
+          requestStatus={props.requestStatus}
+          APP_STATE={APP_STATE}
+        >
+          {props.requestStatus === 'pending' ? (
             <SpinnerLoading />
           ) : (
-            modalMsg(requestStatus, errorTag)
+            props.modalMsg(props.requestStatus, props.errorTag)
           )}
         </RequestStatusModalBg>
       )}
@@ -307,11 +327,15 @@ const mapStateToProps = ({
   APP_SINGLE_PRODUCT_STATE,
   MULTIPLE_PRODUCTS,
   UI_REVIEWS_STATE,
+  APP_REVIEWS_STATE,
+  APP_SHOPPING_CART_STATE,
 }) => ({
   ...SINGLE_PRODUCT,
   ...APP_SINGLE_PRODUCT_STATE,
   ...MULTIPLE_PRODUCTS,
   ...UI_REVIEWS_STATE,
+  APP_REVIEWS_STATE,
+  APP_SHOPPING_CART_STATE,
 });
 
 export default connect(mapStateToProps, { onGet, onChangeAndBlur, onPost })(
