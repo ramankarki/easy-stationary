@@ -1,3 +1,79 @@
+@import '../../_variables';
+
 .cart {
   width: 100%;
+
+  &__table {
+    max-width: $gt-medium-screen;
+    margin: 3rem auto;
+  }
+
+  &__tableHead,
+  &__tableCell {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 45px;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__tableHead {
+    background-color: $primary-color;
+    color: white;
+    font-size: $normal-text;
+    font-weight: $medium;
+    padding: 0.7rem 1rem;
+
+    @media (min-width: $gt-medium-screen) {
+      font-size: $medium-text;
+    }
+  }
+}
+
+.tableCell {
+  padding: 1rem;
+
+  &:nth-child(odd) {
+    background-color: $secondary-color;
+  }
+
+  &__product {
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+
+    @media (min-width: $gt-medium-screen) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    p {
+      color: $primary-color;
+    }
+  }
+
+  select {
+    width: max-content;
+    padding: 0.5rem;
+    border-color: $light-gray-border;
+    background-color: white;
+    color: $primary-color;
+    font-weight: $heavy;
+    font-size: $normal-text;
+  }
+
+  &__price {
+    color: $medium-error-color;
+    font-weight: $medium;
+  }
+
+  button {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
