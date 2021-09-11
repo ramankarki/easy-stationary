@@ -6,6 +6,7 @@ import singleCategoryProducts from './singleCategoryProducts';
 import reviews from './reviews';
 import allProducts from './allProducts';
 import search from './search';
+import shoppingCart from './shoppingCart';
 
 const appState = {
   ...auth,
@@ -16,6 +17,7 @@ const appState = {
   ...reviews,
   ...allProducts,
   ...search,
+  ...shoppingCart,
 };
 
 const getAppState = (TYPE) => ({
