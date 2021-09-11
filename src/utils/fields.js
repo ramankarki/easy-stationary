@@ -158,6 +158,10 @@ const fieldsObject = {
     dbProp: 'categoryName',
     validate: () => true,
   },
+  OrderProducts: {
+    dbProp: 'products',
+    validate: () => true,
+  },
 };
 
 const fields = (...args) => {
