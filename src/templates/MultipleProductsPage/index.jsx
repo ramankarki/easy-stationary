@@ -21,6 +21,7 @@ import SpinnerLoading from '../../components/SpinnerLoading';
 import BreadCrumb from '../../components/BreadCrumb';
 import LinkButton from '../../components/LinkButton';
 import ProductCardGen from '../../templates/ProductCardGen';
+import HeroSection from '../../templates/HeroSection';
 
 import './multipleProductsPage.scss';
 
@@ -147,19 +148,13 @@ function MultipleProductsPage(props) {
       <BreadCrumb />
 
       {/* hero section */}
-      <div className="allProducts__heroSection">
-        <picture
-          style={{ backgroundImage: `url('/assets/hero image.webp')` }}
-        ></picture>
-        <div className="allProducts__heroContent">
-          <h1>Get the products you want</h1>
-          <p>
-            Search for the products you want by simplying using search box above
-            and typing keywords, or by clicking the category buttons of your
-            products below.
-          </p>
-        </div>
-      </div>
+      <HeroSection
+        imgUrl="url('/assets/hero image.webp')"
+        heading="Get the products you want"
+        text="Search for the products you want by simplying using search box above
+        and typing keywords, or by clicking the category buttons of your
+        products below."
+      />
 
       {/* category bar with filter button aside */}
       <div className="allProducts__categoryFilterBar">
