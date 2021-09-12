@@ -6,7 +6,7 @@ const HOFdomainReducer =
   (state = {}, action) => {
     switch (action.type) {
       case TYPE + CREATE:
-        const arr = [...state[arrayProp], action.payload[createProp]];
+        const arr = [action.payload[createProp], ...state[arrayProp]];
         return { ...state, [arrayProp]: sortArray(arr, sortProp) };
 
       case TYPE + READ:
