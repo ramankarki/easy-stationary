@@ -41,7 +41,7 @@ function AdminSettings(props) {
       ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
       ejectReducer(APP_USER_PASSWORD_UPDATE_STATE);
     };
-  });
+  }, []);
 
   const emailField = fields('Email');
   const passwordField = fields(
