@@ -50,41 +50,83 @@ function Cart(props) {
       />
 
       <div className="cart__table">
-        <div className="cart__tableHead">
-          <p>Product</p>
-          <p>Quantity</p>
-          <p>Price</p>
-        </div>
-        {props.OrderProducts?.value?.map(
-          (
-            { categoryName, productId, imageUrl, price, quantity, productName },
-            index
-          ) => {
-            return (
-              <div key={productId} className="cart__tableCell tableCell">
-                <div className="tableCell__product">
-                  <img src={imageUrl[0]} alt="product" />
-                  <p>{productName}</p>
+        <div className="cart__productsTable">
+          <div className="cart__tableHead">
+            <p>Product</p>
+            <p>Quantity</p>
+            <p>Price</p>
+          </div>
+          {props.OrderProducts?.value?.map(
+            (
+              {
+                categoryName,
+                productId,
+                imageUrl,
+                price,
+                quantity,
+                productName,
+              },
+              index
+            ) => {
+              return (
+                <div key={productId} className="cart__tableCell tableCell">
+                  <div className="tableCell__product">
+                    <img src={imageUrl[0]} alt="product" />
+                    <p>{productName}</p>
+                  </div>
+                  <select value={quantity} onChange={onQuantityChange(index)}>
+                    {Array(props.shoppingCart[index].quantity)
+                      .fill(0)
+                      .map((val, i) => (
+                        <option key={Date.now() + i + 'option'} value={i + 1}>
+                          {i + 1}
+                        </option>
+                      ))}
+                  </select>
+                  <p className="tableCell__price">{quantity * +price}</p>
+                  <Button
+                    style={{ gridColumn: 'span 1', backgroundColor: 'white' }}
+                  >
+                    <img src="/assets/exit icon.svg" alt="exit icon" />
+                  </Button>
                 </div>
-                <select value={quantity} onChange={onQuantityChange(index)}>
-                  {Array(props.shoppingCart[index].quantity)
-                    .fill(0)
-                    .map((val, i) => (
-                      <option key={Date.now() + i + 'option'} value={i + 1}>
-                        {i + 1}
-                      </option>
-                    ))}
-                </select>
-                <p className="tableCell__price">{quantity * +price}</p>
-                <Button
-                  style={{ gridColumn: 'span 1', backgroundColor: 'white' }}
-                >
-                  <img src="/assets/exit icon.svg" alt="exit icon" />
-                </Button>
-              </div>
-            );
-          }
-        )}
+              );
+            }
+          )}
+        </div>
+        <div className="cart__placeOrder">
+          <h2>Cart</h2>
+          <div>
+            <p>
+              Total amount:{' '}
+              <b>
+                Rs.{' '}
+                {props.OrderProducts?.value?.reduce(
+                  (acc, { quantity, price }) => acc + quantity * price,
+                  0
+                )}
+              </b>
+            </p>
+            <p>
+              Name:{' '}
+              <b>
+                {props.user?.firstName} {props.user?.lastName}
+              </b>
+            </p>
+            <p>
+              Phone: <b>+977-{props.user?.phoneNumber}</b>
+            </p>
+            <p>
+              Shipping address: <b>hello world</b>
+            </p>
+            <Button>
+              <picture>
+                <img src="/assets/order icon.svg" alt="cart icon" />
+              </picture>
+              Place order
+            </Button>
+          </div>
+        </div>
       </div>
 
       {/* modal */}
@@ -108,10 +150,12 @@ const mapStateToProps = ({
   APP_SHOPPING_CART_STATE,
   SHOPPING_CART,
   UI_ORDER_STATE,
+  USER,
 }) => ({
   ...APP_SHOPPING_CART_STATE,
   ...SHOPPING_CART,
   ...UI_ORDER_STATE,
+  ...USER,
 });
 
 export default connect(mapStateToProps, { onChangeAndBlur })(Cart);
