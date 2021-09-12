@@ -9,6 +9,7 @@ import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
+import onDelete from '../../actions/onDelete';
 
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -39,6 +40,10 @@ function Cart(props) {
     props.onChangeAndBlur(UI_ORDER_STATE, 'OrderProducts', dupProducts);
   };
 
+  const removeProduct = (productId) => () => {
+    props.onDelete(APP_SHOPPING_CART_STATE, {}, productId);
+  };
+
   return (
     <div className="cart">
       <Header />
@@ -67,31 +72,30 @@ function Cart(props) {
                 productName,
               },
               index
-            ) => {
-              return (
-                <div key={productId} className="cart__tableCell tableCell">
-                  <div className="tableCell__product">
-                    <img src={imageUrl[0]} alt="product" />
-                    <p>{productName}</p>
-                  </div>
-                  <select value={quantity} onChange={onQuantityChange(index)}>
-                    {Array(props.shoppingCart[index].quantity)
-                      .fill(0)
-                      .map((val, i) => (
-                        <option key={Date.now() + i + 'option'} value={i + 1}>
-                          {i + 1}
-                        </option>
-                      ))}
-                  </select>
-                  <p className="tableCell__price">{quantity * +price}</p>
-                  <Button
-                    style={{ gridColumn: 'span 1', backgroundColor: 'white' }}
-                  >
-                    <img src="/assets/exit icon.svg" alt="exit icon" />
-                  </Button>
+            ) => (
+              <div key={productId} className="cart__tableCell tableCell">
+                <div className="tableCell__product">
+                  <img src={imageUrl[0]} alt="product" />
+                  <p>{productName}</p>
                 </div>
-              );
-            }
+                <select value={quantity} onChange={onQuantityChange(index)}>
+                  {Array(props.shoppingCart[index]?.quantity)
+                    .fill(0)
+                    .map((val, i) => (
+                      <option key={Date.now() + i + 'option'} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                </select>
+                <p className="tableCell__price">{quantity * +price}</p>
+                <Button
+                  onClick={removeProduct(productId)}
+                  style={{ gridColumn: 'span 1', backgroundColor: 'white' }}
+                >
+                  <img src="/assets/exit icon.svg" alt="exit icon" />
+                </Button>
+              </div>
+            )
           )}
         </div>
         <div className="cart__placeOrder">
@@ -158,4 +162,4 @@ const mapStateToProps = ({
   ...USER,
 });
 
-export default connect(mapStateToProps, { onChangeAndBlur })(Cart);
+export default connect(mapStateToProps, { onChangeAndBlur, onDelete })(Cart);

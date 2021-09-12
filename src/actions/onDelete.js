@@ -16,12 +16,11 @@ const onDelete =
     });
 
     API.delete(appState.deleteRoute(...args))
-      .then(() =>
+      .then(({ data }) =>
         batch(() => {
-          ejectReducer(CRITICAL_MODAL_STATE);
           dispatch({
             type: dynamicState ? domainState + DELETE : domainState,
-            payload: deleteObj,
+            payload: dynamicState ? deleteObj : data,
           });
           dispatch({
             type: APP_STATE,
