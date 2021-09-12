@@ -1,8 +1,7 @@
 import { batch } from 'react-redux';
 
 import API from '../utils/API';
-import { DELETE, CRITICAL_MODAL_STATE } from './constants';
-import { ejectReducer } from '../utils/dynamicReducers';
+import { DELETE } from './constants';
 
 const onDelete =
   (APP_STATE, deleteObj, ...args) =>
