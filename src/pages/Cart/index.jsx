@@ -1,17 +1,24 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   APP_SHOPPING_CART_STATE,
   UI_ORDER_STATE,
+  APP_ORDER_STATE,
+  ORDERS,
+  SHOPPING_CART,
 } from '../../actions/constants';
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
+import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import onDelete from '../../actions/onDelete';
-import { ROOT } from '../../Routes/contants';
+import onPost from '../../actions/onPost';
+import { DASHBOARD_ORDERS, ROOT } from '../../Routes/contants';
+import appState from '../../appState';
+import onGet from '../../actions/onGet';
 
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -23,11 +30,28 @@ import Button from '../../components/Button';
 import './cart.scss';
 
 function Cart(props) {
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   injectReducer(
+  //     APP_ORDER_STATE,
+  //     HOFreducer(APP_ORDER_STATE, appState(APP_ORDER_STATE))
+  //   );
+  //   injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
+
+  //   if (!props.orders) props.onGet(APP_ORDER_STATE);
+
+  //   return () => {
+  //     ejectReducer(APP_ORDER_STATE);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const products = fields('OrderProducts');
     products.OrderProducts.value = props.shoppingCart?.map((product) => ({
       ...product,
       quantity: 1,
+      imageUrl: product.imageUrl[0],
     }));
     injectReducer(UI_ORDER_STATE, HOFreducer(UI_ORDER_STATE, products));
 
@@ -45,6 +69,21 @@ function Cart(props) {
   const removeProduct = (productId) => () => {
     props.onDelete(APP_SHOPPING_CART_STATE, {}, productId);
   };
+
+  // const onPlaceOrder = () => {
+  //   props.onPost(APP_ORDER_STATE, UI_ORDER_STATE, () => {
+  //     ejectReducer(SHOPPING_CART);
+  //     injectReducer(
+  //       SHOPPING_CART,
+  //       HOFreducer(SHOPPING_CART, { status: 'ok', shoppingCart: [] })
+  //     );
+  //     history.push(DASHBOARD_ORDERS);
+  //   });
+  // };
+
+  // if (!props.requestStatus) {
+  //   props = { ...props, ...props.APP_ORDER_STATE };
+  // }
 
   return (
     <div className="cart">
@@ -79,7 +118,7 @@ function Cart(props) {
                 ) => (
                   <div key={productId} className="cart__tableCell tableCell">
                     <div className="tableCell__product">
-                      <img src={imageUrl[0]} alt="product" />
+                      <img src={imageUrl} alt="product" />
                       <p>{productName}</p>
                     </div>
                     <select value={quantity} onChange={onQuantityChange(index)}>
@@ -127,7 +166,7 @@ function Cart(props) {
                 <p>
                   Shipping address: <b>hello world</b>
                 </p>
-                <Button>
+                <Button onClick={onPlaceOrder}>
                   <picture>
                     <img src="/assets/order icon.svg" alt="cart icon" />
                   </picture>
@@ -149,7 +188,7 @@ function Cart(props) {
       {props.requestStatus && (
         <RequestStatusModalBg
           requestStatus={props.requestStatus}
-          APP_STATE={APP_SHOPPING_CART_STATE}
+          APP_STATE={APP_ORDER_STATE}
         >
           {props.requestStatus === 'pending' ? (
             <SpinnerLoading />
@@ -167,11 +206,20 @@ const mapStateToProps = ({
   SHOPPING_CART,
   UI_ORDER_STATE,
   USER,
+  APP_ORDER_STATE,
+  ORDERS,
 }) => ({
   ...APP_SHOPPING_CART_STATE,
   ...SHOPPING_CART,
   ...UI_ORDER_STATE,
   ...USER,
+  APP_ORDER_STATE,
+  ...ORDERS,
 });
 
-export default connect(mapStateToProps, { onChangeAndBlur, onDelete })(Cart);
+export default connect(mapStateToProps, {
+  onChangeAndBlur,
+  onDelete,
+  onPost,
+  onGet,
+})(Cart);
