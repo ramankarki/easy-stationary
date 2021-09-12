@@ -8,7 +8,7 @@ import {
   SHOPPING_CART,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
-import { injectReducer } from '../../utils/dynamicReducers';
+import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import {
   LOGIN,
@@ -40,14 +40,22 @@ function Header(props) {
   const fieldsObj = fields('Search');
   useEffect(() => {
     injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
-    injectReducer(
-      APP_SHOPPING_CART_STATE,
-      HOFreducer(APP_SHOPPING_CART_STATE, appState(APP_SHOPPING_CART_STATE))
-    );
-    injectReducer(SHOPPING_CART, HOFreducer(SHOPPING_CART, {}));
-
-    props.onGet(APP_SHOPPING_CART_STATE);
   }, []);
+
+  useEffect(() => {
+    if (props.USER?.user.role === 'client') {
+      injectReducer(
+        APP_SHOPPING_CART_STATE,
+        HOFreducer(APP_SHOPPING_CART_STATE, appState(APP_SHOPPING_CART_STATE))
+      );
+      injectReducer(SHOPPING_CART, HOFreducer(SHOPPING_CART, {}));
+
+      if (!props.shoppingCart) props.onGet(APP_SHOPPING_CART_STATE);
+    } else {
+      ejectReducer(APP_SHOPPING_CART_STATE);
+      ejectReducer(SHOPPING_CART);
+    }
+  }, [props.USER]);
 
   const history = useHistory();
 
