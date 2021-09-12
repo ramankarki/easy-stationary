@@ -22,6 +22,9 @@ export const ADMIN_SETTINGS = '/admin/settings';
 export const CART = '/cart';
 export const DASHBOARD = '/dashboard';
 export const DASHBOARD_ORDERS = '/dashboard/orders';
+export const DASHBOARD_MY_REVIEWS = '/dashboard/my-reviews';
+export const DASHBOARD_MY_WISHLISTS = '/dashboard/my-wishlists';
+export const DASHBOARD_SETTINGS = '/dashboard/settings';
 // user routes end
 
 export const PAGE_NOT_FOUND = '*';
