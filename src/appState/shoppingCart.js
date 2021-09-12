@@ -24,15 +24,6 @@ const shoppingCart = {
               </p>
             </div>
           );
-        case 'deleteSuccess':
-          return (
-            <div className="modalBg__modalMsg">
-              <picture>
-                <LazyImg src="/assets/check.svg" alt="success icon" />
-              </picture>
-              <p>Product removed from cart.</p>
-            </div>
-          );
         default:
           return getErrorTag(errorTag);
       }
