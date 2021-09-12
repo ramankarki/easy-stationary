@@ -1,4 +1,4 @@
-import getAside from '../../utils/asideButtonsData';
+import aside from './asideButtonsData';
 
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -12,14 +12,6 @@ import './adminPageTemplate.scss';
 function Admin(props) {
   let { requestStatus, modalMsg, errorTag, heading, APP_STATE } = props;
   errorTag = errorTag === 'alreadyExists' ? errorTag + 'Category' : errorTag;
-
-  const aside = getAside(
-    'Dashboard',
-    'Category',
-    'Add new product',
-    'Orders',
-    'Settings'
-  );
 
   const currentPath = window.location.hash.slice(1);
 
