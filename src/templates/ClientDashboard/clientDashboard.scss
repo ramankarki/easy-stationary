@@ -1,0 +1,59 @@
+@import '../../variables';
+
+.client {
+  display: grid;
+  grid-template-rows: 68px 47.6px auto;
+
+  width: 100%;
+
+  @media (min-width: $gt-medium-screen) {
+    max-height: 100vh;
+    min-height: 100vh;
+  }
+
+  &__mainCover {
+    border: 1px solid $light-gray-border;
+
+    @media (min-width: $gt-medium-screen) {
+      display: grid;
+      grid-template-columns: 180px auto;
+      min-height: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__aside {
+    display: none;
+
+    @media (min-width: $gt-medium-screen) {
+      display: block;
+    }
+  }
+
+  &__panel {
+    padding: 1.2rem 1.2rem 7rem;
+
+    @media (min-width: $gt-medium-screen) {
+      border-left: 1px solid $light-gray-border;
+      min-height: 100%;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    @media (min-width: $gt-large-screen) {
+      padding: 2rem 2rem 10rem;
+    }
+
+    h1 {
+      font-size: $large-text;
+      font-weight: $medium;
+      color: $primary-color;
+      margin-bottom: 1.5rem;
+
+      @media (min-width: $gt-large-screen) {
+        margin-bottom: 2rem;
+        font-size: $extra-large-text;
+      }
+    }
+  }
+}
