@@ -4,7 +4,7 @@ import {
   ADMIN_ADD_NEW_PRODUCT,
   ADMIN_ORDERS,
   ADMIN_SETTINGS,
-} from '../Routes/contants';
+} from '../../Routes/contants';
 
 const aside = [
   {
@@ -34,6 +34,4 @@ const aside = [
   },
 ];
 
-const getAside = (...args) => aside.filter(({ value }) => args.includes(value));
-
-export default getAside;
+export default aside;
