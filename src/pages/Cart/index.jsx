@@ -81,9 +81,9 @@ function Cart(props) {
   //   });
   // };
 
-  // if (!props.requestStatus) {
-  //   props = { ...props, ...props.APP_ORDER_STATE };
-  // }
+  if (!props.requestStatus) {
+    props = { ...props, ...props.APP_ORDER_STATE };
+  }
 
   return (
     <div className="cart">
