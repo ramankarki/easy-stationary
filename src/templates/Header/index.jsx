@@ -102,7 +102,7 @@ function Header(props) {
           >
             {isAuth ? (
               <span className="cart-product-num">
-                {props.shoppingCart?.length || '-'}
+                {props.shoppingCart ? props.shoppingCart.length : '-'}
               </span>
             ) : (
               'Signup'
