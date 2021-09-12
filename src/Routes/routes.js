@@ -16,6 +16,7 @@ import {
   SINGLE_PRODUCT,
   SINGLE_CATEGORY_PRODUCTS,
   SEARCH,
+  DASHBOARD_ORDERS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -89,6 +90,12 @@ const routes = {
   [DASHBOARD]: {
     private: true,
     component: LazyLoadPages.Dashboard,
+    role: ['client'],
+  },
+
+  [DASHBOARD_ORDERS]: {
+    private: true,
+    component: LazyLoadPages.ClientOrders,
     role: ['client'],
   },
 
