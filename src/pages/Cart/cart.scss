@@ -134,3 +134,19 @@
     }
   }
 }
+
+.noProductsMsg {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+  font-size: $large-text;
+  color: $primary-color;
+
+  a {
+    b {
+      font-weight: $medium;
+      color: $primary-color;
+    }
+  }
+}
