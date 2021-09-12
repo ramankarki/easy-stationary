@@ -4,7 +4,7 @@ import API from '../utils/API';
 import { CREATE } from './constants';
 
 const onPost =
-  (APP_STATE_TYPE, UI_STATE_TYPE, ...args) =>
+  (APP_STATE_TYPE, UI_STATE_TYPE, callback = () => {}, ...args) =>
   (dispatch, getState) => {
     const uiState = getState()[UI_STATE_TYPE];
     const appState = getState()[APP_STATE_TYPE];
@@ -78,6 +78,9 @@ const onPost =
                 type: UI_STATE_TYPE,
                 payload: resetUIState,
               });
+
+            // optional callback
+            callback();
           });
         })
         .catch(({ response }) => {
