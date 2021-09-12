@@ -30,7 +30,7 @@ import Button from '../../components/Button';
 import './cart.scss';
 
 function Cart(props) {
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     injectReducer(
@@ -70,16 +70,16 @@ function Cart(props) {
     props.onDelete(APP_SHOPPING_CART_STATE, {}, productId);
   };
 
-  // const onPlaceOrder = () => {
-  //   props.onPost(APP_ORDER_STATE, UI_ORDER_STATE, () => {
-  //     ejectReducer(SHOPPING_CART);
-  //     injectReducer(
-  //       SHOPPING_CART,
-  //       HOFreducer(SHOPPING_CART, { status: 'ok', shoppingCart: [] })
-  //     );
-  //     history.push(DASHBOARD_ORDERS);
-  //   });
-  // };
+  const onPlaceOrder = () => {
+    props.onPost(APP_ORDER_STATE, UI_ORDER_STATE, () => {
+      ejectReducer(SHOPPING_CART);
+      injectReducer(
+        SHOPPING_CART,
+        HOFreducer(SHOPPING_CART, { status: 'ok', shoppingCart: [] })
+      );
+      history.push(DASHBOARD_ORDERS);
+    });
+  };
 
   if (!props.requestStatus) {
     props = { ...props, ...props.APP_ORDER_STATE };
