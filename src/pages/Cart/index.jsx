@@ -32,19 +32,19 @@ import './cart.scss';
 function Cart(props) {
   // const history = useHistory();
 
-  // useEffect(() => {
-  //   injectReducer(
-  //     APP_ORDER_STATE,
-  //     HOFreducer(APP_ORDER_STATE, appState(APP_ORDER_STATE))
-  //   );
-  //   injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
+  useEffect(() => {
+    injectReducer(
+      APP_ORDER_STATE,
+      HOFreducer(APP_ORDER_STATE, appState(APP_ORDER_STATE))
+    );
+    injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
 
-  //   if (!props.orders) props.onGet(APP_ORDER_STATE);
+    if (!props.orders) props.onGet(APP_ORDER_STATE);
 
-  //   return () => {
-  //     ejectReducer(APP_ORDER_STATE);
-  //   };
-  // }, []);
+    return () => {
+      ejectReducer(APP_ORDER_STATE);
+    };
+  }, []);
 
   useEffect(() => {
     const products = fields('OrderProducts');
