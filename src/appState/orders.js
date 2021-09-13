@@ -3,7 +3,8 @@ import getErrorTag from '../utils/errorTags';
 
 const orders = {
   [APP_ORDER_STATE]: {
-    getRoute: () => `/api/v1/orders`,
+    getRoute: (page, sort, filter) =>
+      `/api/v1/orders?page=${page}&limit=6&sort=${sort}&filter=${filter}`,
     postRoute: () => `/api/v1/orders`,
     patchRoute: (orderId) => `/api/v1/orders/${orderId}`,
     modalMsg: (requestStatus, errorTag) => {
