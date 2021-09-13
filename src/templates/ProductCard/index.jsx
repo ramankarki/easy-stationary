@@ -26,6 +26,7 @@ function ProductCard(props) {
           <RatingStars ratings={props.ratings} peopleNumber="true" />
         )}
         <h3>{props.productName}</h3>
+        {props.quantity && <span>Quantity: {props.quantity}</span>}
         <p>Rs. {props.price}</p>
       </span>
     </Link>

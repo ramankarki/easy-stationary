@@ -66,5 +66,11 @@
     p {
       font-size: $medium-text;
     }
+
+    span {
+      font-size: $normal-text;
+      color: $primary-color;
+      margin: 0.7rem;
+    }
   }
 }
