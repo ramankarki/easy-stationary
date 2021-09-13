@@ -4,7 +4,7 @@ import API from '../utils/API';
 import { UPDATE } from './constants';
 
 const onPatch =
-  (APP_STATE_TYPE, UI_STATE_TYPE, prevObj, ...args) =>
+  (APP_STATE_TYPE, UI_STATE_TYPE, prevObj, callback, ...args) =>
   (dispatch, getState) => {
     const uiState = getState()[UI_STATE_TYPE];
     const appState = getState()[APP_STATE_TYPE];
@@ -78,6 +78,9 @@ const onPatch =
                 type: UI_STATE_TYPE,
                 payload: resetUIState,
               });
+
+            // optional callback func
+            callback && callback();
           });
         })
         .catch(({ response }) => {
