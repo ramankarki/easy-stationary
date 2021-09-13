@@ -14,7 +14,11 @@ function Dashboard(props) {
   }, []);
 
   return (
-    <ClientDashboard heading="Dashboard" APP_STATE={APP_USER_STATE}>
+    <ClientDashboard
+      {...props.APP_USER_STATE}
+      heading="Dashboard"
+      APP_STATE={APP_USER_STATE}
+    >
       <div className="dashboard">
         <div className="dashboard__boxes">
           <p>Total orders</p>
@@ -49,6 +53,9 @@ function Dashboard(props) {
   );
 }
 
-const mapStateToProps = ({ USER }) => ({ ...USER });
+const mapStateToProps = ({ USER, APP_USER_STATE }) => ({
+  ...USER,
+  APP_USER_STATE,
+});
 
 export default connect(mapStateToProps, { onGet })(Dashboard);
