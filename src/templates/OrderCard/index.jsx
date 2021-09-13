@@ -1,3 +1,5 @@
+import classes from '../../utils/classes';
+
 import ProductCard from '../ProductCard';
 import Button from '../../components/Button';
 
@@ -8,6 +10,11 @@ function OrderCard(props) {
     (acc, val) => acc + val.quantity * val.price,
     0
   );
+
+  const statusClass = classes({
+    Cancelled: props.status === 'Cancelled',
+    Delivered: props.status === 'Delivered',
+  });
 
   return (
     <div className="orderCard">
@@ -20,9 +27,18 @@ function OrderCard(props) {
           Order ID: <b>{props.orderId}</b>
         </span>
         <span>
-          Status: <b>{props.status}</b>
+          Status: <b className={statusClass}>{props.status}</b>
         </span>
-        <Button value="Cancel order" small="true" danger="true" />
+        {props.status === 'Pending' ? (
+          <Button
+            onClick={props.onOrderCancel}
+            value="Cancel order"
+            small="true"
+            danger="true"
+          />
+        ) : (
+          <span></span>
+        )}
       </div>
 
       {/* heading */}

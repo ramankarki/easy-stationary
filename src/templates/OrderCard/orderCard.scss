@@ -38,6 +38,14 @@
       }
     }
 
+    .Cancelled {
+      color: $medium-error-color;
+    }
+
+    .Delivered {
+      color: $medium-green;
+    }
+
     button {
       grid-column: span 1;
     }
