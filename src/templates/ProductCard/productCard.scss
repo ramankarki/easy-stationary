@@ -57,21 +57,22 @@
   &-small {
     h3,
     p {
-      margin: 0.7rem;
+      margin: 0.5rem;
     }
 
     h3 {
-      font-size: $normal-text;
+      font-size: $small-text;
     }
 
     p {
-      font-size: $medium-text;
+      font-size: $normal-text;
+      margin-top: 0.7rem;
     }
 
     span {
-      font-size: $normal-text;
+      font-size: $small-text;
       color: $primary-color;
-      margin: 0.7rem;
+      margin: 0.5rem;
     }
   }
 }
