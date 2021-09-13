@@ -21,7 +21,7 @@ const PAGES = [
   'Search',
   'Cart',
   'Dashboard',
-  'ClientOrders',
+  'DashboardOrders',
   'PageNotFound',
 ];
 

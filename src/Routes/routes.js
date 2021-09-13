@@ -95,7 +95,7 @@ const routes = {
 
   [DASHBOARD_ORDERS]: {
     private: true,
-    component: LazyLoadPages.ClientOrders,
+    component: LazyLoadPages.DashboardOrders,
     role: ['client'],
   },
 
