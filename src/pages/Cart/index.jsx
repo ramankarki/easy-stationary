@@ -6,19 +6,16 @@ import {
   APP_SHOPPING_CART_STATE,
   UI_ORDER_STATE,
   APP_ORDER_STATE,
-  ORDERS,
   SHOPPING_CART,
 } from '../../actions/constants';
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
-import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import fields from '../../utils/fields';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import onDelete from '../../actions/onDelete';
 import onPost from '../../actions/onPost';
 import { DASHBOARD_ORDERS, ROOT } from '../../Routes/contants';
 import appState from '../../appState';
-import onGet from '../../actions/onGet';
 
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
@@ -37,9 +34,6 @@ function Cart(props) {
       APP_ORDER_STATE,
       HOFreducer(APP_ORDER_STATE, appState(APP_ORDER_STATE))
     );
-    injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
-
-    if (!props.orders) props.onGet(APP_ORDER_STATE);
 
     return () => {
       ejectReducer(APP_ORDER_STATE);
@@ -221,5 +215,4 @@ export default connect(mapStateToProps, {
   onChangeAndBlur,
   onDelete,
   onPost,
-  onGet,
 })(Cart);
