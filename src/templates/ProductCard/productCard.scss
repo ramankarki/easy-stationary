@@ -54,6 +54,11 @@
   }
 
   &-small {
+    h3,
+    p {
+      margin: 0.7rem;
+    }
+
     h3 {
       font-size: $normal-text;
     }
