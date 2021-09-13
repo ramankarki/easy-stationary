@@ -46,7 +46,7 @@ function CriticalModal(props) {
             />
             <Button
               style={buttonOpacity}
-              value="Delete"
+              value={props.btnValue}
               small="true"
               danger="true"
             />
