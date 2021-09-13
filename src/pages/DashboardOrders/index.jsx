@@ -25,7 +25,7 @@ function DashboardOrders(props) {
     );
     injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
 
-    props.onGet(APP_ORDER_STATE);
+    props.onGet(APP_ORDER_STATE, () => {}, page, sort, filter);
 
     return () => {
       ejectReducer(APP_ORDER_STATE);
