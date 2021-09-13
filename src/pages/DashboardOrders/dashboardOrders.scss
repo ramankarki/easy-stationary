@@ -1,0 +1,40 @@
+@import '../../variables';
+
+.orders {
+  &__filterBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $light-gray-border;
+    padding: 1rem;
+    font-size: $normal-text;
+    font-weight: $medium;
+
+    @media (min-width: $gt-medium-screen + 50px) {
+      display: inline-block;
+
+      &:last-child {
+        margin-left: 2rem;
+      }
+    }
+
+    span {
+      color: $primary-color;
+      font-size: $normal-text;
+    }
+
+    select {
+      margin-left: 0.5rem;
+      border: none;
+      padding: 0.5rem;
+      background-color: $primary-color;
+      color: white;
+      font-weight: $medium;
+      font-size: $normal-text;
+
+      option:hover {
+        background-color: #2b477577 !important;
+      }
+    }
+  }
+}
