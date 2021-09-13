@@ -19,7 +19,14 @@ const HOFdomainReducer =
         };
 
       case TYPE + UPDATE:
-        return;
+        return {
+          ...state,
+          [arrayProp]: state[arrayProp].map((obj) =>
+            obj === action.payload.prevObj
+              ? action.payload.newObj[createProp]
+              : obj
+          ),
+        };
 
       case TYPE + DELETE:
         return {
