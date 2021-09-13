@@ -1,0 +1,41 @@
+@import '../../variables';
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  color: $primary-color;
+
+  @media (min-width: $gt-large-screen) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__boxes {
+    background-color: $secondary-color;
+    padding: 2rem;
+    text-align: center;
+
+    p {
+      font-size: $small-text;
+      font-weight: $medium;
+      margin-bottom: 0.5rem;
+    }
+
+    span {
+      font-size: $medium-text + 0.2rem;
+      font-weight: $medium;
+    }
+
+    &-pending {
+      span {
+        color: $medium-green;
+      }
+    }
+
+    &-cancelled {
+      span {
+        color: $medium-error-color;
+      }
+    }
+  }
+}
