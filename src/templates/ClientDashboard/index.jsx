@@ -5,6 +5,7 @@ import BreadCrumb from '../../components/BreadCrumb';
 import LinkButton from '../../components/LinkButton';
 import RequestStatusModalBg from '../RequestStatusModalBg';
 import SpinnerLoading from '../../components/SpinnerLoading';
+import CriticalDeleteModal from '../CriticalDeleteModal';
 
 import './clientDashboard.scss';
 
@@ -55,6 +56,9 @@ function ClientDashboard(props) {
           )}
         </RequestStatusModalBg>
       )}
+
+      {/* critical modal for deleting account or cancelling order */}
+      <CriticalDeleteModal />
     </div>
   );
 }
