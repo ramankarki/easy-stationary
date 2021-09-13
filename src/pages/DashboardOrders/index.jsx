@@ -9,6 +9,7 @@ import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import onGet from '../../actions/onGet';
 
 import ClientDashboard from '../../templates/ClientDashboard';
+import OrderCard from '../../templates/OrderCard';
 
 import './dashboardOrders.scss';
 
@@ -44,6 +45,7 @@ function DashboardOrders(props) {
       APP_STATE={APP_ORDER_STATE}
     >
       <div className="orders">
+        {/* filter buttons */}
         <label className="orders__filterBtn">
           <span>Sort by status:</span>
           <select value={filter} onChange={onStatusFilterChange}>
@@ -60,6 +62,13 @@ function DashboardOrders(props) {
             <option value="orderId">Asc</option>
           </select>
         </label>
+
+        {/* order cards */}
+        <div className="orders__cards">
+          {props.orders?.map((order) => (
+            <OrderCard key={order._id} {...order} />
+          ))}
+        </div>
       </div>
     </ClientDashboard>
   );
