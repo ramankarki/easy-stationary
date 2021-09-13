@@ -201,14 +201,12 @@ const mapStateToProps = ({
   UI_ORDER_STATE,
   USER,
   APP_ORDER_STATE,
-  ORDERS,
 }) => ({
   ...APP_SHOPPING_CART_STATE,
   ...SHOPPING_CART,
   ...UI_ORDER_STATE,
   ...USER,
   APP_ORDER_STATE,
-  ...ORDERS,
 });
 
 export default connect(mapStateToProps, {
