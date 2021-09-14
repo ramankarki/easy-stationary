@@ -138,7 +138,7 @@ const getErrorTag = (errorTag) =>
   errorTags[errorTag] || (
     <div className="modalBg__modalMsg">
       {picture('error')}
-      <p>Something went wrong! Please try again later</p>
+      <p>Something went wrong. Please try again later!</p>
     </div>
   );
 export default getErrorTag;
