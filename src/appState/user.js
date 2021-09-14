@@ -3,6 +3,7 @@ import {
   APP_USER_STATE,
   APP_USER_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
+  APP_USER_PROFILE_UPDATE_STATE,
 } from '../actions/constants';
 import getErrorTag from '../utils/errorTags';
 import { ADMIN_SETTINGS } from '../Routes/contants';
@@ -58,6 +59,26 @@ const user = {
                 <img src="/assets/check.svg" alt="success icon" />
               </picture>
               <p>Password changed successfuly!</p>
+            </div>
+          );
+        default:
+          return getErrorTag(errorTag);
+      }
+    },
+    domainState: USER,
+  },
+
+  [APP_USER_PROFILE_UPDATE_STATE]: {
+    patchRoute: () => `/api/v1/user/update-profile`,
+    modalMsg: (requestStatus, errorTag) => {
+      switch (requestStatus) {
+        case 'patchSuccess':
+          return (
+            <div className="modalBg__modalMsg">
+              <picture>
+                <img src="/assets/check.svg" alt="success icon" />
+              </picture>
+              <p>Profile data updates successfully!</p>
             </div>
           );
         default:
