@@ -25,6 +25,7 @@ const PAGES = [
   'DashboardMyReviews',
   'DashboardMyWishlists',
   'DashboardSettings',
+  'AdminOrders',
   'PageNotFound',
 ];
 

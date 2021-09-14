@@ -20,6 +20,7 @@ import {
   DASHBOARD_MY_REVIEWS,
   DASHBOARD_MY_WISHLISTS,
   DASHBOARD_SETTINGS,
+  ADMIN_ORDERS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -81,6 +82,12 @@ const routes = {
   [ADMIN_ADD_NEW_PRODUCT]: {
     private: true,
     component: LazyLoadPages.AdminAddNewProduct,
+    role: ['admin'],
+  },
+
+  [ADMIN_ORDERS]: {
+    private: true,
+    component: LazyLoadPages.AdminOrders,
     role: ['admin'],
   },
 
