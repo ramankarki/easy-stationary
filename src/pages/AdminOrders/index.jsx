@@ -104,7 +104,11 @@ function AdminOrders(props) {
   }
 
   return (
-    <AdminPageTemplate {...props.APP_ORDER_STATE} heading="Orders">
+    <AdminPageTemplate
+      {...props.APP_ORDER_STATE}
+      APP_STATE={APP_ORDER_STATE}
+      heading="Orders"
+    >
       <div className="adminOrders">
         {/* filter buttons */}
         <label className="adminOrders__filterBtn">
