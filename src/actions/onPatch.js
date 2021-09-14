@@ -51,8 +51,14 @@ const onPatch =
           // save user data in localStorage
           if (appState.domainState === 'USER') {
             // add 90 days
-            data.expiryDate = Date.now() + 7776000000 + '';
-            localStorage.setItem('USER', JSON.stringify(data));
+            if (data.token) {
+              data.expiryDate = Date.now() + 7776000000 + '';
+              localStorage.setItem('USER', JSON.stringify(data));
+            } else {
+              const user = JSON.parse(localStorage.getItem('USER'));
+              user.user = data.user;
+              localStorage.setItem('USER', JSON.stringify(user));
+            }
           }
 
           batch(() => {
