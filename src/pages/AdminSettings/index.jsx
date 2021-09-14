@@ -87,12 +87,6 @@ function AdminSettings(props) {
           flex="true"
           buttonvalue="Update password"
         />
-        <hr />
-        <Button
-          style={{ width: 'max-content' }}
-          value="Delete account"
-          danger="true"
-        />
       </div>
     </AdminPageTemplate>
   );
