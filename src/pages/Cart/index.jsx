@@ -158,7 +158,7 @@ function Cart(props) {
                   Phone: <b>+977-{props.user?.phoneNumber}</b>
                 </p>
                 <p>
-                  Shipping address: <b>hello world</b>
+                  Shipping address: <b>{props.user?.fullAddress}</b>
                 </p>
                 <Button onClick={onPlaceOrder}>
                   <picture>
