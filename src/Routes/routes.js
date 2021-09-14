@@ -19,6 +19,7 @@ import {
   DASHBOARD_ORDERS,
   DASHBOARD_MY_REVIEWS,
   DASHBOARD_MY_WISHLISTS,
+  DASHBOARD_SETTINGS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -110,6 +111,12 @@ const routes = {
   [DASHBOARD_MY_WISHLISTS]: {
     private: true,
     component: LazyLoadPages.DashboardMyWishlists,
+    role: ['client'],
+  },
+
+  [DASHBOARD_SETTINGS]: {
+    private: true,
+    component: LazyLoadPages.DashboardSettings,
     role: ['client'],
   },
 
