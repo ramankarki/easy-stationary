@@ -99,8 +99,12 @@ function DashboardOrders(props) {
     resetMultipleProducts();
   }, [sort, filter]);
 
+  if (!props.CRITICAL_MODAL_STATE) {
+    props = { ...props, APP_ORDER_STATE: {} };
+  }
+
   return (
-    <ClientDashboard heading="Orders">
+    <ClientDashboard {...props.APP_ORDER_STATE} heading="Orders">
       <div className="orders">
         {/* filter buttons */}
         <label className="orders__filterBtn">
@@ -147,7 +151,15 @@ function DashboardOrders(props) {
   );
 }
 
-const mapStateToProps = ({ ORDERS }) => ({ ...ORDERS });
+const mapStateToProps = ({
+  ORDERS,
+  APP_ORDER_STATE,
+  CRITICAL_MODAL_STATE,
+}) => ({
+  ...ORDERS,
+  APP_ORDER_STATE,
+  CRITICAL_MODAL_STATE,
+});
 
 export default connect(mapStateToProps, { onGet, onPatch, resetAppState })(
   DashboardOrders
