@@ -24,7 +24,7 @@ function UpdateEmailPassword(props) {
     return () => {
       ejectReducer(UI_STATE);
     };
-  });
+  }, []);
 
   const formElements = (fieldsObj, TYPE) =>
     Object.keys(fieldsObj).map((fieldName) => (
