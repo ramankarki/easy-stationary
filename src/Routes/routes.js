@@ -17,6 +17,7 @@ import {
   SINGLE_CATEGORY_PRODUCTS,
   SEARCH,
   DASHBOARD_ORDERS,
+  DASHBOARD_MY_REVIEWS,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -96,6 +97,12 @@ const routes = {
   [DASHBOARD_ORDERS]: {
     private: true,
     component: LazyLoadPages.DashboardOrders,
+    role: ['client'],
+  },
+
+  [DASHBOARD_MY_REVIEWS]: {
+    private: true,
+    component: LazyLoadPages.DashboardMyReviews,
     role: ['client'],
   },
 
