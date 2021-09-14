@@ -46,7 +46,8 @@ const onPatch =
         payload: { ...appState, requestStatus: appState.requestEnum.pending },
       });
 
-      API.patch(appState.patchRoute(...args), apiData)
+      API()
+        .patch(appState.patchRoute(...args), apiData)
         .then(({ data }) => {
           // save user data in localStorage
           if (appState.domainState === 'USER') {

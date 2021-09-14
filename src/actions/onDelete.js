@@ -14,7 +14,8 @@ const onDelete =
       payload: { ...appState, requestStatus: 'pending' },
     });
 
-    API.delete(appState.deleteRoute(...args))
+    API()
+      .delete(appState.deleteRoute(...args))
       .then(({ data }) =>
         batch(() => {
           dispatch({

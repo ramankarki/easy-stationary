@@ -20,7 +20,8 @@ const onGet =
       payload: { ...appState, requestStatus: 'pending' },
     });
 
-    API.get(appState.getRoute(...args))
+    API()
+      .get(appState.getRoute(...args))
       .then(({ data }) =>
         batch(() => {
           if (appState.domainState === 'USER') {

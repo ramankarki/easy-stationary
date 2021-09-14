@@ -46,7 +46,8 @@ const onPost =
         payload: { ...appState, requestStatus: appState.requestEnum.pending },
       });
 
-      API.post(appState.postRoute(...args), apiData)
+      API()
+        .post(appState.postRoute(...args), apiData)
         .then(({ data }) => {
           // save user data in localStorage
           if (appState.domainState === 'USER') {
