@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import {
   APP_ORDER_STATE,
   CRITICAL_MODAL_STATE,
   ORDERS,
+  RESET,
 } from '../../actions/constants';
 import appState from '../../appState';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -13,7 +14,10 @@ import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import onGet from '../../actions/onGet';
 import onPatch from '../../actions/onPatch';
 import triggerCriticalModal from '../../utils/triggerCriticalModal';
+import { useIntersection } from '../../utils/useIntersection';
+import resetAppState from '../../actions/resetAppState';
 
+import SpinnerLoading from '../../components/SpinnerLoading';
 import ClientDashboard from '../../templates/ClientDashboard';
 import OrderCard from '../../templates/OrderCard';
 
@@ -24,6 +28,8 @@ function DashboardOrders(props) {
   const [sort, setSort] = useState('-orderId');
   const [filter, setFilter] = useState('');
   const [showSpinner, setShowSpinner] = useState(true);
+
+  const spinnerRef = useRef();
 
   useEffect(() => {
     injectReducer(
@@ -42,8 +48,6 @@ function DashboardOrders(props) {
         },
       })
     );
-
-    props.onGet(APP_ORDER_STATE, () => {}, page, sort, filter);
 
     return () => {
       ejectReducer(APP_ORDER_STATE);
@@ -66,12 +70,37 @@ function DashboardOrders(props) {
     );
   };
 
+  const loadAllOrders = () => {
+    if (showSpinner) {
+      props.onGet(
+        APP_ORDER_STATE,
+        (data) => {
+          setShowSpinner(!!data.orders.length);
+          setPage(page + 1);
+        },
+        page,
+        sort,
+        filter
+      );
+    }
+  };
+
+  useIntersection(spinnerRef, loadAllOrders, props.orders);
+
+  const resetMultipleProducts = () => {
+    setShowSpinner(true);
+    setPage(1);
+    props.resetAppState(ORDERS + RESET, {});
+  };
+
+  useEffect(() => {
+    if (!props.orders) return;
+
+    resetMultipleProducts();
+  }, [sort, filter]);
+
   return (
-    <ClientDashboard
-      {...props.APP_ORDER_STATE}
-      heading="Orders"
-      APP_STATE={APP_ORDER_STATE}
-    >
+    <ClientDashboard heading="Orders">
       <div className="orders">
         {/* filter buttons */}
         <label className="orders__filterBtn">
@@ -107,14 +136,19 @@ function DashboardOrders(props) {
             />
           ))}
         </div>
+
+        {showSpinner && (
+          <div ref={spinnerRef} className="orders__spinner">
+            <SpinnerLoading />
+          </div>
+        )}
       </div>
     </ClientDashboard>
   );
 }
 
-const mapStateToProps = ({ ORDERS, APP_ORDER_STATE }) => ({
-  ...ORDERS,
-  APP_ORDER_STATE,
-});
+const mapStateToProps = ({ ORDERS }) => ({ ...ORDERS });
 
-export default connect(mapStateToProps, { onGet, onPatch })(DashboardOrders);
+export default connect(mapStateToProps, { onGet, onPatch, resetAppState })(
+  DashboardOrders
+);
