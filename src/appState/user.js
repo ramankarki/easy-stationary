@@ -78,7 +78,7 @@ const user = {
               <picture>
                 <img src="/assets/check.svg" alt="success icon" />
               </picture>
-              <p>Profile data updates successfully!</p>
+              <p>Profile data updated successfully!</p>
             </div>
           );
         default:
