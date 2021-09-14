@@ -19,9 +19,8 @@ function UpdateEmailPassword(props) {
     fields[field].value = user[fields[field].dbProp];
   }
 
-  injectReducer(UI_STATE, HOFreducer(UI_STATE, fields));
-
   useEffect(() => {
+    injectReducer(UI_STATE, HOFreducer(UI_STATE, fields));
     return () => {
       ejectReducer(UI_STATE);
     };
@@ -43,7 +42,11 @@ function UpdateEmailPassword(props) {
   return (
     <form style={props.style} onSubmit={onSubmitHandler} className={formClass}>
       {formElements(fields, UI_STATE)}
-      <Button value={props.buttonvalue} small="true" />
+      <Button
+        style={{ width: 'max-content' }}
+        value={props.buttonvalue}
+        small="true"
+      />
 
       {/* modal */}
       {requestStatus && (
