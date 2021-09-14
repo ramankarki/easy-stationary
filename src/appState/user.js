@@ -86,6 +86,7 @@ const user = {
       }
     },
     domainState: USER,
+    noReset: true,
   },
 };
 
