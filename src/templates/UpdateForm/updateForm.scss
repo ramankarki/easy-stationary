@@ -1,4 +1,15 @@
+@import '../../variables';
+
 .updateForm {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  @media (min-width: $gt-small-screen) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   &-flex {
     display: flex;
     flex-direction: column;
@@ -7,7 +18,9 @@
 
     label {
       width: 100%;
-      max-width: 350px;
+      @media (min-width: $gt-small-screen) {
+        width: 50%;
+      }
     }
   }
 }
