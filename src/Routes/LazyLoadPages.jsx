@@ -23,6 +23,7 @@ const PAGES = [
   'Dashboard',
   'DashboardOrders',
   'DashboardMyReviews',
+  'DashboardMyWishlists',
   'PageNotFound',
 ];
 
