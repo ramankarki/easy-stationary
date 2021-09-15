@@ -4,7 +4,7 @@ import classes from '../../utils/classes';
 
 import './hamburgur.scss';
 
-function Hamburgur(props) {
+function Hamburgur() {
   const [active, setActive] = useState(false);
 
   const onClickHandler = () => setActive(!active);
