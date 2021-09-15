@@ -17,9 +17,9 @@ import triggerCriticalModal from '../../utils/triggerCriticalModal';
 import { useIntersection } from '../../utils/useIntersection';
 import resetAppState from '../../actions/resetAppState';
 
+import OrderCard from '../../templates/OrderCard';
 import SpinnerLoading from '../../components/SpinnerLoading';
 import ClientDashboard from '../../templates/ClientDashboard';
-import OrderCard from '../../templates/OrderCard';
 
 import './dashboardOrders.scss';
 
