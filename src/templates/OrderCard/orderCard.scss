@@ -49,6 +49,10 @@
     button {
       grid-column: span 1;
     }
+
+    &-admin {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 
   &__productsWrapper {

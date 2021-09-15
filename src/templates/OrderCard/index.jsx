@@ -19,7 +19,7 @@ function OrderCard(props) {
   return (
     <div className="orderCard">
       {/* card details */}
-      <div className="orderCard__cardDetails">
+      <div className="orderCard__cardDetails orderCard__cardDetails-admin">
         <span>
           Total: <b>Rs. {totalAmount}</b>
         </span>
@@ -29,6 +29,15 @@ function OrderCard(props) {
         <span>
           Status: <b className={statusClass}>{props.status}</b>
         </span>
+        {props.admin && props.status === 'Pending' ? (
+          <Button
+            onClick={props.onOrderDeliver}
+            value="Deliver order"
+            small="true"
+          />
+        ) : (
+          <span></span>
+        )}
         {props.status === 'Pending' ? (
           <Button
             onClick={props.onOrderCancel}
