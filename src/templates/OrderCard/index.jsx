@@ -15,11 +15,14 @@ function OrderCard(props) {
     Cancelled: props.status === 'Cancelled',
     Delivered: props.status === 'Delivered',
   });
+  const cardDetailsClass = classes('orderCard__cardDetails', {
+    'orderCard__cardDetails-admin': props.admin,
+  });
 
   return (
     <div className="orderCard">
       {/* card details */}
-      <div className="orderCard__cardDetails orderCard__cardDetails-admin">
+      <div className={cardDetailsClass}>
         <span>
           Total: <b>Rs. {totalAmount}</b>
         </span>
@@ -36,7 +39,7 @@ function OrderCard(props) {
             small="true"
           />
         ) : (
-          <span></span>
+          ''
         )}
         {props.status === 'Pending' ? (
           <Button
@@ -49,6 +52,26 @@ function OrderCard(props) {
           <span></span>
         )}
       </div>
+
+      {props.admin && (
+        <div className="orderCard__cardDetails orderCard__cardDetails-userData">
+          <span>
+            Name:{' '}
+            <b>
+              {props.firstName} {props.lastName}
+            </b>
+          </span>
+          <span>
+            Phone: <b>{props.phoneNumber}</b>
+          </span>
+          <span>
+            Address: <b>{props.fullAddress}</b>
+          </span>
+          <span>
+            Email: <b>{props.email}</b>
+          </span>
+        </div>
+      )}
 
       {/* heading */}
       <h2>Ordered products</h2>

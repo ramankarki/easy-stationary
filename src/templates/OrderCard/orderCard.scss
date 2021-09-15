@@ -26,6 +26,19 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
+    &-admin {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+    }
+
+    &-userData {
+      margin: 2rem 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+      border: 1px solid white;
+      padding: 1rem;
+    }
+
     span {
       font-size: $small-text;
       color: $primary-color;
@@ -48,10 +61,6 @@
 
     button {
       grid-column: span 1;
-    }
-
-    &-admin {
-      grid-template-columns: repeat(5, 1fr);
     }
   }
 
