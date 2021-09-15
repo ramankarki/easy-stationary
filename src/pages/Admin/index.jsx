@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
-import { APP_CATEGORY_STATE, CATEGORY } from '../../actions/constants';
+import {
+  APP_CATEGORY_STATE,
+  APP_USER_STATE,
+  CATEGORY,
+} from '../../actions/constants';
 import onGet from '../../actions/onGet';
 import appState from '../../appState';
 import HOFreducer from '../../reducers/HOFreducer';
@@ -27,6 +31,7 @@ function Admin(props) {
     );
 
     props.onGet(APP_CATEGORY_STATE);
+    props.onGet(APP_USER_STATE);
     return () => {
       ejectReducer(APP_CATEGORY_STATE);
       ejectReducer(CATEGORY);
