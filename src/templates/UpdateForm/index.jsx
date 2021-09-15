@@ -4,10 +4,11 @@ import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import HOFreducer from '../../reducers/HOFreducer';
 import classes from '../../utils/classes';
 
-import InputField from '../../components/InputField';
 import Button from '../../components/Button';
-import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import InputField from '../../components/InputField';
 import SpinnerLoading from '../../components/SpinnerLoading';
+import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+
 import './updateForm.scss';
 
 function UpdateEmailPassword(props) {
