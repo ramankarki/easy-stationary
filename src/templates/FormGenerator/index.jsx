@@ -7,11 +7,12 @@ import onPost from '../../actions/onPost';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState/';
 
-import InputField from '../../components/InputField';
-import LazyImg from '../../components/LazyImg';
 import Button from '../../components/Button';
-import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import InputField from '../../components/InputField';
 import SpinnerLoading from '../../components/SpinnerLoading';
+import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import LazyImg from '../../components/LazyImg';
+
 import './formGenerator.scss';
 
 function FormGenerator(props) {
