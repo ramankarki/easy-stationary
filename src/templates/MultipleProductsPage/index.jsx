@@ -17,11 +17,11 @@ import { useIntersection } from '../../utils/useIntersection';
 import resetAppState from '../../actions/resetAppState';
 
 import Header from '../../templates/Header';
-import SpinnerLoading from '../../components/SpinnerLoading';
 import BreadCrumb from '../../components/BreadCrumb';
-import LinkButton from '../../components/LinkButton';
-import ProductCardGen from '../../templates/ProductCardGen';
 import HeroSection from '../../templates/HeroSection';
+import SpinnerLoading from '../../components/SpinnerLoading';
+import ProductCardGen from '../../templates/ProductCardGen';
+import LinkButton from '../../components/LinkButton';
 
 import './multipleProductsPage.scss';
 
