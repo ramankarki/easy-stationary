@@ -1,7 +1,7 @@
 import classes from '../../utils/classes';
 
-import ProductCard from '../ProductCard';
 import Button from '../../components/Button';
+import ProductCard from '../ProductCard';
 
 import './orderCard.scss';
 
