@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 
 import { useIntersection } from './insersectionObserver';
+
 import ShimmerLoading from '../ShimmerLoading';
 import ErrorBoundary from '../ErrorBoundary';
 
