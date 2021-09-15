@@ -16,6 +16,7 @@ import onPatch from '../../actions/onPatch';
 import triggerCriticalModal from '../../utils/triggerCriticalModal';
 import { useIntersection } from '../../utils/useIntersection';
 import resetAppState from '../../actions/resetAppState';
+import fields from '../../utils/fields';
 
 import SpinnerLoading from '../../components/SpinnerLoading';
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
@@ -38,21 +39,14 @@ function AdminOrders(props) {
     );
     injectReducer(ORDERS, HOFdomainReducer(ORDERS, 'orders', 'order'));
     injectReducer(
-      'BLANK',
-      HOFreducer('BLANK', {
-        blank: {
-          value: 'blank',
-          dbProp: 'blank',
-          validate: () => 'blank',
-          validationFailed: 'blank',
-        },
-      })
+      'UI_CANCEL_ORDER_ADMIN',
+      HOFreducer('UI_CANCEL_ORDER_ADMIN', fields('CancelOrderAdmin'))
     );
 
     return () => {
       ejectReducer(APP_ORDER_STATE);
       ejectReducer(ORDERS);
-      ejectReducer('BLANK');
+      ejectReducer('UI_CANCEL_ORDER_ADMIN');
     };
   }, []);
 
@@ -63,7 +57,7 @@ function AdminOrders(props) {
   const onOrderCancel = (orderObj) => () => {
     props.onPatch(
       APP_ORDER_STATE,
-      'BLANK',
+      'UI_CANCEL_ORDER_ADMIN',
       orderObj,
       () => ejectReducer(CRITICAL_MODAL_STATE),
       orderObj.orderId
