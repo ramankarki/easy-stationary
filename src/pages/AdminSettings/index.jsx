@@ -16,7 +16,6 @@ import {
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
 import UpdateForm from '../../templates/UpdateForm';
-import Button from '../../components/Button';
 
 import './adminSettings.scss';
 
