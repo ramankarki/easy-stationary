@@ -17,8 +17,8 @@ import appState from '../../appState';
 import triggerCriticalModal from '../../utils/triggerCriticalModal';
 
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
-import InputField from '../../components/InputField';
 import Button from '../../components/Button';
+import InputField from '../../components/InputField';
 
 import './adminCategory.scss';
 
