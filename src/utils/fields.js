@@ -162,6 +162,16 @@ const fieldsObject = {
     dbProp: 'products',
     validate: () => true,
   },
+  CancelOrderAdmin: {
+    dbProp: 'status',
+    validate: () => true,
+    value: 'Cancelled',
+  },
+  DeliverOrderAdmin: {
+    dbProp: 'status',
+    validate: () => true,
+    value: 'Delivered',
+  },
 };
 
 const fields = (...args) => {
