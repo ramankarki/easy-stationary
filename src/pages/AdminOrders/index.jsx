@@ -42,11 +42,16 @@ function AdminOrders(props) {
       'UI_CANCEL_ORDER_ADMIN',
       HOFreducer('UI_CANCEL_ORDER_ADMIN', fields('CancelOrderAdmin'))
     );
+    injectReducer(
+      'UI_DELIVER_ORDER_ADMIN',
+      HOFreducer('UI_DELIVER_ORDER_ADMIN', fields('DeliverOrderAdmin'))
+    );
 
     return () => {
       ejectReducer(APP_ORDER_STATE);
       ejectReducer(ORDERS);
       ejectReducer('UI_CANCEL_ORDER_ADMIN');
+      ejectReducer('UI_DELIVER_ORDER_ADMIN');
     };
   }, []);
 
@@ -58,6 +63,16 @@ function AdminOrders(props) {
     props.onPatch(
       APP_ORDER_STATE,
       'UI_CANCEL_ORDER_ADMIN',
+      orderObj,
+      () => ejectReducer(CRITICAL_MODAL_STATE),
+      orderObj.orderId
+    );
+  };
+
+  const onOrderDeliver = (orderObj) => () => {
+    props.onPatch(
+      APP_ORDER_STATE,
+      'UI_DELIVER_ORDER_ADMIN',
       orderObj,
       () => ejectReducer(CRITICAL_MODAL_STATE),
       orderObj.orderId
@@ -134,6 +149,13 @@ function AdminOrders(props) {
                 `Type 'cancel', to cancel orderId:${order.orderId}.`,
                 onOrderCancel(order),
                 'Cancel order'
+              )}
+              onOrderDeliver={triggerCriticalModal(
+                null,
+                'Deliver order',
+                `Type 'deliver', to confirm orderId:${order.orderId}.`,
+                onOrderDeliver(order),
+                'Deliver order'
               )}
             />
           ))}
