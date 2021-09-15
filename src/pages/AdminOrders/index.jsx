@@ -157,6 +157,7 @@ function AdminOrders(props) {
                 onOrderDeliver(order),
                 'Deliver order'
               )}
+              admin="true"
             />
           ))}
         </div>
