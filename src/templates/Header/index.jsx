@@ -21,10 +21,10 @@ import {
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
 
-import LazyImg from '../../components/LazyImg';
-import InputField from '../../components/InputField';
 import Button from '../../components/Button';
+import InputField from '../../components/InputField';
 import LinkButton from '../../components/LinkButton';
+import LazyImg from '../../components/LazyImg';
 import Hamburgur from '../../components/Hamburgur';
 
 import searchIcon from './search icon.svg';
