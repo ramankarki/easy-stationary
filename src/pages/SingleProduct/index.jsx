@@ -21,11 +21,11 @@ import onPost from '../../actions/onPost';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import fields from '../../utils/fields';
 
+import Button from '../../components/Button';
 import Header from '../../templates/Header';
 import BreadCrumb from '../../components/BreadCrumb';
 import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
 import SpinnerLoading from '../../components/SpinnerLoading';
-import Button from '../../components/Button';
 import RatingsStar from '../../components/RatingStars';
 import ProductCardGen from '../../templates/ProductCardGen';
 
