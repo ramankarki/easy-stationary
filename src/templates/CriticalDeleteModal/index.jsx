@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { CRITICAL_MODAL_STATE } from '../../actions/constants';
 import { ejectReducer } from '../../utils/dynamicReducers';
 
-import InputField from '../../components/InputField';
 import Button from '../../components/Button';
+import InputField from '../../components/InputField';
 
 import './criticalModal.scss';
 
