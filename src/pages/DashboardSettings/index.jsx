@@ -16,9 +16,9 @@ import appState from '../../appState';
 import onPost from '../../actions/onPost';
 import onPatch from '../../actions/onPatch';
 
-import ClientDashboard from '../../templates/ClientDashboard';
-import UpdateForm from '../../templates/UpdateForm';
 import Button from '../../components/Button';
+import UpdateForm from '../../templates/UpdateForm';
+import ClientDashboard from '../../templates/ClientDashboard';
 
 import './dashboardSettings.scss';
 
