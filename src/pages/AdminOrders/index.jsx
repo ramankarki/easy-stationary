@@ -18,8 +18,8 @@ import { useIntersection } from '../../utils/useIntersection';
 import resetAppState from '../../actions/resetAppState';
 import fields from '../../utils/fields';
 
-import SpinnerLoading from '../../components/SpinnerLoading';
 import AdminPageTemplate from '../../templates/AdminPageTemplate';
+import SpinnerLoading from '../../components/SpinnerLoading';
 import OrderCard from '../../templates/OrderCard';
 
 import './adminOrders.scss';
