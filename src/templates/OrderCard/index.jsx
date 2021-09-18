@@ -77,12 +77,10 @@ function OrderCard(props) {
       <h2>Ordered products</h2>
 
       {/* product cards */}
-      <div className="orderCard__productsWrapper">
-        <div className="orderCard__products">
-          {props.products?.map((product) => (
-            <ProductCard key={product._id} {...product} small="true" />
-          ))}
-        </div>
+      <div className="orderCard__products">
+        {props.products?.map((product) => (
+          <ProductCard key={product._id} {...product} small="true" />
+        ))}
       </div>
     </div>
   );
