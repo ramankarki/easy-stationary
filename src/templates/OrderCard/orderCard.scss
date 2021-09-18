@@ -64,10 +64,18 @@
     }
   }
 
-  &__productsWrapper {
-    margin-top: 0.5rem;
+  &__products {
+    display: flex;
+    gap: 1rem;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-top: 0.5rem;
     border: 1px solid white;
+
+    & > * {
+      flex: 0 0 150px;
+    }
 
     &::-webkit-scrollbar {
       height: 0.5rem;
@@ -79,16 +87,6 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: #2b477577;
-    }
-  }
-
-  &__products {
-    display: flex;
-    gap: 1rem;
-
-    & > * {
-      min-width: 150px;
-      max-width: 150px;
     }
   }
 }
