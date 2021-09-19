@@ -42,7 +42,6 @@ function SingleProduct(props) {
     const path = window.location.hash.split('/')[1];
     if (!path || /auth|admin|landing-page|search|cart|dashboard/.test(path))
       return;
-    document.documentElement.scrollTop = 0;
     setHistory(!history);
   };
 
