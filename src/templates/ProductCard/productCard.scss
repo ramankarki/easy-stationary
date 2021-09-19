@@ -8,7 +8,7 @@
 
   &:hover {
     picture {
-      img {
+      .product {
         transform: scale(1.2);
       }
     }
@@ -16,12 +16,23 @@
 
   picture {
     overflow: hidden;
-  }
+    position: relative;
 
-  img {
-    width: 100%;
-    height: auto;
-    transition: 500ms ease-out;
+    .product {
+      width: 100%;
+      height: auto;
+      transition: 500ms ease-out;
+      z-index: 1;
+    }
+
+    .wishlist {
+      z-index: 2;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      width: 35px;
+      height: auto;
+    }
   }
 
   .ratings {

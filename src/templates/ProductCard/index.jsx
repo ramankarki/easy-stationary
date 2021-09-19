@@ -4,6 +4,9 @@ import classes from '../../utils/classes';
 
 import RatingStars from '../../components/RatingStars';
 
+import wishlistActive from './wishlist-active.svg';
+import wishlistInActive from './wishlist-inactive.svg';
+
 import './productCard.scss';
 
 function ProductCard(props) {
@@ -11,16 +14,26 @@ function ProductCard(props) {
     'productCard-small': props.small,
   });
 
-  const blankFunc = () => {};
   return (
     <Link
-      onClick={props.onClick || blankFunc}
       to={`/${props.categoryName}/${props.productId}`}
       style={{ textDecoration: 'none' }}
     >
       <span className={productCardClass}>
         <picture>
-          <img src={props.imageUrl} alt="product" />
+          {props.wishlists && (
+            <img
+              onClick={props.setWishlists}
+              className="wishlist"
+              src={
+                props.productId in props.wishlists
+                  ? wishlistActive
+                  : wishlistInActive
+              }
+              alt="heart icon"
+            />
+          )}
+          <img className="product" src={props.imageUrl} alt="product" />
         </picture>
         {props.ratings && (
           <RatingStars ratings={props.ratings} peopleNumber="true" />
