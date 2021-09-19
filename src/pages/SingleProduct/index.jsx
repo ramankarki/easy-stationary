@@ -47,6 +47,8 @@ function SingleProduct(props) {
   };
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
+
     // reviews
     const reviewFields = fields('Ratings', 'Description');
     const productFields = fields('ProductId', 'CategoryName');
