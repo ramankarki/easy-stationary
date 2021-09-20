@@ -179,7 +179,7 @@ function Cart(props) {
         ))}
 
       {/* modal */}
-      {props.requestStatus && (
+      {props.requestStatus && props.requestStatus !== 'getSuccess' && (
         <RequestStatusModalBg
           requestStatus={props.requestStatus}
           APP_STATE={APP_ORDER_STATE}
