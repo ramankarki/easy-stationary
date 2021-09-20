@@ -13,6 +13,8 @@ function Dashboard(props) {
     Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {}).length
   );
 
+  console.log(wishlistsLen);
+
   useEffect(() => {
     setWishlistsLen(
       Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {}).length
