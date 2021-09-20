@@ -321,7 +321,7 @@ function SingleProduct(props) {
       </section>
 
       {/* modal */}
-      {props.requestStatus && (
+      {props.requestStatus && APP_STATE !== APP_SHOPPING_CART_STATE && (
         <RequestStatusModalBg
           requestStatus={props.requestStatus}
           APP_STATE={APP_STATE}
