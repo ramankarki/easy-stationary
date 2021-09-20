@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { APP_USER_STATE } from '../../actions/constants';
 
@@ -9,7 +9,14 @@ import ClientDashboard from '../../templates/ClientDashboard';
 import './dashboard.scss';
 
 function Dashboard(props) {
+  const [wishlistsLen, setWishlistsLen] = useState(
+    Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {}).length
+  );
+
   useEffect(() => {
+    setWishlistsLen(
+      Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {}).length
+    );
     props.onGet(APP_USER_STATE);
   }, []);
 
@@ -34,12 +41,7 @@ function Dashboard(props) {
         </div>
         <div className="dashboard__boxes">
           <p>My wishlists</p>
-          <span>
-            {
-              Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {})
-                .length
-            }
-          </span>
+          <span>{wishlistsLen}</span>
         </div>
         <div className="dashboard__boxes">
           <p>Pending orders</p>
