@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import classes from '../../utils/classes';
+import useWishlists from '../../utils/useWishlists';
 
 import RatingStars from '../../components/RatingStars';
 
@@ -10,6 +11,9 @@ import wishlistInActive from './wishlist-inactive.svg';
 import './productCard.scss';
 
 function ProductCard(props) {
+  const [wishlists, setWishlists] = useWishlists();
+  console.log(wishlists);
+
   const productCardClass = classes('productCard', {
     'productCard-small': props.small,
   });
@@ -23,12 +27,10 @@ function ProductCard(props) {
         <picture>
           {props.wishlists && (
             <img
-              onClick={props.setWishlists}
+              onClick={setWishlists(props.productId, props.categoryName)}
               className="wishlist"
               src={
-                props.productId in props.wishlists
-                  ? wishlistActive
-                  : wishlistInActive
+                props.productId in wishlists ? wishlistActive : wishlistInActive
               }
               alt="heart icon"
             />
