@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 /**
- * @usage const [wishlists, setWishlists] = useWishlists();
- * @description 'wishlists' contains object {productId: categoryName}
+ * @init `const [wishlists, setWishlists] = useWishlists();`
+ * @usage `setWishlists(key, value);`
+ * @description 'wishlists' is an object {key: value}, setWishlists is a HOF.
  * @returns [wishlists, setFunc]
  */
 function useWishlists() {
