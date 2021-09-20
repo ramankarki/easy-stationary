@@ -6,6 +6,8 @@ import {
   UI_SEARCH_STATE,
   APP_SHOPPING_CART_STATE,
   SHOPPING_CART,
+  APP_ACTIVATE_ACCOUNT_STATE,
+  USER,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
@@ -20,12 +22,15 @@ import {
 } from '../../Routes/contants';
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
+import getQueryString from '../../utils/getQueryString';
 
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
 import LinkButton from '../../components/LinkButton';
 import LazyImg from '../../components/LazyImg';
 import Hamburgur from '../../components/Hamburgur';
+import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
+import SpinnerLoading from '../../components/SpinnerLoading';
 
 import searchIcon from './search icon.svg';
 import cartIcon from './cart icon.svg';
@@ -37,13 +42,35 @@ function Header(props) {
   const isAuth = !!user;
   const isClient = user?.role === 'client';
 
+  const { requestStatus, modalMsg, errorTag } =
+    props.APP_ACTIVATE_ACCOUNT_STATE || {};
+
   const fieldsObj = fields('Search');
   useEffect(() => {
     injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
+
+    const query = getQueryString();
+
+    if (query['activate-account-token']) {
+      injectReducer(USER, HOFreducer(USER, {}));
+      injectReducer(
+        APP_ACTIVATE_ACCOUNT_STATE,
+        HOFreducer(
+          APP_ACTIVATE_ACCOUNT_STATE,
+          appState(APP_ACTIVATE_ACCOUNT_STATE)
+        )
+      );
+      props.onGet(APP_ACTIVATE_ACCOUNT_STATE, () => {}, query.token);
+    }
+
+    return () => {
+      ejectReducer(APP_ACTIVATE_ACCOUNT_STATE);
+      ejectReducer(USER);
+    };
   }, []);
 
   useEffect(() => {
-    if (props.USER?.user.role === 'client') {
+    if (props.USER?.user?.role === 'client') {
       injectReducer(
         APP_SHOPPING_CART_STATE,
         HOFreducer(APP_SHOPPING_CART_STATE, appState(APP_SHOPPING_CART_STATE))
@@ -122,6 +149,20 @@ function Header(props) {
 
       {/* hamburgur button */}
       {isAuth && <Hamburgur />}
+
+      {/* modal */}
+      {requestStatus && (
+        <RequestStatusModalBg
+          requestStatus={requestStatus}
+          APP_STATE={APP_ACTIVATE_ACCOUNT_STATE}
+        >
+          {requestStatus === 'pending' ? (
+            <SpinnerLoading />
+          ) : (
+            modalMsg(requestStatus, errorTag)
+          )}
+        </RequestStatusModalBg>
+      )}
     </header>
   );
 }
@@ -131,11 +172,13 @@ const mapStateToProps = ({
   UI_SEARCH_STATE,
   APP_CATEGORY_STATE,
   SHOPPING_CART,
+  APP_ACTIVATE_ACCOUNT_STATE,
 }) => ({
   USER,
   ...UI_SEARCH_STATE,
   ...APP_CATEGORY_STATE,
   ...SHOPPING_CART,
+  APP_ACTIVATE_ACCOUNT_STATE,
 });
 
 export default connect(mapStateToProps, { onGet })(Header);
