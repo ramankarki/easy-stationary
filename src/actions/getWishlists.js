@@ -6,9 +6,12 @@ import API from '../utils/API';
 
 const getWishlists = () => async (dispatch, getState) => {
   const wishlistsAppState = getState()[APP_WISHLISTS_STATE];
-  const wishlists = JSON.parse(localStorage.getItem('WISHLISTS'));
+  const wishlists = JSON.parse(localStorage.getItem('WISHLISTS')) || {};
+  const wishlistsKeys = Object.keys(wishlists);
 
-  const productPromises = Object.keys(wishlists).map((productId) => {
+  if (!wishlistsKeys.length) return;
+
+  const productPromises = wishlistsKeys.map((productId) => {
     return API().get(
       wishlistsAppState.getRoute(wishlists[productId], productId)
     );
