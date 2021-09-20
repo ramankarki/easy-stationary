@@ -34,7 +34,12 @@ function Dashboard(props) {
         </div>
         <div className="dashboard__boxes">
           <p>My wishlists</p>
-          <span>0</span>
+          <span>
+            {
+              Object.keys(JSON.parse(localStorage.getItem('WISHLISTS')) || {})
+                .length
+            }
+          </span>
         </div>
         <div className="dashboard__boxes">
           <p>Pending orders</p>
