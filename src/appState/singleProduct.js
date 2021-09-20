@@ -1,7 +1,8 @@
-import { APP_SINGLE_PRODUCT_STATE, SINGLE_PRODUCT } from '../actions/constants';
+import { APP_SINGLE_PRODUCT_STATE } from '../actions/constants';
+import { SINGLE_PRODUCT } from '../Routes/contants';
 import getErrorTag from '../utils/errorTags';
 
-import LazyImg from '../components/LazyImg';
+import { Redirect } from 'react-router';
 
 const singleProduct = {
   [APP_SINGLE_PRODUCT_STATE]: {
@@ -15,19 +16,13 @@ const singleProduct = {
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
         case 'postSuccess':
-          return (
-            <div className="modalBg__modalMsg">
-              <picture>
-                <LazyImg src="/assets/check.svg" alt="success icon" />
-              </picture>
-              <p>New product added successfully.</p>
-            </div>
-          );
+          return <Redirect to={SINGLE_PRODUCT} />;
         default:
           return getErrorTag(errorTag);
       }
     },
     domainState: SINGLE_PRODUCT,
+    noSuccessModal: true,
   },
 };
 
