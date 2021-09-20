@@ -20,6 +20,7 @@ import onGet from '../../actions/onGet';
 import onPost from '../../actions/onPost';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import fields from '../../utils/fields';
+import useWishlists from '../../utils/useWishlists';
 
 import Button from '../../components/Button';
 import Header from '../../templates/Header';
@@ -30,6 +31,8 @@ import RatingsStar from '../../components/RatingStars';
 import ProductCardGen from '../../templates/ProductCardGen';
 
 import cartIcon from './cart icon.svg';
+import wishlistActive from './wishlist-active.svg';
+import wishlistInActive from './wishlist-inactive.svg';
 import './singleProduct.scss';
 
 function SingleProduct(props) {
@@ -37,6 +40,7 @@ function SingleProduct(props) {
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [history, setHistory] = useState(true);
+  const [wishlists, setWishlists] = useWishlists();
 
   const refetchData = () => {
     const path = window.location.hash.split('/')[1];
@@ -159,6 +163,16 @@ function SingleProduct(props) {
       {/* product hero section */}
       <div className="singleProduct__heroSection">
         <picture>
+          <img
+            src={
+              product?.productId in wishlists
+                ? wishlistActive
+                : wishlistInActive
+            }
+            alt="heart icon"
+            className="wishlists"
+            onClick={setWishlists(product?.productId, product?.categoryName)}
+          />
           <img
             className="singleProduct__bigImage"
             src={
