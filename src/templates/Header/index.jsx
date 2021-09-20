@@ -121,7 +121,7 @@ function Header(props) {
       </div>
 
       {/* hamburgur button */}
-      {isAuth && isClient && <Hamburgur />}
+      {isAuth && <Hamburgur />}
     </header>
   );
 }
@@ -139,6 +139,3 @@ const mapStateToProps = ({
 });
 
 export default connect(mapStateToProps, { onGet })(Header);
-
-// make new modal with ok and cancel buttons and replace with hamburgur button for big screen
-// make fixed navigation bar on buttom of screen for small screen
