@@ -108,7 +108,9 @@ const errorTags = {
   logout: <Redirect to={LOGIN} />,
   invalidToken: (
     <div className="modalBg__modalMsg">
-      {picture('error')}
+      <picture>
+        <img src={`/assets/error icon.svg`} alt="error icon" />
+      </picture>
       <p>
         Something went wrong!{' '}
         <Link
@@ -130,6 +132,40 @@ const errorTags = {
         This product is already in shopping cart. <br />
         <Link to={CART}>Place order</Link>
       </p>
+    </div>
+  ),
+  'jwt expired': (
+    <div className="modalBg__modalMsg">
+      <picture>
+        <img src={`/assets/error icon.svg`} alt="error icon" />
+      </picture>
+      {queryString()['reset-password-token'] ? (
+        <p>
+          Reset password failed!{' '}
+          <Link
+            to={
+              queryString()['reset-password-token']
+                ? FORGOT_PASSWORD
+                : ACTIVATE_ACCOUNT
+            }
+          >
+            Send email again
+          </Link>
+        </p>
+      ) : (
+        <p>
+          Account activation failed!{' '}
+          <Link
+            to={
+              queryString()['reset-password-token']
+                ? FORGOT_PASSWORD
+                : ACTIVATE_ACCOUNT
+            }
+          >
+            Send email again
+          </Link>
+        </p>
+      )}
     </div>
   ),
 };
