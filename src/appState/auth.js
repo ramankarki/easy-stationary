@@ -7,6 +7,7 @@ import {
   APP_ACTIVATE_ACCOUNT_STATE,
   APP_FORGOT_PASSWORD_STATE,
   APP_RESET_PASSWORD_STATE,
+  APP_RESEND_ACTIVATION_ACCOUNT_STATE,
 } from '../actions/constants';
 import { ROOT, RESET_PASSWORD } from '../Routes/contants';
 import getErrorTag from '../utils/errorTags';
@@ -45,7 +46,7 @@ const auth = {
     },
     domainState: USER,
   },
-  [APP_ACTIVATE_ACCOUNT_STATE]: {
+  [APP_RESEND_ACTIVATION_ACCOUNT_STATE]: {
     postRoute: (redirectPath = ROOT) =>
       `/api/v1/auth/resend-activation-link?redirect=${window.location.origin}/%23${redirectPath}`,
     modalMsg: (requestStatus, errorTag) => {
