@@ -12,7 +12,6 @@ import './productCard.scss';
 
 function ProductCard(props) {
   const [wishlists, setWishlists] = useWishlists();
-  console.log(wishlists);
 
   const productCardClass = classes('productCard', {
     'productCard-small': props.small,
