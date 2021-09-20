@@ -8,6 +8,7 @@ import allProducts from './allProducts';
 import search from './search';
 import shoppingCart from './shoppingCart';
 import orders from './orders';
+import wishlists from './wishlists';
 
 const appState = {
   ...auth,
@@ -20,6 +21,7 @@ const appState = {
   ...search,
   ...shoppingCart,
   ...orders,
+  ...wishlists,
 };
 
 const getAppState = (TYPE) => ({
