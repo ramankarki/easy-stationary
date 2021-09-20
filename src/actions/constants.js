@@ -37,6 +37,7 @@ export const APP_SINGLE_CATEGORY_PRODUCTS_STATE = 'APP_MULTIPLE_PRODUCTS_STATE';
 export const APP_SHOPPING_CART_STATE = 'APP_SHOPPING_CART_STATE';
 export const APP_ORDER_STATE = 'APP_ORDER_STATE';
 export const APP_REVIEWS_STATE = 'APP_REVIEWS_STATE';
+export const APP_WISHLISTS_STATE = 'APP_WISHLISTS_STATE';
 
 /**
  * @description Domain state operation type
@@ -53,6 +54,7 @@ export const RESET = '_RESET';
 export const USER = 'USER';
 export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 export const SHOPPING_CART = 'SHOPPING_CART';
+export const WISHLISTS = 'WISHLISTS';
 
 /**
  * @description dynamic domain state
