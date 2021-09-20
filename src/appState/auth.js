@@ -46,6 +46,21 @@ const auth = {
     },
     domainState: USER,
   },
+  [APP_ACTIVATE_ACCOUNT_STATE]: {
+    getRoute: (token) => `/api/v1/auth/activate-account/${token}`,
+    modalMsg: (requestStatus, errorTag) => {
+      if (requestStatus === 'failed') return getErrorTag(errorTag);
+      return (
+        <div className="modalBg__modalMsg">
+          <picture>
+            <LazyImg src="/assets/check.svg" alt="success icon" />
+          </picture>
+          <p>Account activation successfull !</p>
+        </div>
+      );
+    },
+    domainState: USER,
+  },
   [APP_RESEND_ACTIVATION_ACCOUNT_STATE]: {
     postRoute: (redirectPath = ROOT) =>
       `/api/v1/auth/resend-activation-link?redirect=${window.location.origin}/%23${redirectPath}`,

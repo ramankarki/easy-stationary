@@ -30,6 +30,7 @@ const getAppState = (TYPE) => ({
   requestEnum: {
     pending: 'pending',
     failed: 'failed',
+    getSuccess: 'getSuccess',
     postSuccess: 'postSuccess',
     patchSuccess: 'patchSuccess',
     deleteSuccess: 'deleteSuccess',
