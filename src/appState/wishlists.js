@@ -12,6 +12,7 @@ const wishlists = {
       }
     },
     domainState: WISHLISTS,
+    noSuccessModal: true,
   },
 };
 
