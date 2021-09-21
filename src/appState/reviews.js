@@ -14,6 +14,8 @@ const reviews = {
     },
     domainState: REVIEWS,
     dynamicState: true,
+    noSuccessModal: true,
+    noReset: true,
   },
 };
 
