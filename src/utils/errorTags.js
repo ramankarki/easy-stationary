@@ -60,6 +60,14 @@ const errorTags = {
       <p>Duplicate category is not allowed!</p>
     </div>
   ),
+  alreadyExistsReviews: (
+    <div className="modalBg__modalMsg">
+      {picture('error')}
+      <p>
+        Multiple reviews are not allowed. You can edit your previous review.
+      </p>
+    </div>
+  ),
   activationTokenExpired: 'activationTokenExpired',
   resetPasswordTokenExpired: (
     <div className="modalBg__modalMsg">
