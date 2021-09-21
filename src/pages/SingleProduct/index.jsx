@@ -148,6 +148,8 @@ function SingleProduct(props) {
   if (!props.requestStatus) {
     if (props.APP_REVIEWS_STATE?.requestStatus) {
       props = { ...props, ...props.APP_REVIEWS_STATE };
+      if (props.errorTag === 'alreadyExists')
+        props = { ...props, errorTag: 'alreadyExistsReviews' };
       APP_STATE = APP_REVIEWS_STATE;
     } else {
       props = { ...props, ...props.APP_SHOPPING_CART_STATE };
