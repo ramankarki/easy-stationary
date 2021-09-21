@@ -28,6 +28,7 @@ const onPost =
       resetUIState[fieldName] = { ...uiState[fieldName], value: '' };
 
       let { value, dbProp } = uiState[fieldName];
+      value = value.trim ? value.trim() : value;
       const checkValidation = !uiState[fieldName].validate(value, password);
 
       newUIState[fieldName] = {
