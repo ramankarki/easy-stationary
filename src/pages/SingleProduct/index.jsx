@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
 import {
@@ -21,6 +21,7 @@ import onPost from '../../actions/onPost';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import fields from '../../utils/fields';
 import useWishlists from '../../utils/useWishlists';
+import { useIntersection } from '../../utils/useIntersection';
 
 import Button from '../../components/Button';
 import Header from '../../templates/Header';
@@ -33,6 +34,8 @@ import ProductCardGen from '../../templates/ProductCardGen';
 import cartIcon from './cart icon.svg';
 import wishlistActive from './wishlist-active.svg';
 import wishlistInActive from './wishlist-inactive.svg';
+import inActive from './inactive-star.svg';
+import active from './active-star.svg';
 import './singleProduct.scss';
 
 function SingleProduct(props) {
@@ -42,11 +45,21 @@ function SingleProduct(props) {
   const [history, setHistory] = useState(true);
   const [wishlists, setWishlists] = useWishlists();
 
+  // review states
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('-date');
+  const [showSpinner, setShowSpinner] = useState(true);
+
+  let spinnerRef = useRef();
+
   const refetchData = () => {
+    document.documentElement.scrollTop = 0;
     const path = window.location.hash.split('/')[1];
     if (!path || /auth|admin|landing-page|search|cart|dashboard/.test(path))
       return;
     setHistory(!history);
+    setPage(1);
+    setShowSpinner(true);
   };
 
   useEffect(() => {
@@ -143,6 +156,27 @@ function SingleProduct(props) {
   const onAddToCart = () => {
     props.onPost(APP_SHOPPING_CART_STATE, UI_SHOPPING_CART_STATE);
   };
+
+  const loadAllReviews = () => {
+    if (showSpinner) {
+      props.onGet(
+        APP_REVIEWS_STATE,
+        (data) => {
+          setShowSpinner(!!data.reviews.length);
+          setPage(page + 1);
+        },
+        product?.productId,
+        page,
+        sort
+      );
+    }
+  };
+
+  useIntersection(
+    spinnerRef,
+    loadAllReviews,
+    props.reviews?.length ? props.reviews : history
+  );
 
   let APP_STATE = APP_SINGLE_PRODUCT_STATE;
   if (!props.requestStatus) {
@@ -319,11 +353,58 @@ function SingleProduct(props) {
             ></textarea>
             <Button value="Submit" />
           </form>
+
+          {/* reviews cards */}
+          <div className="reviewsCards">
+            {props.reviews?.map((review) => (
+              <div key={review} className="reviewsCards__card">
+                <div className="reviewsCards__cardHead">
+                  <span>
+                    {review.firstName} {review.lastName}
+                  </span>{' '}
+                  <div className="ratings">
+                    {Array(5)
+                      .fill(0)
+                      .map((val, index) => {
+                        let src = index < review.ratings ? active : inActive;
+                        return (
+                          <img
+                            key={src + 'reviews' + index}
+                            src={src}
+                            alt="star"
+                          />
+                        );
+                      })}
+                  </div>
+                  <Button
+                    style={{ marginLeft: 'auto' }}
+                    value="Edit"
+                    small="true"
+                  />
+                  <Button value="Delete" small="true" danger="true" />
+                </div>
+                <p className="reviewsCards__cardDate">
+                  {new Date(review.date).toLocaleDateString('us', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </p>
+                <p className="reviewsCards__cardDesc">{review.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {showSpinner && (
+            <div ref={spinnerRef} className="customerReviews__spinner">
+              <SpinnerLoading />
+            </div>
+          )}
         </div>
       </section>
 
       {/* modal */}
-      {props.requestStatus && APP_STATE !== APP_SHOPPING_CART_STATE && (
+      {props.requestStatus && (
         <RequestStatusModalBg
           requestStatus={props.requestStatus}
           APP_STATE={APP_STATE}
@@ -346,6 +427,7 @@ const mapStateToProps = ({
   UI_REVIEWS_STATE,
   APP_REVIEWS_STATE,
   APP_SHOPPING_CART_STATE,
+  REVIEWS,
 }) => ({
   ...SINGLE_PRODUCT,
   ...APP_SINGLE_PRODUCT_STATE,
@@ -353,6 +435,7 @@ const mapStateToProps = ({
   ...UI_REVIEWS_STATE,
   APP_REVIEWS_STATE,
   APP_SHOPPING_CART_STATE,
+  ...REVIEWS,
 });
 
 export default connect(mapStateToProps, { onGet, onChangeAndBlur, onPost })(

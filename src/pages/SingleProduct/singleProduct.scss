@@ -244,4 +244,43 @@ hr {
       margin: 1.5rem auto 0;
     }
   }
+
+  &__spinner {
+    padding-bottom: 2rem;
+  }
+}
+
+.reviewsCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 5rem 0;
+
+  &__card {
+    border: 1px solid $light-gray-border;
+    padding: 1rem;
+  }
+
+  &__cardHead {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      color: $primary-color;
+      font-weight: $medium;
+      font-size: $small-text;
+    }
+  }
+
+  &__cardDate {
+    margin: 0.7rem 0;
+    color: $text-color;
+    font-size: $small-text;
+  }
+
+  &__cardDesc {
+    margin-top: 1rem;
+    color: $text-color;
+  }
 }
