@@ -13,7 +13,7 @@ const onGet =
   (APP_STATE, callbackFunc = () => {}, ...args) =>
   (dispatch, getState) => {
     const appState = getState()[APP_STATE];
-    const { domainState, dynamicState, noSuccessModal } = appState;
+    const { domainState, dynamicState, noGetSuccessModal } = appState;
 
     dispatch({
       type: APP_STATE,
@@ -44,7 +44,7 @@ const onGet =
             type: APP_STATE,
             payload: {
               ...appState,
-              requestStatus: noSuccessModal
+              requestStatus: noGetSuccessModal
                 ? null
                 : appState.requestEnum.getSuccess,
             },

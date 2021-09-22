@@ -8,7 +8,7 @@ const onPost =
   (dispatch, getState) => {
     const uiState = getState()[UI_STATE_TYPE];
     const appState = getState()[APP_STATE_TYPE];
-    const { domainState, dynamicState, noSuccessModal, noReset } = appState;
+    const { domainState, dynamicState, noPostSuccessModal, noReset } = appState;
 
     const password = getState()[UI_STATE_TYPE]['Password']?.value;
 
@@ -68,7 +68,7 @@ const onPost =
               type: APP_STATE_TYPE,
               payload: {
                 ...appState,
-                requestStatus: noSuccessModal
+                requestStatus: noPostSuccessModal
                   ? null
                   : appState.requestEnum.postSuccess,
               },

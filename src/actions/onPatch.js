@@ -8,7 +8,8 @@ const onPatch =
   (dispatch, getState) => {
     const uiState = getState()[UI_STATE_TYPE];
     const appState = getState()[APP_STATE_TYPE];
-    const { domainState, dynamicState, noSuccessModal, noReset } = appState;
+    const { domainState, dynamicState, noPatchSuccessModal, noReset } =
+      appState;
 
     const newPassword = getState()[UI_STATE_TYPE]['New password']?.value;
 
@@ -73,7 +74,7 @@ const onPatch =
               type: APP_STATE_TYPE,
               payload: {
                 ...appState,
-                requestStatus: noSuccessModal
+                requestStatus: noPatchSuccessModal
                   ? null
                   : appState.requestEnum.patchSuccess,
               },
