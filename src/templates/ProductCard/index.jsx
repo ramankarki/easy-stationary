@@ -42,6 +42,14 @@ function ProductCard(props) {
         <h3>{props.productName}</h3>
         {props.quantity && <span>Quantity: {props.quantity}</span>}
         <p>Rs. {props.price}</p>
+
+        {props.reviewId && (
+          <>
+            <hr />
+            <p className="user-ratings">Ratings: {props.reviewRatings}</p>
+            <p className="user-description">Message: {props.description}</p>
+          </>
+        )}
       </span>
     </Link>
   );

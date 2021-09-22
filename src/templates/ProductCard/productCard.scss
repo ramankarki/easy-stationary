@@ -65,6 +65,17 @@
     }
   }
 
+  hr {
+    margin: 0 1rem;
+  }
+
+  .user-ratings,
+  .user-description {
+    font-size: $small-text;
+    font-weight: $light;
+    color: $text-color;
+  }
+
   &-small {
     h3,
     p {
