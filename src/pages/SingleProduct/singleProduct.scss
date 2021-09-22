@@ -247,6 +247,11 @@ hr {
 
   &__spinner {
     padding-bottom: 2rem;
+    display: none;
+
+    &-show {
+      display: block;
+    }
   }
 }
 
@@ -254,7 +259,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 5rem 0;
+  padding: 3rem 0;
 
   &__card {
     border: 1px solid $light-gray-border;
