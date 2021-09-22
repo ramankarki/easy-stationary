@@ -11,7 +11,7 @@ const singleCategoryProducts = {
     },
     domainState: MULTIPLE_PRODUCTS,
     dynamicState: true,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
   },
 };
 

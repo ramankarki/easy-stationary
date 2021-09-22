@@ -30,6 +30,8 @@ const shoppingCart = {
     },
     domainState: SHOPPING_CART,
     noReset: true,
+    noGetSuccessModal: true,
+    noDeleteSuccessModal: true,
   },
 };
 

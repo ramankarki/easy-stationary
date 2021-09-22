@@ -20,7 +20,9 @@ const orders = {
     },
     domainState: ORDERS,
     dynamicState: true,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
+    noPostSuccessModal: true,
+    noPatchSuccessModal: true,
     noReset: true,
   },
 };

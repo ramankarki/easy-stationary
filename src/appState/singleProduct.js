@@ -22,7 +22,8 @@ const singleProduct = {
       }
     },
     domainState: SINGLE_PRODUCT,
-    noSuccessModal: true,
+    noPostSuccessModal: true,
+    noGetSuccessModal: true,
   },
 };
 

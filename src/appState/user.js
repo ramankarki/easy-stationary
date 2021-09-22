@@ -20,7 +20,7 @@ const user = {
       }
     },
     domainState: USER,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
   },
   [APP_USER_EMAIL_UPDATE_STATE]: {
     postRoute: () =>

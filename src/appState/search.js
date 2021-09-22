@@ -6,7 +6,7 @@ const search = {
       `/api/v1/all-products/search?q=${q}&page=${page}&limit=9&sort=${sort}`,
     domainState: MULTIPLE_PRODUCTS,
     dynamicState: true,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
   },
 };
 

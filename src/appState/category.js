@@ -14,7 +14,9 @@ const category = {
     },
     domainState: CATEGORY,
     dynamicState: true,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
+    noPostSuccessModal: true,
+    noDeleteSuccessModal: true,
   },
 };
 

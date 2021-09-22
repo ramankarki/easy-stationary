@@ -4,6 +4,8 @@ import getErrorTag from '../utils/errorTags';
 const reviews = {
   [APP_REVIEWS_STATE]: {
     postRoute: () => `/api/v1/reviews`,
+    getRoute: (productId, page, sort) =>
+      `/api/v1/reviews/product/${productId}?page=${page}&limit=9&sort=${sort}`,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
         case 'postSuccess':
@@ -14,7 +16,9 @@ const reviews = {
     },
     domainState: REVIEWS,
     dynamicState: true,
-    noSuccessModal: true,
+    noGetSuccessModal: true,
+    noPostSuccessModal: true,
+    noPatchSuccessModal: true,
     noReset: true,
   },
 };
