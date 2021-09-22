@@ -260,6 +260,8 @@ hr {
   flex-direction: column;
   gap: 1.5rem;
   padding: 3rem 0;
+  margin: 0 auto;
+  max-width: 500px;
 
   &__card {
     border: 1px solid $light-gray-border;
@@ -270,18 +272,20 @@ hr {
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  &__cardInfo {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    color: $text-color;
+    font-size: $small-text;
 
     span {
       color: $primary-color;
       font-weight: $medium;
       font-size: $small-text;
     }
-  }
-
-  &__cardDate {
-    margin: 0.7rem 0;
-    color: $text-color;
-    font-size: $small-text;
   }
 
   &__cardDesc {

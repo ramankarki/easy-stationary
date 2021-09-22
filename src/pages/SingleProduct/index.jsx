@@ -366,9 +366,6 @@ function SingleProduct(props) {
             {props.reviews?.map((review) => (
               <div key={review.userId} className="reviewsCards__card">
                 <div className="reviewsCards__cardHead">
-                  <span>
-                    {review.firstName} {review.lastName}
-                  </span>{' '}
                   <div className="ratings">
                     {Array(5)
                       .fill(0)
@@ -386,20 +383,24 @@ function SingleProduct(props) {
                   {_id === review.userId && (
                     <Button
                       style={{ marginLeft: 'auto' }}
-                      value="Edit"
+                      value="Delete"
                       small="true"
+                      danger="true"
                     />
                   )}
-                  {_id === review.userId && (
-                    <Button value="Delete" small="true" danger="true" />
-                  )}
                 </div>
-                <p className="reviewsCards__cardDate">
-                  {new Date(review.date).toLocaleDateString('us', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
+                <p className="reviewsCards__cardInfo">
+                  <span>
+                    {review.firstName} {review.lastName}
+                  </span>
+                  -
+                  <p>
+                    {new Date(review.date).toLocaleDateString('us', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </p>
                 </p>
                 <p className="reviewsCards__cardDesc">{review.description}</p>
               </div>
