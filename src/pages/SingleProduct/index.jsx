@@ -18,6 +18,7 @@ import HOFdomainReducer from '../../reducers/HOFdomainReducer';
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import onPost from '../../actions/onPost';
+import onDelete from '../../actions/onDelete';
 import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import fields from '../../utils/fields';
 import useWishlists from '../../utils/useWishlists';
@@ -159,6 +160,15 @@ function SingleProduct(props) {
   const onAddToCart = () => {
     props.onPost(APP_SHOPPING_CART_STATE, UI_SHOPPING_CART_STATE);
   };
+
+  const onReviewDelete = (obj) => () =>
+    props.onDelete(
+      APP_REVIEWS_STATE,
+      obj,
+      obj.categoryName,
+      obj.productId,
+      obj.ratings
+    );
 
   const loadAllReviews = () => {
     if (showSpinner) {
@@ -386,6 +396,7 @@ function SingleProduct(props) {
                       value="Delete"
                       small="true"
                       danger="true"
+                      onClick={onReviewDelete(review)}
                     />
                   )}
                 </div>
@@ -450,6 +461,9 @@ const mapStateToProps = ({
   ...USER,
 });
 
-export default connect(mapStateToProps, { onGet, onChangeAndBlur, onPost })(
-  SingleProduct
-);
+export default connect(mapStateToProps, {
+  onGet,
+  onChangeAndBlur,
+  onPost,
+  onDelete,
+})(SingleProduct);
