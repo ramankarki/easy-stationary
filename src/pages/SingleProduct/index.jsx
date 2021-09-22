@@ -167,7 +167,8 @@ function SingleProduct(props) {
       obj,
       obj.categoryName,
       obj.productId,
-      obj.ratings
+      obj.ratings,
+      obj.reviewId
     );
 
   const loadAllReviews = () => {
@@ -347,29 +348,31 @@ function SingleProduct(props) {
           </div>
 
           {/* reviews form */}
-          <form
-            onSubmit={onReviewSubmitHandler}
-            className="customerReviews__form"
-          >
-            <h3>Give feedback</h3>
-            <div className="customerReviews__form__emojis">
-              {['☹️', '😐', '🙂', '😊', '😍'].map((emoji, index) => (
-                <span
-                  key={emoji}
-                  onClick={onSelectRatingEmoji(index + 1)}
-                  style={Ratings?.value === index + 1 ? { opacity: '1' } : {}}
-                >
-                  {emoji}
-                </span>
-              ))}
-            </div>
-            <textarea
-              onChange={onTextAreaChange}
-              value={Description?.value}
-              placeholder="Leave you message..."
-            ></textarea>
-            <Button value="Submit" />
-          </form>
+          {_id && (
+            <form
+              onSubmit={onReviewSubmitHandler}
+              className="customerReviews__form"
+            >
+              <h3>Give feedback</h3>
+              <div className="customerReviews__form__emojis">
+                {['☹️', '😐', '🙂', '😊', '😍'].map((emoji, index) => (
+                  <span
+                    key={emoji}
+                    onClick={onSelectRatingEmoji(index + 1)}
+                    style={Ratings?.value === index + 1 ? { opacity: '1' } : {}}
+                  >
+                    {emoji}
+                  </span>
+                ))}
+              </div>
+              <textarea
+                onChange={onTextAreaChange}
+                value={Description?.value}
+                placeholder="Leave you message..."
+              ></textarea>
+              <Button value="Submit" />
+            </form>
+          )}
 
           {/* reviews cards */}
           <div className="reviewsCards">
