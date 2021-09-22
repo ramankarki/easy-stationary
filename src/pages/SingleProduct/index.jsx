@@ -40,7 +40,9 @@ import active from './active-star.svg';
 import './singleProduct.scss';
 
 function SingleProduct(props) {
-  const { product, products, Ratings, Description } = props;
+  const { product, products, Ratings, Description, user } = props;
+
+  const { _id } = user || {};
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [history, setHistory] = useState(true);
@@ -362,7 +364,7 @@ function SingleProduct(props) {
           {/* reviews cards */}
           <div className="reviewsCards">
             {props.reviews?.map((review) => (
-              <div key={review} className="reviewsCards__card">
+              <div key={review.userId} className="reviewsCards__card">
                 <div className="reviewsCards__cardHead">
                   <span>
                     {review.firstName} {review.lastName}
@@ -381,12 +383,16 @@ function SingleProduct(props) {
                         );
                       })}
                   </div>
-                  <Button
-                    style={{ marginLeft: 'auto' }}
-                    value="Edit"
-                    small="true"
-                  />
-                  <Button value="Delete" small="true" danger="true" />
+                  {_id === review.userId && (
+                    <Button
+                      style={{ marginLeft: 'auto' }}
+                      value="Edit"
+                      small="true"
+                    />
+                  )}
+                  {_id === review.userId && (
+                    <Button value="Delete" small="true" danger="true" />
+                  )}
                 </div>
                 <p className="reviewsCards__cardDate">
                   {new Date(review.date).toLocaleDateString('us', {
@@ -431,6 +437,7 @@ const mapStateToProps = ({
   APP_REVIEWS_STATE,
   APP_SHOPPING_CART_STATE,
   REVIEWS,
+  USER,
 }) => ({
   ...SINGLE_PRODUCT,
   ...APP_SINGLE_PRODUCT_STATE,
@@ -439,6 +446,7 @@ const mapStateToProps = ({
   APP_REVIEWS_STATE,
   APP_SHOPPING_CART_STATE,
   ...REVIEWS,
+  ...USER,
 });
 
 export default connect(mapStateToProps, { onGet, onChangeAndBlur, onPost })(
