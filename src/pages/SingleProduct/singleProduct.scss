@@ -281,7 +281,7 @@ hr {
     color: $text-color;
     font-size: $small-text;
 
-    span {
+    &__name {
       color: $primary-color;
       font-weight: $medium;
       font-size: $small-text;

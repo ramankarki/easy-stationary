@@ -374,7 +374,7 @@ function SingleProduct(props) {
           {/* reviews cards */}
           <div className="reviewsCards">
             {props.reviews?.map((review) => (
-              <div key={review.userId} className="reviewsCards__card">
+              <div key={review._id} className="reviewsCards__card">
                 <div className="reviewsCards__cardHead">
                   <div className="ratings">
                     {Array(5)
@@ -401,17 +401,17 @@ function SingleProduct(props) {
                   )}
                 </div>
                 <p className="reviewsCards__cardInfo">
-                  <span>
+                  <span className="reviewsCards__cardInfo__name">
                     {review.firstName} {review.lastName}
                   </span>
                   -
-                  <p>
+                  <span>
                     {new Date(review.date).toLocaleDateString('us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',
                     })}
-                  </p>
+                  </span>
                 </p>
                 <p className="reviewsCards__cardDesc">{review.description}</p>
               </div>
