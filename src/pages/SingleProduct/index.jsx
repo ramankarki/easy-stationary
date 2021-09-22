@@ -348,7 +348,7 @@ function SingleProduct(props) {
           </div>
 
           {/* reviews form */}
-          {_id && (
+          {props.user?.role === 'client' && (
             <form
               onSubmit={onReviewSubmitHandler}
               className="customerReviews__form"
