@@ -22,6 +22,7 @@ import onChangeAndBlur from '../../actions/onChangeAndBlur';
 import fields from '../../utils/fields';
 import useWishlists from '../../utils/useWishlists';
 import { useIntersection } from '../../utils/useIntersection';
+import classes from '../../utils/classes';
 
 import Button from '../../components/Button';
 import Header from '../../templates/Header';
@@ -165,7 +166,7 @@ function SingleProduct(props) {
           setShowSpinner(!!data.reviews.length);
           setPage(page + 1);
         },
-        product?.productId,
+        window.location.hash.split('/').slice(1)[1],
         page,
         sort
       );
@@ -190,6 +191,10 @@ function SingleProduct(props) {
       APP_STATE = APP_SHOPPING_CART_STATE;
     }
   }
+
+  const spinnerClass = classes('customerReviews__spinner', {
+    'customerReviews__spinner-show': showSpinner,
+  });
 
   return (
     <div className="singleProduct">
@@ -395,11 +400,9 @@ function SingleProduct(props) {
             ))}
           </div>
 
-          {showSpinner && (
-            <div ref={spinnerRef} className="customerReviews__spinner">
-              <SpinnerLoading />
-            </div>
-          )}
+          <div ref={spinnerRef} className={spinnerClass}>
+            <SpinnerLoading />
+          </div>
         </div>
       </section>
 
