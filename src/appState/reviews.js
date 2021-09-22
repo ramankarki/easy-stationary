@@ -8,8 +8,8 @@ const reviews = {
       userReview
         ? `/api/v1/reviews/user?page=${page}&limit=9&sort=${sort}`
         : `/api/v1/reviews/product/${productId}?page=${page}&limit=9&sort=${sort}`,
-    deleteRoute: (categoryName, productId, ratings) =>
-      `/api/v1/reviews/${categoryName}/${productId}/${ratings}`,
+    deleteRoute: (categoryName, productId, ratings, reviewId) =>
+      `/api/v1/reviews/${categoryName}/${productId}/${ratings}/${reviewId}`,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
         case 'postSuccess':
