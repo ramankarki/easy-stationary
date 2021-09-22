@@ -10,7 +10,7 @@ function ProductCardGen(props) {
 
         return (
           <ProductCard
-            key={product.productId}
+            key={product._id}
             {...product}
             imageUrl={breakUrl}
             wishlists="true"
