@@ -20,7 +20,12 @@ const addNewProduct = () => (dispatch, getState) => {
 
   for (let field in uiState) {
     if (field.includes('image') && uiState[field].src) {
-      data['imageUrl'] = [...data['imageUrl'], uiState[field].src];
+      // transform image url
+      let url = uiState[field].src;
+      const breakUrl = url.split('upload');
+      url = breakUrl[0] + 'upload/ar_3:2,c_fill' + breakUrl[1];
+
+      data['imageUrl'] = [...data['imageUrl'], url];
     }
 
     // other fields
@@ -42,7 +47,8 @@ const addNewProduct = () => (dispatch, getState) => {
     payload: { ...appState, requestStatus: appState.requestEnum.pending },
   });
 
-  API.post(appState.postRoute(data.categoryName || null), data)
+  API()
+    .post(appState.postRoute(data.categoryName || null), data)
     .then(({ data }) =>
       batch(() => {
         // dispatch USER domain data
