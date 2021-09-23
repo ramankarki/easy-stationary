@@ -6,7 +6,7 @@ import {
   DASHBOARD_SETTINGS,
 } from '../../Routes/contants';
 
-const aside = [
+const asideData = [
   {
     value: 'Dashboard',
     path: DASHBOARD,
@@ -38,5 +38,9 @@ const aside = [
     private: true,
   },
 ];
+
+// for mobile navigation
+const aside = (isAuth = true) =>
+  asideData.filter((button) => button.private === isAuth);
 
 export default aside;
