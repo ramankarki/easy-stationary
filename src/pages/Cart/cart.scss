@@ -136,14 +136,14 @@
 }
 
 .noProductsMsg {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
   margin-top: 3rem;
   font-size: $large-text;
   color: $primary-color;
+  text-align: center;
+  line-height: 2.5rem;
 
   a {
+    display: inline;
     b {
       font-weight: $medium;
       color: $primary-color;
