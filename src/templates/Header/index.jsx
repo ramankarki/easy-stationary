@@ -25,6 +25,7 @@ import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import getQueryString from '../../utils/getQueryString';
 import dropdownData from './dropdownData';
+import dashboardLinks from '../ClientDashboard/asideButtonsData';
 
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
@@ -227,20 +228,22 @@ function Header(props) {
 
           {showMobileDropdown && (
             <div className="header__mobileDropdownBox">
-              {dropdownData(isAuth).map(({ value, path, iconsrc }) => (
-                <LinkButton
-                  key={iconsrc + value}
-                  to={path}
-                  iconsrc={iconsrc}
-                  alt={iconsrc}
-                  nobg={currentPath !== path ? 'true' : ''}
-                  bgonhover={'true'}
-                  style={{ padding: '1rem', fontSize: '.9rem' }}
-                  onClick={value === 'Logout' ? logout : () => {}}
-                >
-                  {value}
-                </LinkButton>
-              ))}
+              {[...dashboardLinks(isAuth), ...dropdownData(isAuth)].map(
+                ({ value, path, iconsrc }) => (
+                  <LinkButton
+                    key={iconsrc + value}
+                    to={path}
+                    iconsrc={iconsrc}
+                    alt={iconsrc}
+                    nobg={currentPath !== path ? 'true' : ''}
+                    bgonhover={'true'}
+                    style={{ padding: '1rem', fontSize: '.9rem' }}
+                    onClick={value === 'Logout' ? logout : () => {}}
+                  >
+                    {value}
+                  </LinkButton>
+                )
+              )}
             </div>
           )}
         </div>
