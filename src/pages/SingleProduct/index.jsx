@@ -132,13 +132,6 @@ function SingleProduct(props) {
     };
   }, [history]);
 
-  // convert cloudinary url to transformed url to get transformed image
-  product?.imageUrl.forEach((url, index) => {
-    const breakUrl = product?.imageUrl[index].split('upload');
-    product.imageUrl[index] =
-      breakUrl[0] + 'upload/ar_3:2,c_fill' + breakUrl[1];
-  });
-
   // no of people rated
   const noOfPeopleRated = product
     ? Object.values(product.ratings).reduce((acc, val) => acc + val, 0)
