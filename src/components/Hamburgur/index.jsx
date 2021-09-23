@@ -1,14 +1,8 @@
-import { useState } from 'react';
-
 import classes from '../../utils/classes';
 
 import './hamburgur.scss';
 
-function Hamburgur() {
-  const [active, setActive] = useState(false);
-
-  const onClickHandler = () => setActive(!active);
-
+function Hamburgur({ active, onClickHandler }) {
   const topClass = classes('AnimatedBtn-Top', {
     'AnimatedBtn-TopClick': active,
   });
