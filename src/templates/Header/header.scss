@@ -83,4 +83,46 @@
     width: 200px;
     box-shadow: $box-shadow-light;
   }
+
+  &__mobileDropdown {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid $light-gray-border;
+    z-index: 99;
+
+    @media (min-width: $gt-medium-screen) {
+      display: none;
+    }
+
+    &__wrapper {
+      display: flex;
+      position: relative;
+
+      & > * {
+        width: 100%;
+      }
+    }
+
+    .hamburgur-show {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > * {
+        width: 20px;
+        display: block;
+      }
+    }
+  }
+
+  &__mobileDropdownBox {
+    position: absolute;
+    right: 0;
+    bottom: 3.7rem;
+    width: 50%;
+    border: 1px solid $light-gray-border;
+  }
 }

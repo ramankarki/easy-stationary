@@ -19,6 +19,7 @@ import {
   ADMIN,
   DASHBOARD,
   SEARCH,
+  ROOT,
 } from '../../Routes/contants';
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
@@ -40,6 +41,7 @@ import './header.scss';
 
 function Header(props) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showMobileDropdown, setShowMobileDropdown] = useState(false);
 
   const user = props.USER?.user;
   const isAuth = !!user;
@@ -105,6 +107,8 @@ function Header(props) {
     setShowDropdown(!showDropdown);
   };
 
+  const onShowMobileDropdown = () => setShowMobileDropdown(!showMobileDropdown);
+
   const logout = () => {
     setShowDropdown(false);
     localStorage.removeItem('USER');
@@ -169,7 +173,7 @@ function Header(props) {
 
       {showDropdown && (
         <div className="header__dropdown">
-          {dropdownData.map(({ value, path, iconsrc }) => (
+          {dropdownData(isAuth).map(({ value, path, iconsrc }) => (
             <LinkButton
               key={iconsrc + value}
               to={path}
@@ -185,6 +189,62 @@ function Header(props) {
           ))}
         </div>
       )}
+
+      <div className="header__mobileDropdown">
+        <div className="header__mobileDropdown__wrapper">
+          <LinkButton
+            to={ROOT}
+            iconsrc={'/assets/overview icon.svg'}
+            alt={'overview icon'}
+            nobg={currentPath !== ROOT ? 'true' : ''}
+            bgonhover={'true'}
+            style={{ padding: '1.3rem', fontSize: '.9rem' }}
+            center="true"
+          >
+            Home
+          </LinkButton>
+
+          {isAuth && (
+            <LinkButton
+              to={CART}
+              iconsrc={'/assets/order icon.svg'}
+              alt={'overview icon'}
+              nobg={currentPath !== CART ? 'true' : ''}
+              bgonhover={'true'}
+              style={{ padding: '1.3rem', fontSize: '.9rem' }}
+              center="true"
+            >
+              Cart
+            </LinkButton>
+          )}
+
+          <div className="hamburgur-show">
+            <Hamburgur
+              active={showMobileDropdown}
+              onClickHandler={onShowMobileDropdown}
+            />
+          </div>
+
+          {showMobileDropdown && (
+            <div className="header__mobileDropdownBox">
+              {dropdownData(isAuth).map(({ value, path, iconsrc }) => (
+                <LinkButton
+                  key={iconsrc + value}
+                  to={path}
+                  iconsrc={iconsrc}
+                  alt={iconsrc}
+                  nobg={currentPath !== path ? 'true' : ''}
+                  bgonhover={'true'}
+                  style={{ padding: '1rem', fontSize: '.9rem' }}
+                  onClick={value === 'Logout' ? logout : () => {}}
+                >
+                  {value}
+                </LinkButton>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* modal */}
       {requestStatus && (
