@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import {
@@ -23,6 +23,7 @@ import {
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import getQueryString from '../../utils/getQueryString';
+import dropdownData from './dropdownData';
 
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
@@ -38,6 +39,8 @@ import userIcon from './user icon.svg';
 import './header.scss';
 
 function Header(props) {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const user = props.USER?.user;
   const isAuth = !!user;
   const isClient = user?.role === 'client';
@@ -98,6 +101,18 @@ function Header(props) {
     }
   };
 
+  const onClickHandler = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const logout = () => {
+    setShowDropdown(false);
+    localStorage.removeItem('USER');
+    ejectReducer('USER');
+  };
+
+  const currentPath = window.location.hash.slice(1);
+
   return (
     <header className="header">
       <picture className="header__logo">
@@ -148,7 +163,28 @@ function Header(props) {
       </div>
 
       {/* hamburgur button */}
-      {isAuth && <Hamburgur />}
+      {isAuth && (
+        <Hamburgur active={showDropdown} onClickHandler={onClickHandler} />
+      )}
+
+      {showDropdown && (
+        <div className="header__dropdown">
+          {dropdownData.map(({ value, path, iconsrc }) => (
+            <LinkButton
+              key={iconsrc + value}
+              to={path}
+              iconsrc={iconsrc}
+              alt={iconsrc}
+              nobg={currentPath !== path ? 'true' : ''}
+              bgonhover={'true'}
+              style={{ padding: '1rem', fontSize: '.9rem' }}
+              onClick={value === 'Logout' ? logout : () => {}}
+            >
+              {value}
+            </LinkButton>
+          ))}
+        </div>
+      )}
 
       {/* modal */}
       {requestStatus && (
