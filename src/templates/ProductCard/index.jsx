@@ -34,7 +34,7 @@ function ProductCard(props) {
               alt="heart icon"
             />
           )}
-          <img className="product" src={props.imageUrl} alt="product" />
+          <img className="product" src={props.imageUrl[0]} alt="product" />
         </picture>
         {props.ratings && (
           <RatingStars ratings={props.ratings} peopleNumber="true" />
