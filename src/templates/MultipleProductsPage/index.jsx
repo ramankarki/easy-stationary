@@ -114,7 +114,7 @@ function MultipleProductsPage(props) {
     0
   );
 
-  if (categories && categories[0].categoryName !== 'All products')
+  if (categories && categories[0]?.categoryName !== 'All products')
     categories?.unshift({ noOfProducts, categoryName: 'All products' });
 
   const currentCategory = window.location.hash.split('/')[1] || 'All products';
