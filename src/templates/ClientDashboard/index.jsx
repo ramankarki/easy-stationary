@@ -21,7 +21,7 @@ function ClientDashboard(props) {
 
       <div className="client__mainCover">
         <div className="client__aside">
-          {asideButtonData.map(({ iconsrc, value, path }) => (
+          {asideButtonData().map(({ iconsrc, value, path }) => (
             <LinkButton
               key={iconsrc}
               to={path}
