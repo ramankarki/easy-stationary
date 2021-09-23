@@ -15,3 +15,4 @@ https://github.com/mohamedsamara/mern-ecommerce/blob/master/client/app/container
 - add product to wishlist on heart button click
 - eject reducers on unmount.
 - store transformed imageUrl in database instead of transforming before pass to img.
+- remember to fix onAddNewProduct.js at last
