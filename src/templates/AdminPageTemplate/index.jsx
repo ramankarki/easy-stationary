@@ -30,7 +30,7 @@ function Admin(props) {
               alt={iconsrc}
               nobg={currentPath !== path ? 'true' : ''}
               bgonhover={'true'}
-              style={{ padding: '1rem', fontSize: '.9rem' }}
+              style={{ padding: '1.3rem', fontSize: '.9rem' }}
             >
               {value}
             </LinkButton>
