@@ -172,6 +172,10 @@ const fieldsObject = {
     validate: () => true,
     value: 'Delivered',
   },
+  UpdateEmail: {
+    dbProp: 'email',
+    validate: () => true,
+  },
 };
 
 const fields = (...args) => {
