@@ -17,7 +17,7 @@ function UpdateEmailPassword(props) {
   const { requestStatus, modalMsg, errorTag } = appState;
 
   for (let field in { ...fields }) {
-    fields[field].value = user[fields[field].dbProp];
+    if (user) fields[field].value = user[fields[field].dbProp];
   }
 
   useEffect(() => {
