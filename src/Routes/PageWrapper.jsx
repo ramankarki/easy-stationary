@@ -31,7 +31,7 @@ function Wrapper(props) {
     if (!user || Date.now() > +user.expiryDate) return <Redirect to={LOGIN} />;
 
     // if page is accessible by user type.
-    if (role === user.user.role) return <Redirect to={ROOT} />;
+    if (role !== user.user.role) return <Redirect to={ROOT} />;
   }
 
   return component;
