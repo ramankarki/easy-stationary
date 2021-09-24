@@ -8,6 +8,8 @@ import {
   SHOPPING_CART,
   APP_ACTIVATE_ACCOUNT_STATE,
   USER,
+  APP_USER_EMAIL_UPDATE_STATE,
+  UI_USER_EMAIL_UPDATE_STATE,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
@@ -26,6 +28,7 @@ import onGet from '../../actions/onGet';
 import getQueryString from '../../utils/getQueryString';
 import dropdownData from './dropdownData';
 import dashboardLinks from '../ClientDashboard/asideButtonsData';
+import onPatch from '../../actions/onPatch';
 
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
@@ -48,17 +51,31 @@ function Header(props) {
   const isAuth = !!user;
   const isClient = user?.role === 'client';
 
-  const { requestStatus, modalMsg, errorTag } =
-    props.APP_ACTIVATE_ACCOUNT_STATE || {};
+  if (props.APP_ACTIVATE_ACCOUNT_STATE?.requestStatus) {
+    props = {
+      ...props,
+      ...props.APP_ACTIVATE_ACCOUNT_STATE,
+      APP_STATE: APP_ACTIVATE_ACCOUNT_STATE,
+    };
+  } else {
+    props = props.APP_USER_EMAIL_UPDATE_STATE
+      ? {
+          ...props,
+          ...props.APP_USER_EMAIL_UPDATE_STATE,
+          APP_STATE: APP_USER_EMAIL_UPDATE_STATE,
+        }
+      : props;
+  }
 
   const fieldsObj = fields('Search');
+
   useEffect(() => {
     injectReducer(UI_SEARCH_STATE, HOFreducer(UI_SEARCH_STATE, fieldsObj));
+    injectReducer(USER, HOFreducer(USER, {}));
 
     const query = getQueryString();
 
     if (query['activate-account-token']) {
-      injectReducer(USER, HOFreducer(USER, {}));
       injectReducer(
         APP_ACTIVATE_ACCOUNT_STATE,
         HOFreducer(
@@ -69,9 +86,41 @@ function Header(props) {
       props.onGet(APP_ACTIVATE_ACCOUNT_STATE, () => {}, query.token);
     }
 
+    if (query['update-email-token']) {
+      injectReducer(
+        APP_USER_EMAIL_UPDATE_STATE,
+        HOFreducer(
+          APP_USER_EMAIL_UPDATE_STATE,
+          appState(APP_USER_EMAIL_UPDATE_STATE)
+        )
+      );
+
+      // no body to update email - patch
+      injectReducer(
+        'BLANK',
+        HOFreducer('BLANK', {
+          blank: {
+            value: 'blank',
+            dbProp: 'blank',
+            validate: () => 'blank',
+            validationFailed: 'blank',
+          },
+        })
+      );
+
+      props.onPatch(
+        APP_USER_EMAIL_UPDATE_STATE,
+        'BLANK',
+        {},
+        () => {},
+        query.token,
+        query.email
+      );
+    }
+
     return () => {
-      ejectReducer(APP_ACTIVATE_ACCOUNT_STATE);
-      ejectReducer(USER);
+      ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
+      ejectReducer(UI_USER_EMAIL_UPDATE_STATE);
     };
   }, []);
 
@@ -250,15 +299,15 @@ function Header(props) {
       </div>
 
       {/* modal */}
-      {requestStatus && (
+      {props.requestStatus && (
         <RequestStatusModalBg
-          requestStatus={requestStatus}
-          APP_STATE={APP_ACTIVATE_ACCOUNT_STATE}
+          requestStatus={props.requestStatus}
+          APP_STATE={props.APP_STATE}
         >
-          {requestStatus === 'pending' ? (
+          {props.requestStatus === 'pending' ? (
             <SpinnerLoading />
           ) : (
-            modalMsg(requestStatus, errorTag)
+            props.modalMsg(props.requestStatus, props.errorTag)
           )}
         </RequestStatusModalBg>
       )}
@@ -272,12 +321,14 @@ const mapStateToProps = ({
   APP_CATEGORY_STATE,
   SHOPPING_CART,
   APP_ACTIVATE_ACCOUNT_STATE,
+  APP_USER_EMAIL_UPDATE_STATE,
 }) => ({
   USER,
   ...UI_SEARCH_STATE,
   ...APP_CATEGORY_STATE,
   ...SHOPPING_CART,
   APP_ACTIVATE_ACCOUNT_STATE,
+  APP_USER_EMAIL_UPDATE_STATE,
 });
 
-export default connect(mapStateToProps, { onGet })(Header);
+export default connect(mapStateToProps, { onGet, onPatch })(Header);
