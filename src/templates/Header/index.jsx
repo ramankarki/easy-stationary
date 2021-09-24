@@ -9,7 +9,6 @@ import {
   APP_ACTIVATE_ACCOUNT_STATE,
   USER,
   APP_USER_EMAIL_UPDATE_STATE,
-  UI_USER_EMAIL_UPDATE_STATE,
 } from '../../actions/constants';
 import fields from '../../utils/fields';
 import { ejectReducer, injectReducer } from '../../utils/dynamicReducers';
@@ -120,7 +119,6 @@ function Header(props) {
 
     return () => {
       ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
-      ejectReducer(UI_USER_EMAIL_UPDATE_STATE);
     };
   }, []);
 
