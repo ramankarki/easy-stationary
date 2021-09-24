@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import fields from '../../utils/fields';
 import {
-  APP_USER_EMAIL_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
   APP_USER_PROFILE_UPDATE_STATE,
-  UI_USER_EMAIL_UPDATE_STATE,
+  UI_USER_REQ_EMAIL_UPDATE_STATE,
   UI_USER_PASSWORD_UPDATE_STATE,
   UI_USER_PROFILE_UPDATE_STATE,
 } from '../../actions/constants';
@@ -16,7 +16,6 @@ import appState from '../../appState';
 import onPost from '../../actions/onPost';
 import onPatch from '../../actions/onPatch';
 
-import Button from '../../components/Button';
 import UpdateForm from '../../templates/UpdateForm';
 import ClientDashboard from '../../templates/ClientDashboard';
 
@@ -32,10 +31,10 @@ function DashboardSettings(props) {
       )
     );
     injectReducer(
-      APP_USER_EMAIL_UPDATE_STATE,
+      APP_USER_REQ_EMAIL_UPDATE_STATE,
       HOFreducer(
-        APP_USER_EMAIL_UPDATE_STATE,
-        appState(APP_USER_EMAIL_UPDATE_STATE)
+        APP_USER_REQ_EMAIL_UPDATE_STATE,
+        appState(APP_USER_REQ_EMAIL_UPDATE_STATE)
       )
     );
     injectReducer(
@@ -48,7 +47,7 @@ function DashboardSettings(props) {
 
     return () => {
       ejectReducer(APP_USER_PROFILE_UPDATE_STATE);
-      ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
+      ejectReducer(APP_USER_REQ_EMAIL_UPDATE_STATE);
       ejectReducer(APP_USER_PASSWORD_UPDATE_STATE);
     };
   }, []);
@@ -74,7 +73,10 @@ function DashboardSettings(props) {
 
   const onEmailSubmit = (event) => {
     event.preventDefault();
-    props.onPost(APP_USER_EMAIL_UPDATE_STATE, UI_USER_EMAIL_UPDATE_STATE);
+    props.onPost(
+      APP_USER_REQ_EMAIL_UPDATE_STATE,
+      UI_USER_REQ_EMAIL_UPDATE_STATE
+    );
   };
 
   const onPasswordSubmit = (event) => {
@@ -99,10 +101,10 @@ function DashboardSettings(props) {
         />
         <hr />
         <UpdateForm
-          UI_STATE={UI_USER_EMAIL_UPDATE_STATE}
-          APP_STATE={APP_USER_EMAIL_UPDATE_STATE}
+          UI_STATE={UI_USER_REQ_EMAIL_UPDATE_STATE}
+          APP_STATE={APP_USER_REQ_EMAIL_UPDATE_STATE}
           fields={emailField}
-          appState={props.APP_USER_EMAIL_UPDATE_STATE || {}}
+          appState={props.APP_USER_REQ_EMAIL_UPDATE_STATE || {}}
           user={props.USER.user}
           onSubmitHandler={onEmailSubmit}
           flex="true"
@@ -127,12 +129,12 @@ function DashboardSettings(props) {
 const mapStateToProps = ({
   APP_USER_PROFILE_UPDATE_STATE,
   USER,
-  APP_USER_EMAIL_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
 }) => ({
   APP_USER_PROFILE_UPDATE_STATE,
   USER,
-  APP_USER_EMAIL_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
 });
 

@@ -8,8 +8,8 @@ import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState';
 import fields from '../../utils/fields';
 import {
-  UI_USER_EMAIL_UPDATE_STATE,
-  APP_USER_EMAIL_UPDATE_STATE,
+  UI_USER_REQ_EMAIL_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
   UI_USER_PASSWORD_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
 } from '../../actions/constants';
@@ -22,10 +22,10 @@ import './adminSettings.scss';
 function AdminSettings(props) {
   useEffect(() => {
     injectReducer(
-      APP_USER_EMAIL_UPDATE_STATE,
+      APP_USER_REQ_EMAIL_UPDATE_STATE,
       HOFreducer(
-        APP_USER_EMAIL_UPDATE_STATE,
-        appState(APP_USER_EMAIL_UPDATE_STATE)
+        APP_USER_REQ_EMAIL_UPDATE_STATE,
+        appState(APP_USER_REQ_EMAIL_UPDATE_STATE)
       )
     );
     injectReducer(
@@ -37,7 +37,7 @@ function AdminSettings(props) {
     );
 
     return () => {
-      ejectReducer(APP_USER_EMAIL_UPDATE_STATE);
+      ejectReducer(APP_USER_REQ_EMAIL_UPDATE_STATE);
       ejectReducer(APP_USER_PASSWORD_UPDATE_STATE);
     };
   }, []);
@@ -51,7 +51,10 @@ function AdminSettings(props) {
 
   const onEmailSubmit = (event) => {
     event.preventDefault();
-    props.onPost(APP_USER_EMAIL_UPDATE_STATE, UI_USER_EMAIL_UPDATE_STATE);
+    props.onPost(
+      APP_USER_REQ_EMAIL_UPDATE_STATE,
+      UI_USER_REQ_EMAIL_UPDATE_STATE
+    );
   };
 
   const onPasswordSubmit = (event) => {
@@ -66,10 +69,10 @@ function AdminSettings(props) {
     <AdminPageTemplate heading="Settings">
       <div className="updateForms">
         <UpdateForm
-          UI_STATE={UI_USER_EMAIL_UPDATE_STATE}
-          APP_STATE={APP_USER_EMAIL_UPDATE_STATE}
+          UI_STATE={UI_USER_REQ_EMAIL_UPDATE_STATE}
+          APP_STATE={APP_USER_REQ_EMAIL_UPDATE_STATE}
           fields={emailField}
-          appState={props.APP_USER_EMAIL_UPDATE_STATE || {}}
+          appState={props.APP_USER_REQ_EMAIL_UPDATE_STATE || {}}
           user={props.USER.user}
           onSubmitHandler={onEmailSubmit}
           flex="true"
@@ -92,9 +95,13 @@ function AdminSettings(props) {
 }
 
 const mapStateToProps = ({
-  APP_USER_EMAIL_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
   USER,
-}) => ({ APP_USER_EMAIL_UPDATE_STATE, APP_USER_PASSWORD_UPDATE_STATE, USER });
+}) => ({
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
+  APP_USER_PASSWORD_UPDATE_STATE,
+  USER,
+});
 
 export default connect(mapStateToProps, { onPost, onPatch })(AdminSettings);
