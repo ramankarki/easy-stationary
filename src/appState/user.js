@@ -4,9 +4,9 @@ import {
   APP_USER_EMAIL_UPDATE_STATE,
   APP_USER_PASSWORD_UPDATE_STATE,
   APP_USER_PROFILE_UPDATE_STATE,
+  APP_USER_REQ_EMAIL_UPDATE_STATE,
 } from '../actions/constants';
 import getErrorTag from '../utils/errorTags';
-import { ADMIN_SETTINGS } from '../Routes/contants';
 
 import LazyImg from '../components/LazyImg';
 
@@ -22,9 +22,11 @@ const user = {
     domainState: USER,
     noGetSuccessModal: true,
   },
-  [APP_USER_EMAIL_UPDATE_STATE]: {
+  [APP_USER_REQ_EMAIL_UPDATE_STATE]: {
     postRoute: () =>
-      `/api/v1/user/req-update-email?user-settings-page=${window.location.origin}/%23${ADMIN_SETTINGS}`,
+      `/api/v1/user/req-update-email?user-settings-page=${
+        window.location.origin
+      }/%23${window.location.hash.slice(1).split('?')[0]}`,
     noReset: true,
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
@@ -48,6 +50,25 @@ const user = {
           return getErrorTag(errorTag);
       }
     },
+  },
+  [APP_USER_EMAIL_UPDATE_STATE]: {
+    patchRoute: (token, email) => `/api/v1/user/update-email/${token}/${email}`,
+    modalMsg: (requestStatus, errorTag) => {
+      switch (requestStatus) {
+        case 'patchSuccess':
+          return (
+            <div className="modalBg__modalMsg">
+              <picture>
+                <LazyImg src="/assets/check.svg" alt="success icon" />
+              </picture>
+              <p>Email updated successfully !</p>
+            </div>
+          );
+        default:
+          return getErrorTag(errorTag);
+      }
+    },
+    domainState: USER,
   },
   [APP_USER_PASSWORD_UPDATE_STATE]: {
     patchRoute: () => `/api/v1/user/update-password`,
