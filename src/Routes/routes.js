@@ -64,67 +64,67 @@ const routes = {
   [ADMIN]: {
     private: true,
     component: LazyLoadPages.Admin,
-    role: ['admin'],
+    role: 'admin',
   },
 
   [ADMIN_CATEGORY]: {
     private: true,
     component: LazyLoadPages.AdminCategory,
-    role: ['admin'],
+    role: 'admin',
   },
 
   [ADMIN_SETTINGS]: {
     private: true,
     component: LazyLoadPages.AdminSettings,
-    role: ['admin'],
+    role: 'admin',
   },
 
   [ADMIN_ADD_NEW_PRODUCT]: {
     private: true,
     component: LazyLoadPages.AdminAddNewProduct,
-    role: ['admin'],
+    role: 'admin',
   },
 
   [ADMIN_ORDERS]: {
     private: true,
     component: LazyLoadPages.AdminOrders,
-    role: ['admin'],
+    role: 'admin',
   },
 
   [CART]: {
     private: true,
     component: LazyLoadPages.Cart,
-    role: ['client'],
+    role: 'client',
   },
 
   [DASHBOARD]: {
     private: true,
     component: LazyLoadPages.Dashboard,
-    role: ['client'],
+    role: 'client',
   },
 
   [DASHBOARD_ORDERS]: {
     private: true,
     component: LazyLoadPages.DashboardOrders,
-    role: ['client'],
+    role: 'client',
   },
 
   [DASHBOARD_MY_REVIEWS]: {
     private: true,
     component: LazyLoadPages.DashboardMyReviews,
-    role: ['client'],
+    role: 'client',
   },
 
   [DASHBOARD_MY_WISHLISTS]: {
     private: true,
     component: LazyLoadPages.DashboardMyWishlists,
-    role: ['client'],
+    role: 'client',
   },
 
   [DASHBOARD_SETTINGS]: {
     private: true,
     component: LazyLoadPages.DashboardSettings,
-    role: ['client'],
+    role: 'client',
   },
 
   [SEARCH]: {
