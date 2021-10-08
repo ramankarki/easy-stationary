@@ -1,7 +1,10 @@
 import { batch } from 'react-redux';
+import { createHashHistory } from 'history';
 
 import API from '../utils/API';
 import { UI_SINGLE_PRODUCT_STATE, APP_SINGLE_PRODUCT_STATE } from './constants';
+
+const history = createHashHistory();
 
 // directly pass this func to onSubmit
 const unCommonFields = [
@@ -64,6 +67,8 @@ const addNewProduct = () => (dispatch, getState) => {
             requestStatus: appState.requestEnum.postSuccess,
           },
         });
+
+        history.push(`/${data.product.categoryName}/${data.product.productId}`);
       })
     )
     .catch(({ response }) => {
