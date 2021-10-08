@@ -1,8 +1,5 @@
 import { APP_SINGLE_PRODUCT_STATE, SINGLE_PRODUCT } from '../actions/constants';
-import { SINGLE_PRODUCT as productPageRoute } from '../Routes/contants';
 import getErrorTag from '../utils/errorTags';
-
-import { Redirect } from 'react-router';
 
 const singleProduct = {
   [APP_SINGLE_PRODUCT_STATE]: {
@@ -15,8 +12,6 @@ const singleProduct = {
     },
     modalMsg: (requestStatus, errorTag) => {
       switch (requestStatus) {
-        case 'postSuccess':
-          return <Redirect to={productPageRoute} />;
         default:
           return getErrorTag(errorTag);
       }
