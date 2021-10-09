@@ -6,6 +6,7 @@ import { injectReducer, ejectReducer } from '../../utils/dynamicReducers';
 import onPost from '../../actions/onPost';
 import HOFreducer from '../../reducers/HOFreducer';
 import appState from '../../appState/';
+import { ROOT } from '../../Routes/contants';
 
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
@@ -69,12 +70,11 @@ function FormGenerator(props) {
     <div className="Form">
       {/* logo */}
       {topLogo && (
-        <picture className="Form__logo">
-          <LazyImg
-            src="/assets/Easy-Stationary-Logo.webp"
-            alt="Easy Stationary Logo"
-          />
-        </picture>
+        <div className="Form__logo">
+          <Link to={ROOT}>
+            <LazyImg src="/assets/logo.png" alt="eazeal Logo" />
+          </Link>
+        </div>
       )}
 
       {/* form */}
