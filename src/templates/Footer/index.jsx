@@ -61,13 +61,25 @@ export default function Footer() {
         </div>
         <div className="threeColumn">
           <h4>Social links</h4>
-          <a href="https://facebook.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.facebook.com/eazealshopping"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src="/assets/fb.svg" alt="facebook icon" /> Facebook
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.instagram.com/eazealshooping/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src="/assets/insta.svg" alt="insta icon" /> Instagram
           </a>
-          <a href="https://gmail.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=eazealcare@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src="/assets/gmail.svg" alt="gmail icon" /> Email
           </a>
         </div>
