@@ -1,13 +1,20 @@
 import { batch } from 'react-redux';
+import { createHashHistory } from 'history';
 
 import API from '../utils/API';
 import { CREATE } from './constants';
+import { LOGIN } from '../Routes/contants';
+
+const history = createHashHistory();
 
 const onPost =
   (APP_STATE_TYPE, UI_STATE_TYPE, callback = () => {}, ...args) =>
   (dispatch, getState) => {
     const uiState = getState()[UI_STATE_TYPE];
     const appState = getState()[APP_STATE_TYPE];
+
+    if (!appState) return history.push(LOGIN);
+
     const { domainState, dynamicState, noPostSuccessModal, noReset } = appState;
 
     const password = getState()[UI_STATE_TYPE]['Password']?.value;
