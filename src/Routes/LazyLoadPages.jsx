@@ -7,6 +7,8 @@ import ErrorBoundary from '../components/ErrorBoundary';
 const PAGES = [
   'Landing',
   'AboutUs',
+  'TermsAndConditions',
+  'Policy',
   'AllProducts',
   'Signup',
   'Login',

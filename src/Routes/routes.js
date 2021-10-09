@@ -22,6 +22,8 @@ import {
   DASHBOARD_SETTINGS,
   ADMIN_ORDERS,
   ABOUT_US_PAGE,
+  TERMS_AND_CONDITIONS_PAGE,
+  POLICY_PAGE,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -65,6 +67,16 @@ const routes = {
   [ABOUT_US_PAGE]: {
     private: false,
     component: LazyLoadPages.AboutUs,
+  },
+
+  [TERMS_AND_CONDITIONS_PAGE]: {
+    private: false,
+    component: LazyLoadPages.TermsAndConditions,
+  },
+
+  [POLICY_PAGE]: {
+    private: false,
+    component: LazyLoadPages.Policy,
   },
 
   [ADMIN]: {

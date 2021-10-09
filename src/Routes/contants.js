@@ -2,6 +2,8 @@
 export const ROOT = '/';
 export const LANDING_PAGE = '/landing-page';
 export const ABOUT_US_PAGE = '/about-us';
+export const TERMS_AND_CONDITIONS_PAGE = '/terms-and-conditions';
+export const POLICY_PAGE = '/policy';
 export const SIGNUP = '/auth/signup';
 export const LOGIN = '/auth/login';
 export const ACTIVATE_ACCOUNT = '/auth/activate-account';
