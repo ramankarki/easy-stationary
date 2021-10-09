@@ -255,7 +255,7 @@ function SingleProduct(props) {
             <span>Rs. {product?.price}</span> &nbsp; - Delivery charge included
           </p>
 
-          {user?.role === 'client' && (
+          {user?.role !== 'admin' && (
             <Button
               onClick={onAddToCart}
               style={{
