@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import {
   UI_SEARCH_STATE,
@@ -167,9 +168,11 @@ function Header(props) {
 
   return (
     <header className="header">
-      <picture className="header__logo">
-        <LazyImg logo src="/assets/Easy-Stationary-Logo.webp" alt="logo" />
-      </picture>
+      <Link to={ROOT}>
+        <picture className="header__logo">
+          <LazyImg src="/assets/logo.png" alt="logo" logo />
+        </picture>
+      </Link>
 
       <form className="header__form" onSubmit={onSubmitHandler}>
         <InputField
@@ -190,7 +193,7 @@ function Header(props) {
         {(!isAuth || isClient) && (
           <LinkButton
             to={isAuth ? CART : SIGNUP}
-            dark="true"
+            dark={true}
             iconsrc={isAuth ? cartIcon : null}
             alt="cart icon"
           >
