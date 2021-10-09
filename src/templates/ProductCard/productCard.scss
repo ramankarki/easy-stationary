@@ -98,3 +98,14 @@
     }
   }
 }
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.small-text {
+  font-size: $small-text;
+  font-weight: $light;
+}
