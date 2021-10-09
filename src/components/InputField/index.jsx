@@ -17,6 +17,7 @@ const InputField = (props) => {
     hideLabel,
     placeholder,
     reTypeCompareValue,
+    inputType,
   } = props;
 
   // event handlers
@@ -55,7 +56,7 @@ const InputField = (props) => {
       )}
       <input
         className={inputClass}
-        type="text"
+        type={inputType || 'text'}
         value={value}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}

@@ -44,14 +44,19 @@ function FormGenerator(props) {
   );
 
   const formElements = (fieldsObj, TYPE) =>
-    Object.keys(fieldsObj).map((fieldName) => (
-      <InputField
-        key={fieldName}
-        TYPE={TYPE}
-        labelName={fieldName}
-        dbProp={fieldsObj[fieldName].dbProp}
-      />
-    ));
+    Object.keys(fieldsObj).map((fieldName) => {
+      const inputType = /password/gi.test(fieldName) ? 'password' : false;
+
+      return (
+        <InputField
+          key={fieldName}
+          TYPE={TYPE}
+          labelName={fieldName}
+          dbProp={fieldsObj[fieldName].dbProp}
+          inputType={inputType}
+        />
+      );
+    });
 
   const onSubmitHandler = (event) => {
     event.preventDefault();

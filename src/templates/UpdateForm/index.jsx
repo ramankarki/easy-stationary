@@ -28,15 +28,20 @@ function UpdateEmailPassword(props) {
   }, []);
 
   const formElements = (fieldsObj, TYPE) =>
-    Object.keys(fieldsObj).map((fieldName) => (
-      <InputField
-        key={fieldName}
-        TYPE={TYPE}
-        labelName={fieldName}
-        dbProp={fieldsObj[fieldName].dbProp}
-        reTypeCompareValue="New password"
-      />
-    ));
+    Object.keys(fieldsObj).map((fieldName) => {
+      const inputType = /password/gi.test(fieldName) ? 'password' : false;
+
+      return (
+        <InputField
+          key={fieldName}
+          TYPE={TYPE}
+          labelName={fieldName}
+          dbProp={fieldsObj[fieldName].dbProp}
+          reTypeCompareValue="New password"
+          inputType={inputType}
+        />
+      );
+    });
 
   const formClass = classes('updateForm', { 'updateForm-flex': props.flex });
 
