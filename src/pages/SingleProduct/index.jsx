@@ -254,17 +254,20 @@ function SingleProduct(props) {
           <p className="singleProduct__price">
             <span>Rs. {product?.price}</span> &nbsp; - Delivery charge included
           </p>
-          <Button
-            onClick={onAddToCart}
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'center',
-              padding: '1rem',
-            }}
-          >
-            <img src={cartIcon} alt="cart" /> Add to cart
-          </Button>
+
+          {user?.role === 'client' && (
+            <Button
+              onClick={onAddToCart}
+              style={{
+                display: 'flex',
+                gap: '1rem',
+                justifyContent: 'center',
+                padding: '1rem',
+              }}
+            >
+              <img src={cartIcon} alt="cart" /> Add to cart
+            </Button>
+          )}
         </div>
       </div>
 
