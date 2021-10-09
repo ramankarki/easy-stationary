@@ -32,6 +32,7 @@ import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
 import SpinnerLoading from '../../components/SpinnerLoading';
 import RatingsStar from '../../components/RatingStars';
 import ProductCardGen from '../../templates/ProductCardGen';
+import Footer from '../../templates/Footer';
 
 import cartIcon from './cart icon.svg';
 import wishlistActive from './wishlist-active.svg';
@@ -371,57 +372,61 @@ function SingleProduct(props) {
           )}
 
           {/* reviews cards */}
-          <div className="reviewsCards">
-            {props.reviews?.map((review) => (
-              <div key={review._id} className="reviewsCards__card">
-                <div className="reviewsCards__cardHead">
-                  <div className="ratings">
-                    {Array(5)
-                      .fill(0)
-                      .map((val, index) => {
-                        let src = index < review.ratings ? active : inActive;
-                        return (
-                          <img
-                            key={src + 'reviews' + index}
-                            src={src}
-                            alt="star"
-                          />
-                        );
-                      })}
+          {props.reviews && (
+            <div className="reviewsCards">
+              {props.reviews?.map((review) => (
+                <div key={review._id} className="reviewsCards__card">
+                  <div className="reviewsCards__cardHead">
+                    <div className="ratings">
+                      {Array(5)
+                        .fill(0)
+                        .map((val, index) => {
+                          let src = index < review.ratings ? active : inActive;
+                          return (
+                            <img
+                              key={src + 'reviews' + index}
+                              src={src}
+                              alt="star"
+                            />
+                          );
+                        })}
+                    </div>
+                    {_id === review.userId && (
+                      <Button
+                        style={{ marginLeft: 'auto' }}
+                        value="Delete"
+                        small="true"
+                        danger="true"
+                        onClick={onReviewDelete(review)}
+                      />
+                    )}
                   </div>
-                  {_id === review.userId && (
-                    <Button
-                      style={{ marginLeft: 'auto' }}
-                      value="Delete"
-                      small="true"
-                      danger="true"
-                      onClick={onReviewDelete(review)}
-                    />
-                  )}
+                  <p className="reviewsCards__cardInfo">
+                    <span className="reviewsCards__cardInfo__name">
+                      {review.firstName} {review.lastName}
+                    </span>
+                    -
+                    <span>
+                      {new Date(review.date).toLocaleDateString('us', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </p>
+                  <p className="reviewsCards__cardDesc">{review.description}</p>
                 </div>
-                <p className="reviewsCards__cardInfo">
-                  <span className="reviewsCards__cardInfo__name">
-                    {review.firstName} {review.lastName}
-                  </span>
-                  -
-                  <span>
-                    {new Date(review.date).toLocaleDateString('us', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </span>
-                </p>
-                <p className="reviewsCards__cardDesc">{review.description}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div ref={spinnerRef} className={spinnerClass}>
             <SpinnerLoading />
           </div>
         </div>
       </section>
+
+      <Footer />
 
       {/* modal */}
       {props.requestStatus && (

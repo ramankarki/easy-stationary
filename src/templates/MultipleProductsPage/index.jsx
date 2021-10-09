@@ -22,6 +22,7 @@ import HeroSection from '../../templates/HeroSection';
 import SpinnerLoading from '../../components/SpinnerLoading';
 import ProductCardGen from '../../templates/ProductCardGen';
 import LinkButton from '../../components/LinkButton';
+import Footer from '../Footer';
 
 import './multipleProductsPage.scss';
 
@@ -187,6 +188,8 @@ function MultipleProductsPage(props) {
 
       {/* products grid */}
       <ProductCardGen products={products} />
+
+      <Footer />
 
       {/* spinner */}
       {showSpinner && (

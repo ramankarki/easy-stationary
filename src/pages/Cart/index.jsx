@@ -23,6 +23,7 @@ import BreadCrumb from '../../components/BreadCrumb';
 import HeroSection from '../../templates/HeroSection';
 import RequestStatusModalBg from '../../templates/RequestStatusModalBg';
 import SpinnerLoading from '../../components/SpinnerLoading';
+import Footer from '../../templates/Footer';
 
 import './cart.scss';
 
@@ -177,6 +178,8 @@ function Cart(props) {
             </Link>
           </p>
         ))}
+
+      <Footer />
 
       {/* modal */}
       {props.requestStatus && props.requestStatus !== 'getSuccess' && (
