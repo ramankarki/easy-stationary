@@ -189,14 +189,14 @@ function MultipleProductsPage(props) {
       {/* products grid */}
       <ProductCardGen products={products} />
 
-      <Footer />
-
       {/* spinner */}
       {showSpinner && (
         <div ref={spinnerRef} className="spinnerWrapper">
           <SpinnerLoading />
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
