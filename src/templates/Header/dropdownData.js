@@ -1,4 +1,4 @@
-import { LOGIN, ROOT, SIGNUP } from '../../Routes/contants';
+import { ABOUT_US_PAGE, LOGIN, ROOT, SIGNUP } from '../../Routes/contants';
 
 const buttons = [
   {
@@ -25,3 +25,12 @@ const dropdownData = (isAuth) =>
   buttons.filter((button) => button.private === isAuth);
 
 export default dropdownData;
+
+export const commonButtons = [
+  {
+    value: 'About us',
+    path: ABOUT_US_PAGE,
+    iconsrc: '/assets/about-us.svg',
+    private: false,
+  },
+];

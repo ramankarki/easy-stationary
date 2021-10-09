@@ -26,7 +26,7 @@ import {
 import appState from '../../appState';
 import onGet from '../../actions/onGet';
 import getQueryString from '../../utils/getQueryString';
-import dropdownData from './dropdownData';
+import dropdownData, { commonButtons } from './dropdownData';
 import dashboardLinks from '../ClientDashboard/asideButtonsData';
 import onPatch from '../../actions/onPatch';
 
@@ -218,26 +218,26 @@ function Header(props) {
       </div>
 
       {/* hamburgur button */}
-      {isAuth && (
-        <Hamburgur active={showDropdown} onClickHandler={onClickHandler} />
-      )}
+      <Hamburgur active={showDropdown} onClickHandler={onClickHandler} />
 
       {showDropdown && (
         <div className="header__dropdown">
-          {dropdownData(isAuth).map(({ value, path, iconsrc }) => (
-            <LinkButton
-              key={iconsrc + value}
-              to={path}
-              iconsrc={iconsrc}
-              alt={iconsrc}
-              nobg={currentPath !== path ? 'true' : ''}
-              bgonhover={'true'}
-              style={{ padding: '1rem', fontSize: '.9rem' }}
-              onClick={value === 'Logout' ? logout : () => {}}
-            >
-              {value}
-            </LinkButton>
-          ))}
+          {[...commonButtons, ...dropdownData(isAuth)].map(
+            ({ value, path, iconsrc }) => (
+              <LinkButton
+                key={iconsrc + value}
+                to={path}
+                iconsrc={iconsrc}
+                alt={iconsrc}
+                nobg={currentPath !== path ? 'true' : ''}
+                bgonhover={'true'}
+                style={{ padding: '1rem', fontSize: '.9rem' }}
+                onClick={value === 'Logout' ? logout : () => {}}
+              >
+                {value}
+              </LinkButton>
+            )
+          )}
         </div>
       )}
 
@@ -278,22 +278,24 @@ function Header(props) {
 
           {showMobileDropdown && (
             <div className="header__mobileDropdownBox">
-              {[...dashboardLinks(isAuth), ...dropdownData(isAuth)].map(
-                ({ value, path, iconsrc }) => (
-                  <LinkButton
-                    key={iconsrc + value}
-                    to={path}
-                    iconsrc={iconsrc}
-                    alt={iconsrc}
-                    nobg={currentPath !== path ? 'true' : ''}
-                    bgonhover={'true'}
-                    style={{ padding: '1rem', fontSize: '.9rem' }}
-                    onClick={value === 'Logout' ? logout : () => {}}
-                  >
-                    {value}
-                  </LinkButton>
-                )
-              )}
+              {[
+                ...commonButtons,
+                ...dashboardLinks(isAuth),
+                ...dropdownData(isAuth),
+              ].map(({ value, path, iconsrc }) => (
+                <LinkButton
+                  key={iconsrc + value}
+                  to={path}
+                  iconsrc={iconsrc}
+                  alt={iconsrc}
+                  nobg={currentPath !== path ? 'true' : ''}
+                  bgonhover={'true'}
+                  style={{ padding: '1rem', fontSize: '.9rem' }}
+                  onClick={value === 'Logout' ? logout : () => {}}
+                >
+                  {value}
+                </LinkButton>
+              ))}
             </div>
           )}
         </div>
