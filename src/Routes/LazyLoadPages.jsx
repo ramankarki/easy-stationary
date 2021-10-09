@@ -6,6 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 // Add pages here
 const PAGES = [
   'Landing',
+  'AboutUs',
   'AllProducts',
   'Signup',
   'Login',

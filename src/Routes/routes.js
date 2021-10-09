@@ -21,6 +21,7 @@ import {
   DASHBOARD_MY_WISHLISTS,
   DASHBOARD_SETTINGS,
   ADMIN_ORDERS,
+  ABOUT_US_PAGE,
 } from './contants';
 import LazyLoadPages from './LazyLoadPages';
 
@@ -59,6 +60,11 @@ const routes = {
   [LANDING_PAGE]: {
     private: false,
     component: LazyLoadPages.Landing,
+  },
+
+  [ABOUT_US_PAGE]: {
+    private: false,
+    component: LazyLoadPages.AboutUs,
   },
 
   [ADMIN]: {
