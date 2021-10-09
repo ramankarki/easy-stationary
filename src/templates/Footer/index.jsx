@@ -76,6 +76,14 @@ export default function Footer() {
             <img src="/assets/insta.svg" alt="insta icon" /> Instagram
           </a>
           <a
+            href="https://api.whatsapp.com/send?phone=9779746337219"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="/assets/whatsapp.svg" alt="whatsapp icon" /> WhatsApp
+          </a>
+
+          <a
             href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=eazealcare@gmail.com"
             target="_blank"
             rel="noreferrer"
