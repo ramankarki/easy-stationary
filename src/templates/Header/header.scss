@@ -81,6 +81,7 @@
     border: 1px solid $light-gray-border;
     width: 200px;
     box-shadow: $box-shadow-light;
+    z-index: 99;
   }
 
   &__mobileDropdown {

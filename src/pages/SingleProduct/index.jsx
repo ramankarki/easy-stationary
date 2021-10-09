@@ -372,7 +372,7 @@ function SingleProduct(props) {
           )}
 
           {/* reviews cards */}
-          {props.reviews?.length && (
+          {props.reviews && (
             <div className="reviewsCards">
               {props.reviews?.map((review) => (
                 <div key={review._id} className="reviewsCards__card">
