@@ -252,6 +252,9 @@ function SingleProduct(props) {
           <p className="singleProduct__heroBrand">
             Brand: <span>{product?.brandName}</span>
           </p>
+          <p>
+            Your products will be delivered within 2 days in Biratnagar City.
+          </p>
           <p className="singleProduct__price">
             <span>Rs. {product?.price}</span> &nbsp; - Delivery charge included
           </p>
