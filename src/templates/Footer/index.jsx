@@ -40,7 +40,7 @@ export default function Footer() {
 
       <div className="Footer__features">
         {features.map((data) => (
-          <FeatureCard {...data} />
+          <FeatureCard key={data.iconsrc} {...data} />
         ))}
       </div>
 
