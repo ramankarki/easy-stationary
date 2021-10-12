@@ -1,0 +1,9 @@
+@import '../../variables';
+
+.TermsAndConditions {
+  width: 100%;
+
+  &__markdown {
+    @include markdown;
+  }
+}
