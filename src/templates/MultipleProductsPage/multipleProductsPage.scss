@@ -3,6 +3,58 @@
 .allProducts {
   width: 100%;
 
+  &__giftCard {
+    margin-top: 2rem;
+    border: 1px solid $light-error-color;
+    position: relative;
+    box-shadow: $box-shadow-light;
+
+    picture {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100px;
+    }
+
+    p {
+      background-color: $light-error-color;
+      color: $text-color;
+      padding: 2rem;
+      line-height: 1.8rem;
+    }
+
+    button {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      width: 30px;
+      border: 1px solid $light-error-color;
+      background: white;
+      padding: 0.4rem;
+      cursor: pointer;
+      box-shadow: $box-shadow;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    @media (min-width: $gt-medium-screen) {
+      display: flex;
+      flex-direction: row-reverse;
+
+      picture {
+        height: initial;
+      }
+
+      p,
+      picture {
+        width: 50%;
+      }
+    }
+  }
+
   &__categoryFilterBar {
     margin: 2rem 0;
     display: flex;

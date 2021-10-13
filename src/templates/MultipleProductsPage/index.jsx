@@ -30,6 +30,10 @@ function MultipleProductsPage(props) {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('');
   const [showSpinner, setShowSpinner] = useState(true);
+  const [giftCardData, setGiftCardData] = useState(null);
+  const [showGiftCard, setShowGiftCard] = useState(true);
+
+  const onGiftCardClose = () => setShowGiftCard(false);
 
   const spinnerRef = useRef();
 
@@ -55,6 +59,21 @@ function MultipleProductsPage(props) {
   };
 
   useEffect(() => {
+    // get gift card data from notion
+    fetch(
+      'https://notion-api.splitbee.io/v1/page/9fab1eab3dce4a038bb95e885cdb9411'
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const keys = Object.keys(data);
+        const text = data[keys[1]].value.properties.title[0][0];
+        const image = `https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F${
+          data[keys[2]].value.file_ids[0]
+        }%2FUntitled.png?table=block&id=${keys[2]}&cache=v2`;
+
+        setGiftCardData({ text, image });
+      });
+
     // inject category
     injectReducer(
       CATEGORY,
@@ -152,6 +171,21 @@ function MultipleProductsPage(props) {
         and typing keywords, or by clicking the category buttons of your
         products below."
       />
+
+      {/* gift card */}
+      {showGiftCard && giftCardData && (
+        <div className="allProducts__giftCard">
+          <picture
+            style={{
+              backgroundImage: `url('${giftCardData?.image}')`,
+            }}
+          ></picture>
+          <p>{giftCardData?.text}</p>
+          <button onClick={onGiftCardClose}>
+            <img src="/assets/exit icon.svg" alt="exit icon" />
+          </button>
+        </div>
+      )}
 
       {/* category bar with filter button aside */}
       <div className="allProducts__categoryFilterBar">
