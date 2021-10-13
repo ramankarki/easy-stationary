@@ -161,11 +161,18 @@ function Cart(props) {
                 <p>
                   Shipping address: <b>{props.user?.fullAddress}</b>
                 </p>
+
+                <hr className="cart__placeOrder-hr" />
+
+                <p>Home delivery</p>
+                <p>Cash On Delivery</p>
+                <p>5 days easy returns</p>
+
                 <Button onClick={onPlaceOrder}>
                   <picture>
                     <img src="/assets/order icon.svg" alt="cart icon" />
                   </picture>
-                  Place order
+                  Confirm order
                 </Button>
               </div>
             </div>
