@@ -26,7 +26,7 @@ function Policy() {
       <Header />
       <BreadCrumb />
 
-      <div className="TermsAndConditions__markdown">
+      <div className="Policy__markdown">
         <h1>Policy</h1>
         <hr />
 
