@@ -27,7 +27,9 @@ function TermsAndConditions() {
       <BreadCrumb />
 
       <div className="TermsAndConditions__markdown">
-        <h1>Terms & Conditions</h1>
+        <h1>
+          <img src="/assets/terms.svg" alt="terms icon" /> Terms & Conditions
+        </h1>
         <hr />
 
         <NotionRenderer blockMap={terms} />

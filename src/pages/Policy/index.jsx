@@ -27,7 +27,9 @@ function Policy() {
       <BreadCrumb />
 
       <div className="Policy__markdown">
-        <h1>Policy</h1>
+        <h1>
+          <img src="/assets/policy.svg" alt="policy icon" /> Policy
+        </h1>
         <hr />
 
         <NotionRenderer blockMap={policy} />

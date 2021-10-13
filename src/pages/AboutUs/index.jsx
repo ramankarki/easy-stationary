@@ -27,7 +27,9 @@ function AboutUs() {
       <BreadCrumb />
 
       <div className="AboutUs__markdown">
-        <h1>About us</h1>
+        <h1>
+          <img src="/assets/about-us.svg" alt="about icon" /> About us
+        </h1>
         <hr />
 
         <NotionRenderer blockMap={about} />

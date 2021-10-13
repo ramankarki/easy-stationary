@@ -43,10 +43,22 @@ $box-shadow-bold: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     font-size: $large-text;
     font-weight: $medium;
     margin: 2.5rem 0 0;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    img {
+      width: 28px;
+      height: auto;
+    }
 
     @media (min-width: $gt-small-screen) {
       font-size: $extra-large-text;
       margin: 3.5rem 0 0;
+
+      img {
+        width: 32px;
+      }
     }
   }
 
