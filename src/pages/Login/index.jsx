@@ -26,7 +26,7 @@ function Login(props) {
 
   return (
     <FormGenerator
-      formHeading="Login"
+      formHeading="Welcome back! Login"
       buttonValue="Login"
       fieldsObj={loginFields}
       UI_STATE={UI_LOGIN_STATE}
@@ -35,7 +35,7 @@ function Login(props) {
       redirect={SIGNUP}
       forgotPassword={FORGOT_PASSWORD}
       forgotPasswordLinkStyle={forgotPasswordLinkStyle}
-      redirectMsg="New to Easy Stationary? Create Account"
+      redirectMsg="New member to Eazeal? Create Account"
       topLogo
     />
   );
