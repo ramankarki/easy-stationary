@@ -51,7 +51,7 @@ function ProductCard(props) {
         {props.quantity && <span>Quantity: {props.quantity}</span>}
         <p className="product-price">
           Rs. {props.price}{' '}
-          <span className="small-text"> - Delivery charge included</span>
+          <span className="small-text"> - Delivery charge Rs. 29 included</span>
         </p>
 
         {props.reviewId && (
