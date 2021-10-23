@@ -121,7 +121,7 @@ const fieldsObject = {
     dbProp: 'categoryName',
   },
   'Product description': {
-    min: 160,
+    min: 10,
     max: 999999,
     validate: isTextBox,
     dbProp: 'productDescription',
